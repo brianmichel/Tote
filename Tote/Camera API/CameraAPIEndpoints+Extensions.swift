@@ -12,14 +12,16 @@ extension CameraAPIEndpoints {
     func props() -> CameraAPIRequest {
         return CameraAPIRequest(urlString: "http://\(host)/\(version)/props")
     }
+
     func photos() -> CameraAPIRequest {
         return CameraAPIRequest(urlString: "http://\(host)/\(version)/photos")
     }
-    func specificPhoto(folder: String, file: String) -> CameraAPIRequest {
-        return CameraAPIRequest(urlString: "http://\(host)/\(version)/\(folder)/\(file)")
+
+    func specificPhoto(folder: String, file: String, size: PhotoSize) -> CameraAPIRequest {
+        return CameraAPIRequest(urlString: "http://\(host)/\(version)/photos/\(folder)/\(file)?size=\(size.rawValue)")
     }
-    
+
     func specificPhotoInfo(folder: String, file: String) -> CameraAPIRequest {
-        return CameraAPIRequest(urlString: "http://\(host)/\(version)/\(folder)/\(file)/info")
+        return CameraAPIRequest(urlString: "http://\(host)/\(version)/photos/\(folder)/\(file)/info")
     }
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
-		729E571422BE61F70039C08A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* RootViewController.swift */; };
+		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
 		729E571C22BE61F80039C08A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 729E571A22BE61F80039C08A /* LaunchScreen.storyboard */; };
 		729E572722BE61F80039C08A /* ToteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E572622BE61F80039C08A /* ToteTests.swift */; };
@@ -19,6 +19,9 @@
 		729E573E22BE68FB0039C08A /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E573D22BE68FB0039C08A /* Result.swift */; };
 		729E574122BE6F260039C08A /* PhotosListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E574022BE6F260039C08A /* PhotosListResponse.swift */; };
 		729E574322BE70610039C08A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E574222BE70610039C08A /* Response.swift */; };
+		72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */; };
+		72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC69F522BE7F7A001D70B3 /* HomeCoordinator.swift */; };
+		72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */; };
 		D41BF3DDBD49334053906945 /* Pods_Tote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1AA848CF88CAB4DD2F1F7E /* Pods_Tote.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +39,7 @@
 		1A1AA848CF88CAB4DD2F1F7E /* Pods_Tote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E570E22BE61F70039C08A /* Tote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		729E571322BE61F70039C08A /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
 		729E571822BE61F80039C08A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		729E571B22BE61F80039C08A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		729E571D22BE61F80039C08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +53,9 @@
 		729E573D22BE68FB0039C08A /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		729E574022BE6F260039C08A /* PhotosListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListResponse.swift; sourceTree = "<group>"; };
 		729E574222BE70610039C08A /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		72EC69F522BE7F7A001D70B3 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AB5AC406C549340818273454 /* Pods-Tote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tote.release.xcconfig"; path = "Target Support Files/Pods-Tote/Pods-Tote.release.xcconfig"; sourceTree = "<group>"; };
 		EBDEA3997656E6187B198B40 /* Pods-Tote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tote.debug.xcconfig"; path = "Target Support Files/Pods-Tote/Pods-Tote.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,9 +119,10 @@
 		729E571022BE61F70039C08A /* Tote */ = {
 			isa = PBXGroup;
 			children = (
-				729E573C22BE68F20039C08A /* Utility */,
+				72EC69F222BE7F15001D70B3 /* Home */,
 				729E573122BE62CB0039C08A /* Main App Hierarchy */,
-				729E573522BE645E0039C08A /* Camera */,
+				729E573522BE645E0039C08A /* Camera API */,
+				729E573C22BE68F20039C08A /* Utility */,
 				729E573422BE63160039C08A /* Resources */,
 				729E571D22BE61F80039C08A /* Info.plist */,
 			);
@@ -135,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				729E571122BE61F70039C08A /* AppDelegate.swift */,
-				729E571322BE61F70039C08A /* RootViewController.swift */,
+				729E571322BE61F70039C08A /* ApplicationViewController.swift */,
 				729E573222BE62FE0039C08A /* ApplicationCoordinator.swift */,
 			);
 			path = "Main App Hierarchy";
@@ -150,7 +157,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		729E573522BE645E0039C08A /* Camera */ = {
+		729E573522BE645E0039C08A /* Camera API */ = {
 			isa = PBXGroup;
 			children = (
 				729E573F22BE6EFD0039C08A /* Responses */,
@@ -158,7 +165,7 @@
 				729E573822BE681D0039C08A /* CameraAPIEndpoints.swift */,
 				729E573A22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift */,
 			);
-			path = Camera;
+			path = "Camera API";
 			sourceTree = "<group>";
 		};
 		729E573C22BE68F20039C08A /* Utility */ = {
@@ -176,6 +183,16 @@
 				729E574222BE70610039C08A /* Response.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		72EC69F222BE7F15001D70B3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */,
+				72EC69F522BE7F7A001D70B3 /* HomeCoordinator.swift */,
+				72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,13 +377,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				729E571422BE61F70039C08A /* RootViewController.swift in Sources */,
+				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
+				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
 				729E573722BE64A60039C08A /* CameraAPI.swift in Sources */,
 				729E573B22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift in Sources */,
 				729E574122BE6F260039C08A /* PhotosListResponse.swift in Sources */,
 				729E574322BE70610039C08A /* Response.swift in Sources */,
 				729E571222BE61F70039C08A /* AppDelegate.swift in Sources */,
+				72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */,
 				729E573E22BE68FB0039C08A /* Result.swift in Sources */,
+				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				729E573922BE681D0039C08A /* CameraAPIEndpoints.swift in Sources */,
 			);

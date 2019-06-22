@@ -1,5 +1,5 @@
 //
-//  RootViewController.swift
+//  ApplicationViewController.swift
 //  Tote
 //
 //  Created by Brian Michel on 6/22/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootViewController: UIViewController {
+class ApplicationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

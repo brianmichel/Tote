@@ -15,13 +15,18 @@ enum HTTPMethod: String {
     case POST
 }
 
+enum PhotoSize: String {
+    case thumb
+    case view
+}
+
 protocol CameraAPIEndpoints {
     var host: String { get }
     var version: String { get }
 
     func props() -> CameraAPIRequest
     func photos() -> CameraAPIRequest
-    func specificPhoto(folder: String, file: String) -> CameraAPIRequest
+    func specificPhoto(folder: String, file: String, size: PhotoSize) -> CameraAPIRequest
     func specificPhotoInfo(folder: String, file: String) -> CameraAPIRequest
 }
 
