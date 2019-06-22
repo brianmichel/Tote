@@ -1,0 +1,6 @@
+framework module SwiftFormat {
+  umbrella header "SwiftFormat-umbrella.h"
+
+  export *
+  module * { export * }
+}

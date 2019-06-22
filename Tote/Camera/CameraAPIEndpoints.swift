@@ -18,7 +18,7 @@ enum HTTPMethod: String {
 protocol CameraAPIEndpoints {
     var host: String { get }
     var version: String { get }
-    
+
     func props() -> CameraAPIRequest
     func photos() -> CameraAPIRequest
     func specificPhoto(folder: String, file: String) -> CameraAPIRequest
@@ -30,6 +30,7 @@ struct CameraV1APIEndpoints: CameraAPIEndpoints {
     let version: String = "v1"
 }
 
+// swiftlint:disable type_name
 struct Debug_CameraV1APIEndpoints: CameraAPIEndpoints {
     let host: String = "127.0.0.1:3000"
     let version: String = "v1"
@@ -38,12 +39,11 @@ struct Debug_CameraV1APIEndpoints: CameraAPIEndpoints {
 struct CameraAPIRequest {
     let method: HTTPMethod = .GET
     let urlString: String
-    
+
     func request() -> URLRequest {
         var request = URLRequest(url: URL(string: urlString)!)
         request.httpMethod = method.rawValue
-        
+
         return request
     }
 }
-

@@ -11,16 +11,16 @@ import Foundation
 struct Folder: Codable {
     var name: String
     var files: [String]
-    
+
     enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case files = "files"
+        case name
+        case files
     }
 }
 
 final class PhotosListResponse: Codable {
     var folders: [Folder] = []
-    
+
     enum CodingKeys: String, CodingKey {
         case folders = "dirs"
     }

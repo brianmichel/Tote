@@ -12,23 +12,22 @@ final class ApplicationCoordinator {
     private let window: UIWindow
     private let rootViewController = RootViewController()
     private let client = CameraAPI(endpoints: Debug_CameraV1APIEndpoints())
-    
+
     init(window: UIWindow = UIWindow()) {
         self.window = window
     }
-    
+
     func start() {
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
-        
-         let _ = client.photos { (result) in
+
+        _ = client.photos { result in
             switch result {
-            case .success(let response):
+            case let .success(response):
                 print("Got a response! \(response)")
-            case .failure(let error):
+            case let .failure(error):
                 print("Got an error: \(error)")
             }
         }
-        
     }
 }
