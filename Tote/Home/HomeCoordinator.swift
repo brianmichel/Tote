@@ -9,18 +9,19 @@
 import UIKit
 
 final class HomeCoordinator: UISplitViewControllerDelegate {
-    private let navigationViewController = UINavigationController(rootViewController: UITableViewController())
     private let splitViewController = UISplitViewController()
-    private var currentRightPaneViewController: GalleryViewController = GalleryViewController()
+    private let galleryViewController: GalleryViewController = GalleryViewController()
+    private let navigationViewController: UINavigationController
+
+    init() {
+        navigationViewController = UINavigationController(rootViewController: galleryViewController)
+        navigationViewController.navigationBar.prefersLargeTitles = true
+    }
 
     private let client = CameraAPI()
 
-    init() {
-        splitViewController.viewControllers = [navigationViewController, currentRightPaneViewController]
-    }
-
     func start(on viewController: UIViewController) {
-        viewController.present(splitViewController, animated: false, completion: nil)
+        viewController.addChildViewControllerCompletely(navigationViewController)
 
         _ = client.photos { [weak self] result in
             switch result {
@@ -28,7 +29,7 @@ final class HomeCoordinator: UISplitViewControllerDelegate {
                 print("Got a response! \(response)")
 
                 DispatchQueue.main.async {
-                    self?.currentRightPaneViewController.folder = response.folders.first
+                    self?.galleryViewController.folder = response.folders.first
                 }
             case let .failure(error):
                 print("Got an error: \(error)")

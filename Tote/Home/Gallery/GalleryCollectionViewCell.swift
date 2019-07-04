@@ -9,6 +9,19 @@
 import Kingfisher
 import UIKit
 
+struct NormalizingImageProcessor: ImageProcessor {
+    var identifier: String = "normalized"
+
+    func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> Image? {
+        switch item {
+        case let .image(image):
+            return image.kf.normalized
+        case .data:
+            return (DefaultImageProcessor() >> self).process(item: item, options: options)
+        }
+    }
+}
+
 final class GalleryCollectionViewCell: UICollectionViewCell {
     static let identifier = "GalleryCollectionViewCell"
     private let imageView = UIImageView()
@@ -19,7 +32,7 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
         }
         didSet {
             if let url = imageURL {
-                imageView.kf.setImage(with: url)
+                imageView.kf.setImage(with: url, options: [.processor(NormalizingImageProcessor())])
             }
         }
     }

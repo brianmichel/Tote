@@ -1,1 +1,10 @@
-mandatory_comma: true
+disabled_rules:
+  - line_length
+  - unused_closure_parameter
+  - trailing_comma
+  - type_body_length
+  - file_length
+opt_in_rules:
+  - switch_case_on_newline
+  - implicitly_unwrapped_optional
+  - force_unwrapping

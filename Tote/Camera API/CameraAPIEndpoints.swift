@@ -18,6 +18,7 @@ enum HTTPMethod: String {
 enum PhotoSize: String {
     case thumb
     case view
+    case full
 }
 
 protocol CameraAPIEndpoints {

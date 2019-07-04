@@ -15,7 +15,7 @@ final class GalleryViewController: UIViewController,
     private enum Constants {
         static let interitemSpacing: CGFloat = 5
         static let lineSpacing: CGFloat = 5
-        static let columns: CGFloat = 4
+        static let columns: CGFloat = 2
         static let contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
 
@@ -45,6 +45,8 @@ final class GalleryViewController: UIViewController,
         collectionView.delegate = self
 
         collectionView.contentInset = Constants.contentInset
+
+        title = "Tote"
     }
 
     required init?(coder _: NSCoder) {
@@ -77,21 +79,21 @@ final class GalleryViewController: UIViewController,
             return 0
         }
 
-        return folder.files.count
+        return folder.reversedFiles.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier, for: indexPath) as? GalleryCollectionViewCell,
-            let folder = self.folder else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
+                                                            for: indexPath) as? GalleryCollectionViewCell,
+            let folder = self.folder,
+            let imageURL = CameraV1APIEndpoints().specificPhoto(folder: folder.name,
+                                                                file: folder.reversedFiles[indexPath.item],
+                                                                size: .thumb).request().url else {
             return UICollectionViewCell()
         }
 
-        let imageURL = CameraV1APIEndpoints().specificPhoto(folder: folder.name, file: folder.files[indexPath.item], size: .view).request().url!
-
         cell.imageURL = imageURL
-
-        cell.contentView.backgroundColor = .green
         return cell
     }
 
@@ -100,7 +102,9 @@ final class GalleryViewController: UIViewController,
                         sizeForItemAt _: IndexPath) -> CGSize {
         let widthSquare = (collectionView.bounds.width -
             (Constants.contentInset.left + Constants.contentInset.right +
-                (Constants.columns * Constants.interitemSpacing))) / Constants.columns
+                (Constants.columns * Constants.interitemSpacing)
+            )
+        ) / Constants.columns
 
         return CGSize(width: widthSquare, height: widthSquare)
     }

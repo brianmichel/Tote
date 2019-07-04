@@ -8,9 +8,13 @@
 
 import Foundation
 
-struct Folder: Codable {
+final class Folder: Codable {
     var name: String
     var files: [String]
+
+    lazy var reversedFiles: [String] = {
+        files.reversed()
+    }()
 
     enum CodingKeys: String, CodingKey {
         case name

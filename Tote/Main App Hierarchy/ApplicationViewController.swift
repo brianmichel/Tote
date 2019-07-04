@@ -14,4 +14,13 @@ class ApplicationViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
     }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        // Since we're much more constrained on iPhone, limit the orientation to just portait.
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.all]
+        } else {
+            return [.portrait]
+        }
+    }
 }
