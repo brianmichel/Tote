@@ -127,6 +127,7 @@
 		729E571022BE61F70039C08A /* Tote */ = {
 			isa = PBXGroup;
 			children = (
+				72CE4C3922E371DD0074E82F /* Models */,
 				72EC69F222BE7F15001D70B3 /* Home */,
 				729E573122BE62CB0039C08A /* Main App Hierarchy */,
 				729E573522BE645E0039C08A /* Camera API */,
@@ -168,7 +169,6 @@
 		729E573522BE645E0039C08A /* Camera API */ = {
 			isa = PBXGroup;
 			children = (
-				729E573F22BE6EFD0039C08A /* Responses */,
 				729E573622BE64A60039C08A /* CameraAPI.swift */,
 				729E573822BE681D0039C08A /* CameraAPIEndpoints.swift */,
 			);
@@ -192,6 +192,14 @@
 				72B63BC222CE459C00FA8920 /* PhotoInfoResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		72CE4C3922E371DD0074E82F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				729E573F22BE6EFD0039C08A /* Responses */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		72D02C7922BEA8DF00DA5236 /* Extensions */ = {
@@ -586,7 +594,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.foureyes.Tote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -606,7 +614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.foureyes.Tote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

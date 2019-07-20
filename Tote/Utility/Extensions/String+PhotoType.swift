@@ -8,17 +8,25 @@
 
 import Foundation
 
-enum PhotoType: String {
+enum PhotoFileExtension: String {
     case dng
     case jpg
     case other
 }
 
 extension String {
-    func photoType() -> PhotoType {
+    func photoFileExtension() -> PhotoFileExtension {
         if lowercased().hasSuffix(".dng") { return .dng }
         if lowercased().hasSuffix(".jpg") { return .jpg }
 
         return .other
+    }
+
+    func withRawExtension() -> String {
+        return "\(self).DNG"
+    }
+
+    func withJpgExtension() -> String {
+        return "\(self).JPG"
     }
 }

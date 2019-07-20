@@ -25,7 +25,8 @@ final class PhotoInfoResponse: Codable {
     let cameraModel: String
     let name: String
     let size: Int
-    let date: Date
+    let date: String
+    let orientation: Int
 
     let captureInformation: CaptureInformation
 }
