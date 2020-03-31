@@ -1,5 +1,5 @@
 PODS:
-  - Kingfisher (5.4.0)
+  - Nuke (8.4.1)
   - PromiseKit (6.8.5):
     - PromiseKit/CorePromise (= 6.8.5)
     - PromiseKit/Foundation (= 6.8.5)
@@ -13,24 +13,25 @@ PODS:
   - SwiftLint (0.33.0)
 
 DEPENDENCIES:
-  - Kingfisher (~> 5.4.0)
+  - Nuke (~> 8.4.1)
   - PromiseKit (~> 6.8.4)
   - SwiftFormat/CLI (~> 0.40.9)
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Kingfisher
+  https://github.com/CocoaPods/Specs.git:
     - PromiseKit
     - SwiftFormat
     - SwiftLint
+  trunk:
+    - Nuke
 
 SPEC CHECKSUMS:
-  Kingfisher: 9c8f2cc6710334e06f32ba2b45e77707d5e2f0c9
+  Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
   PromiseKit: 9616b0afef31eae56ab9ce044c8ec2b8612a15cd
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 2b1e314121753408ad5b3496a28e171cfecc3a03
+PODFILE CHECKSUM: 05428c6ab9a3cf7dfc9e2752de3ec3eb1afba7e9
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.9.1
