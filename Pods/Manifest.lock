@@ -1,26 +1,15 @@
 PODS:
   - Nuke (8.4.1)
-  - PromiseKit (6.8.5):
-    - PromiseKit/CorePromise (= 6.8.5)
-    - PromiseKit/Foundation (= 6.8.5)
-    - PromiseKit/UIKit (= 6.8.5)
-  - PromiseKit/CorePromise (6.8.5)
-  - PromiseKit/Foundation (6.8.5):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.8.5):
-    - PromiseKit/CorePromise
   - SwiftFormat/CLI (0.40.9)
   - SwiftLint (0.33.0)
 
 DEPENDENCIES:
   - Nuke (~> 8.4.1)
-  - PromiseKit (~> 6.8.4)
   - SwiftFormat/CLI (~> 0.40.9)
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - PromiseKit
     - SwiftFormat
     - SwiftLint
   trunk:
@@ -28,10 +17,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
-  PromiseKit: 9616b0afef31eae56ab9ce044c8ec2b8612a15cd
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 05428c6ab9a3cf7dfc9e2752de3ec3eb1afba7e9
+PODFILE CHECKSUM: 4a15d53c561175aebd1b6a69561cb3c663dd363d
 
 COCOAPODS: 1.9.1
