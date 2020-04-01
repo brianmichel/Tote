@@ -51,10 +51,34 @@ final class HomeCoordinator: UISplitViewControllerDelegate, GalleryViewControlle
         }, receiveValue: { response in
             Log.debug("Received response \(response)")
             DispatchQueue.main.async {
-                cell.imageOrientation = UIImage.Orientation(rawValue: response.orientation - 1)!
+                cell.imageOrientation = self.adjustedOrientation(for: response.orientation)
                 Log.debug("Got orientation of \(cell.imageOrientation.rawValue)")
                 cell.imageURL = mediaGroup.thumbnailURL()
             }
         }).store(in: &storage)
+    }
+
+    // This should go into the parsed response
+    func adjustedOrientation(for value: Int) -> UIImage.Orientation {
+        switch value {
+        case 1:
+            return .up
+        case 2:
+            return .upMirrored
+        case 3:
+            return .down
+        case 4:
+            return .downMirrored
+        case 5:
+            return .leftMirrored
+        case 6:
+            return .right
+        case 7:
+            return .rightMirrored
+        case 8:
+            return .left
+        default:
+            return .up
+        }
     }
 }

@@ -20,7 +20,7 @@ struct RotationImageProcessor: ImageProcessing, Hashable, CustomStringConvertibl
 
     func process(image: PlatformImage, context _: ImageProcessingContext?) -> PlatformImage? {
         guard let cgImage = image.cgImage else {
-            return image.fix(orientation: sourceOrientation)
+            return nil
         }
 
         let fixedImage = UIImage(cgImage: cgImage, scale: 1.0, orientation: sourceOrientation)

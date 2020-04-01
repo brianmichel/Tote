@@ -101,7 +101,7 @@ final class GalleryViewController: UIViewController,
             return UICollectionViewCell()
         }
 
-        cell.imageURL = group.thumbnailURL()
+        // cell.imageURL = group.thumbnailURL()
         return cell
     }
 
