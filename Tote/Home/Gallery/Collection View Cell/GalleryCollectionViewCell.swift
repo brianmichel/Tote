@@ -31,6 +31,7 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
 
         contentView.addSubview(imageView)
+        contentView.backgroundColor = .lightGray
     }
 
     required init?(coder _: NSCoder) {

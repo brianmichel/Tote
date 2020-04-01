@@ -30,6 +30,13 @@ final class GalleryViewController: UIViewController,
         didSet {
             viewModel?.$selectedFolder.assign(to: \.folder, on: self).store(in: &storage)
             viewModel?.$cellViewModels.assign(to: \.photoViewModels, on: self).store(in: &storage)
+            viewModel?.$folders.sink(receiveValue: { [weak self] folders in
+                if folders.count >= 2 {
+                    self?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(self?.switchFolders))
+                } else {
+                    self?.navigationItem.rightBarButtonItem = nil
+                }
+            }).store(in: &storage)
         }
     }
 
@@ -88,6 +95,26 @@ final class GalleryViewController: UIViewController,
         ])
 
         collectionView.reloadData()
+    }
+
+    @objc private func switchFolders() {
+        guard let selectedFolderTitle = viewModel?.selectedFolder?.name else {
+            return
+        }
+
+        let title = "Switch from folder \(selectedFolderTitle)"
+        let alert = UIAlertController(title: title, message: "There are multiple folders on this camera, do you want to switch?", preferredStyle: .actionSheet)
+
+        viewModel?.folders.forEach { folder in
+            let action = { [weak self] (_: UIAlertAction) -> Void in
+                self?.viewModel?.action.send(.switchFolder(folderName: folder.name))
+            }
+            alert.addAction(UIAlertAction(title: folder.name, style: .default, handler: action))
+        }
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: - UICollectionView DataSource / Delegate

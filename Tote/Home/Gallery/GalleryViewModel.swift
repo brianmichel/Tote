@@ -23,12 +23,12 @@ final class GalleryViewModel {
 
     @Published var selectedFolder: Folder?
     @Published var cellViewModels: [GalleryCellViewModel]?
+    @Published var folders: [Folder] = []
 
     let state = CurrentValueSubject<State, Never>(.initial)
     let action = PassthroughSubject<Action, Never>()
 
-    private var folders: [Folder] = []
-    private let api: API = NetworkAPI.standard
+    private let api: API = NetworkAPI.local
     private var storage = Set<AnyCancellable>()
 
     init() {
