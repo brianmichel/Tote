@@ -29,6 +29,8 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
 
         imageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
 
+        contentView.backgroundColor = .green
+
         contentView.addSubview(imageView)
     }
 

@@ -46,6 +46,8 @@ final class GalleryViewController: UIViewController,
 
         collectionView.contentInset = Constants.contentInset
 
+        navigationItem.largeTitleDisplayMode = .always
+
         title = "Tote"
     }
 
@@ -56,12 +58,14 @@ final class GalleryViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Hack to make the large header not collapse
+        view.addSubview(UIView())
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
 
@@ -84,16 +88,15 @@ final class GalleryViewController: UIViewController,
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
-                                                            for: indexPath) as? GalleryCollectionViewCell,
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
+                                                          for: indexPath) as? GalleryCollectionViewCell,
             let folder = self.folder,
-            let imageURL = CameraV1APIEndpoints().specificPhoto(folder: folder.name,
-                                                                file: folder.reversedFiles[indexPath.item],
-                                                                size: .thumb).request().url else {
+            let thumb = folder.reversedFiles[indexPath.item].resized(to: .thumb) else {
             return UICollectionViewCell()
         }
 
-        cell.imageURL = imageURL
+        cell.imageURL = thumb
         return cell
     }
 

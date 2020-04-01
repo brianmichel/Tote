@@ -1,5 +1,5 @@
 //
-//  PhotosListResponse.swift
+//  FolderList.swift
 //  Tote
 //
 //  Created by Brian Michel on 6/22/19.
@@ -8,36 +8,15 @@
 
 import Foundation
 
-enum PhotoGroupType: String {
-    case raw
-    case jpg
-    case rawPlusJpg
-}
-
-struct PhotoGroup {
-    let baseName: String
-    let folder: String
-    let type: PhotoGroupType
-}
-
-final class Folder: Codable {
-    var name: String
-    var files: [String]
-
-    lazy var reversedFiles: [String] = {
-        files.reversed()
-    }()
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case files
-    }
-}
-
-final class PhotosListResponse: Codable {
+final class FolderList: Codable {
     var folders: [Folder] = []
 
     enum CodingKeys: String, CodingKey {
         case folders = "dirs"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        folders = try container.decode([Folder].self, forKey: CodingKeys.folders)
     }
 }

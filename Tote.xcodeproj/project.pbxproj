@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7225C0E322E3C9DE0054DEE0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */; };
+		7238183824340EA400C7B174 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183724340EA400C7B174 /* Decoder.swift */; };
+		7238183A24341A9200C7B174 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183924341A9200C7B174 /* Folder.swift */; };
+		7238183C24341AB000C7B174 /* PhotoGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183B24341AB000C7B174 /* PhotoGroup.swift */; };
+		723935782433FACE0073C614 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723935772433FACE0073C614 /* API.swift */; };
+		7239357A2433FC970073C614 /* APIURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723935792433FC970073C614 /* APIURLBuilder.swift */; };
+		7239357C2433FFDE0073C614 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239357B2433FFDE0073C614 /* Agent.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
 		729E571C22BE61F80039C08A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 729E571A22BE61F80039C08A /* LaunchScreen.storyboard */; };
 		729E572722BE61F80039C08A /* ToteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E572622BE61F80039C08A /* ToteTests.swift */; };
 		729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E573222BE62FE0039C08A /* ApplicationCoordinator.swift */; };
-		729E573722BE64A60039C08A /* CameraAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E573622BE64A60039C08A /* CameraAPI.swift */; };
-		729E573922BE681D0039C08A /* CameraAPIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E573822BE681D0039C08A /* CameraAPIEndpoints.swift */; };
-		729E573B22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E573A22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift */; };
 		729E573E22BE68FB0039C08A /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E573D22BE68FB0039C08A /* Result.swift */; };
 		729E574122BE6F260039C08A /* PhotosListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E574022BE6F260039C08A /* PhotosListResponse.swift */; };
-		729E574322BE70610039C08A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E574222BE70610039C08A /* Response.swift */; };
 		72B63BC122CE437500FA8920 /* String+PhotoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B63BC022CE437500FA8920 /* String+PhotoType.swift */; };
 		72B63BC322CE459C00FA8920 /* PhotoInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B63BC222CE459C00FA8920 /* PhotoInfoResponse.swift */; };
 		72D02C7B22BEA8EF00DA5236 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D02C7A22BEA8EF00DA5236 /* UIViewController+Extensions.swift */; };
@@ -44,6 +46,12 @@
 		1A1AA848CF88CAB4DD2F1F7E /* Pods_Tote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7225C0E122E3C9D60054DEE0 /* Tote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tote.entitlements; sourceTree = "<group>"; };
 		7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		7238183724340EA400C7B174 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		7238183924341A9200C7B174 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		7238183B24341AB000C7B174 /* PhotoGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGroup.swift; sourceTree = "<group>"; };
+		723935772433FACE0073C614 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		723935792433FC970073C614 /* APIURLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLBuilder.swift; sourceTree = "<group>"; };
+		7239357B2433FFDE0073C614 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -54,12 +62,8 @@
 		729E572622BE61F80039C08A /* ToteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToteTests.swift; sourceTree = "<group>"; };
 		729E572822BE61F80039C08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		729E573222BE62FE0039C08A /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
-		729E573622BE64A60039C08A /* CameraAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAPI.swift; sourceTree = "<group>"; };
-		729E573822BE681D0039C08A /* CameraAPIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAPIEndpoints.swift; sourceTree = "<group>"; };
-		729E573A22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CameraAPIEndpoints+Extensions.swift"; sourceTree = "<group>"; };
 		729E573D22BE68FB0039C08A /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		729E574022BE6F260039C08A /* PhotosListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListResponse.swift; sourceTree = "<group>"; };
-		729E574222BE70610039C08A /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		72B63BC022CE437500FA8920 /* String+PhotoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PhotoType.swift"; sourceTree = "<group>"; };
 		72B63BC222CE459C00FA8920 /* PhotoInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoResponse.swift; sourceTree = "<group>"; };
 		72D02C7A22BEA8EF00DA5236 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -175,8 +179,10 @@
 		729E573522BE645E0039C08A /* Camera API */ = {
 			isa = PBXGroup;
 			children = (
-				729E573622BE64A60039C08A /* CameraAPI.swift */,
-				729E573822BE681D0039C08A /* CameraAPIEndpoints.swift */,
+				723935772433FACE0073C614 /* API.swift */,
+				723935792433FC970073C614 /* APIURLBuilder.swift */,
+				7239357B2433FFDE0073C614 /* Agent.swift */,
+				7238183724340EA400C7B174 /* Decoder.swift */,
 			);
 			path = "Camera API";
 			sourceTree = "<group>";
@@ -194,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				729E574022BE6F260039C08A /* PhotosListResponse.swift */,
-				729E574222BE70610039C08A /* Response.swift */,
 				72B63BC222CE459C00FA8920 /* PhotoInfoResponse.swift */,
 			);
 			path = Responses;
@@ -204,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				729E573F22BE6EFD0039C08A /* Responses */,
+				7238183924341A9200C7B174 /* Folder.swift */,
+				7238183B24341AB000C7B174 /* PhotoGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,7 +218,6 @@
 		72D02C7922BEA8DF00DA5236 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				729E573A22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift */,
 				72D02C7A22BEA8EF00DA5236 /* UIViewController+Extensions.swift */,
 				72D02C7C22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift */,
 				72B63BC022CE437500FA8920 /* String+PhotoType.swift */,
@@ -370,7 +376,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git diff HEAD --name-only -- \"Tote/*.swift\" | while read filename; do\n${SRCROOT}/Pods/SwiftFormat/CommandLineTool/swiftformat \"$filename\";\ndone\n\n";
+			shellScript = "git diff HEAD --name-only --diff-filter=ACMRTU -- \"Tote/*.swift\" | while read filename; do\n${SRCROOT}/Pods/SwiftFormat/CommandLineTool/swiftformat \"$filename\";\ndone\n\n";
 		};
 		72EC69F122BE7C6C001D70B3 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -388,7 +394,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git diff HEAD --name-only -- \"Tote/*.swift\" | while read filename; do\n${PODS_ROOT}/SwiftLint/swiftlint lint --path \"$filename\";\ndone\n\n";
+			shellScript = "git diff HEAD --name-only --diff-filter=ACMRTU -- \"Tote/*.swift\" | while read filename; do\n${PODS_ROOT}/SwiftLint/swiftlint lint --path \"$filename\";\ndone\n\n";
 		};
 		F70F643E13786E5817E20117 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -419,22 +425,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7239357A2433FC970073C614 /* APIURLBuilder.swift in Sources */,
 				72B63BC122CE437500FA8920 /* String+PhotoType.swift in Sources */,
 				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
+				7238183824340EA400C7B174 /* Decoder.swift in Sources */,
 				72D02C7B22BEA8EF00DA5236 /* UIViewController+Extensions.swift in Sources */,
-				729E573722BE64A60039C08A /* CameraAPI.swift in Sources */,
-				729E573B22BE683E0039C08A /* CameraAPIEndpoints+Extensions.swift in Sources */,
 				72D02C7D22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift in Sources */,
 				72B63BC322CE459C00FA8920 /* PhotoInfoResponse.swift in Sources */,
 				729E574122BE6F260039C08A /* PhotosListResponse.swift in Sources */,
-				729E574322BE70610039C08A /* Response.swift in Sources */,
 				729E571222BE61F70039C08A /* AppDelegate.swift in Sources */,
 				72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */,
 				729E573E22BE68FB0039C08A /* Result.swift in Sources */,
+				7239357C2433FFDE0073C614 /* Agent.swift in Sources */,
 				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
-				729E573922BE681D0039C08A /* CameraAPIEndpoints.swift in Sources */,
+				723935782433FACE0073C614 /* API.swift in Sources */,
+				7238183C24341AB000C7B174 /* PhotoGroup.swift in Sources */,
+				7238183A24341A9200C7B174 /* Folder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
