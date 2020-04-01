@@ -29,4 +29,9 @@ extension String {
     func withJpgExtension() -> String {
         return "\(self).JPG"
     }
+
+    func withoutExtension() -> String {
+        // TODO: This is brittle if they ever moved to say 'jpeg'
+        return String(dropLast(4))
+    }
 }
