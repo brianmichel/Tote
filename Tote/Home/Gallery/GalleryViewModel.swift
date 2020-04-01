@@ -71,7 +71,7 @@ final class GalleryViewModel {
         case let .switchFolder(folderName):
             let folder = folders.first(where: { $0.name == folderName })
             selectedFolder = folder
-            cellViewModels = folder?.groups.map { GalleryCellViewModel(mediaGroup: $0, api: api) }
+            cellViewModels = folder?.reversedGroups.map { GalleryCellViewModel(mediaGroup: $0, api: api) }
         case let .loadDetail(mediaGroup: mediaGroup):
             break
         }

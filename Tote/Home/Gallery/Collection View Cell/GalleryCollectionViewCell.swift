@@ -30,8 +30,6 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
 
         imageView.contentMode = .scaleAspectFit
 
-        imageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
-
         contentView.addSubview(imageView)
     }
 

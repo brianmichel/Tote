@@ -30,7 +30,7 @@ final class Folder: Codable {
     var groups: [MediaGroup]
 
     lazy var reversedGroups: [MediaGroup] = {
-        groups.reversed()
+        groups.sorted(by: { $0.groupName > $1.groupName })
     }()
 
     enum CodingKeys: String, CodingKey {
