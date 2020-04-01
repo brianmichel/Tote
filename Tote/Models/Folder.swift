@@ -8,8 +8,11 @@
 
 import Foundation
 
-struct FileURL: Encodable {
+struct MediaURL: Encodable {
     var base: URL
+    var type: PhotoFileExtension {
+        return base.absoluteString.photoFileExtension()
+    }
 
     func resized(to size: PhotoSize) -> URL? {
         var components = URLComponents(string: base.absoluteString)
@@ -21,9 +24,9 @@ struct FileURL: Encodable {
 
 final class Folder: Codable {
     var name: String
-    var files: [FileURL]
+    var files: [MediaURL]
 
-    lazy var reversedFiles: [FileURL] = {
+    lazy var reversedFiles: [MediaURL] = {
         files.reversed()
     }()
 
@@ -41,8 +44,8 @@ final class Folder: Codable {
             fatalError("Unable to locate DecodingContext for further processing")
         }
 
-        let fileURLs = files.map { (file) -> FileURL in
-            FileURL(base: context.builder.urlForSpecificPhoto(folder: name, file: file))
+        let fileURLs = files.map { (file) -> MediaURL in
+            MediaURL(base: context.builder.urlForSpecificPhoto(folder: name, file: file))
         }
 
         self.name = name

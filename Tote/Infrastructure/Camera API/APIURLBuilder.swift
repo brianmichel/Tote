@@ -20,6 +20,7 @@ struct APIURLBuilder {
 
     func urlForPhotos() -> URL {
         guard let url = URL(string: "http://\(host)/\(version)/photos") else {
+            Log.error("Unable to assemble a known, good URL")
             fatalError("Unable to assemble a known, good URL")
         }
 
@@ -28,6 +29,7 @@ struct APIURLBuilder {
 
     func urlForProps() -> URL {
         guard let url = URL(string: "http://\(host)/\(version)/props") else {
+            Log.error("Unable to assemble a known, good URL")
             fatalError("Unable to assemble a knonw, good URL")
         }
 
@@ -36,6 +38,7 @@ struct APIURLBuilder {
 
     func urlForSpecificPhoto(folder: String, file: String) -> URL {
         guard let url = URL(string: "http://\(host)/\(version)/photos/\(folder)/\(file)") else {
+            Log.error("Unable to assemble a known, good URL")
             fatalError("Unable to assemble a known, good URL")
         }
 
@@ -44,6 +47,7 @@ struct APIURLBuilder {
 
     func urlForSpecificPhotoInfo(folder: String, file: String) -> URL {
         guard let url = URL(string: "http://\(host)/\(version)/photos/\(folder)/\(file)/info") else {
+            Log.error("Unable to assemble a known, good URL")
             fatalError("Unable to assemble a known, good URL")
         }
 

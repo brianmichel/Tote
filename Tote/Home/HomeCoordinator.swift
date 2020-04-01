@@ -28,11 +28,10 @@ final class HomeCoordinator: UISplitViewControllerDelegate {
 
         API.folders()
             .sink(receiveCompletion: { completion in
-                print(completion)
-
+                Log.info("\(completion)")
             },
                   receiveValue: { [weak self] value in
-                print(value)
+                Log.debug(String(describing: value))
                 self?.galleryViewController.folder = value.folders.first
             })
             .store(in: &storage)

@@ -9,7 +9,7 @@
 import Foundation
 
 extension CodingUserInfoKey {
-    public static let decodingContext: CodingUserInfoKey! = CodingUserInfoKey(rawValue: "toteDecodeContext")
+    public static let decodingContext: CodingUserInfoKey! = CodingUserInfoKey(rawValue: "me.foureyes.tote.DecodingContext")
 }
 
 struct DecodingContext {

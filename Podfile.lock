@@ -1,9 +1,13 @@
 PODS:
+  - CocoaLumberjack/Core (3.6.1)
+  - CocoaLumberjack/Swift (3.6.1):
+    - CocoaLumberjack/Core
   - Nuke (8.4.1)
   - SwiftFormat/CLI (0.40.9)
   - SwiftLint (0.33.0)
 
 DEPENDENCIES:
+  - CocoaLumberjack/Swift
   - Nuke (~> 8.4.1)
   - SwiftFormat/CLI (~> 0.40.9)
   - SwiftLint
@@ -13,13 +17,15 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftLint
   trunk:
+    - CocoaLumberjack
     - Nuke
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
   SwiftFormat: 6b67b6e7fe73d664f0cbb4f13721f130462c86a5
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 4a15d53c561175aebd1b6a69561cb3c663dd363d
+PODFILE CHECKSUM: 543d12b7a64ef382dfc90c9283f90e8a8cfd542c
 
 COCOAPODS: 1.9.1
