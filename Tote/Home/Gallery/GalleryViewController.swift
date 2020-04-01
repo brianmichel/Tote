@@ -97,6 +97,11 @@ final class GalleryViewController: UIViewController,
         collectionView.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        resetAppearance()
+    }
+
     @objc private func switchFolders() {
         guard let selectedFolderTitle = viewModel?.selectedFolder?.name else {
             return
@@ -156,5 +161,16 @@ final class GalleryViewController: UIViewController,
         ) / Constants.columns
 
         return CGSize(width: widthSquare, height: widthSquare)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        resetAppearance()
+    }
+
+    private func resetAppearance() {
+        view.backgroundColor = Colors.background.value
+        navigationController?.navigationBar.barTintColor = Colors.background.value
+        collectionView.backgroundColor = Colors.background.value
     }
 }

@@ -28,7 +28,7 @@ final class GalleryViewModel {
     let state = CurrentValueSubject<State, Never>(.initial)
     let action = PassthroughSubject<Action, Never>()
 
-    private let api: API = NetworkAPI.local
+    private let api: API = NetworkAPI.standard
     private var storage = Set<AnyCancellable>()
 
     init() {

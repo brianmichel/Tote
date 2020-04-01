@@ -29,9 +29,13 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.shadowOffset = .zero
+        imageView.layer.shadowRadius = 5.0
+        imageView.layer.shadowOpacity = 0.4
 
         contentView.addSubview(imageView)
-        contentView.backgroundColor = .lightGray
+
+        resetAppearance()
     }
 
     required init?(coder _: NSCoder) {
@@ -47,5 +51,15 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
         viewModel = nil
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        resetAppearance()
+    }
+
+    private func resetAppearance() {
+        imageView.layer.shadowColor = Colors.shadow.value.cgColor
     }
 }

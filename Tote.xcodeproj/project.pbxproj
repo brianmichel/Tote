@@ -10,6 +10,8 @@
 		7210533424343BBA006B4F32 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210533324343BBA006B4F32 /* Log.swift */; };
 		7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210533524343BD4006B4F32 /* LogFormatter.swift */; };
 		721053382434455C006B4F32 /* MediaURLGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721053372434455C006B4F32 /* MediaURLGrouper.swift */; };
+		7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B895243514FC00C401A9 /* SceneDelegate.swift */; };
+		7213B898243518F700C401A9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B897243518F700C401A9 /* Colors.swift */; };
 		7225C0E322E3C9DE0054DEE0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */; };
 		7238183824340EA400C7B174 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183724340EA400C7B174 /* Decoder.swift */; };
 		7238183A24341A9200C7B174 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183924341A9200C7B174 /* Folder.swift */; };
@@ -53,6 +55,8 @@
 		7210533324343BBA006B4F32 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7210533524343BD4006B4F32 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		721053372434455C006B4F32 /* MediaURLGrouper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaURLGrouper.swift; sourceTree = "<group>"; };
+		7213B895243514FC00C401A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7213B897243518F700C401A9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7225C0E122E3C9D60054DEE0 /* Tote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tote.entitlements; sourceTree = "<group>"; };
 		7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		7238183724340EA400C7B174 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				7210533224343BAB006B4F32 /* Logging */,
 				729E573522BE645E0039C08A /* Camera API */,
 				729E573C22BE68F20039C08A /* Utility */,
+				7213B897243518F700C401A9 /* Colors.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				729E571122BE61F70039C08A /* AppDelegate.swift */,
 				729E571322BE61F70039C08A /* ApplicationViewController.swift */,
 				729E573222BE62FE0039C08A /* ApplicationCoordinator.swift */,
+				7213B895243514FC00C401A9 /* SceneDelegate.swift */,
 			);
 			path = "Main App Hierarchy";
 			sourceTree = "<group>";
@@ -480,6 +486,7 @@
 				7210533424343BBA006B4F32 /* Log.swift in Sources */,
 				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
+				7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */,
 				7238183824340EA400C7B174 /* Decoder.swift in Sources */,
 				72D02C7B22BEA8EF00DA5236 /* UIViewController+Extensions.swift in Sources */,
 				72D02C7D22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift in Sources */,
@@ -495,6 +502,7 @@
 				7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
+				7213B898243518F700C401A9 /* Colors.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,
 				7238183C24341AB000C7B174 /* MediaGroup.swift in Sources */,
 				7238183A24341A9200C7B174 /* Folder.swift in Sources */,
