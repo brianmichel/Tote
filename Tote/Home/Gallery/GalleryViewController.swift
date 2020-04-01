@@ -6,11 +6,8 @@
 //  Copyright © 2019 Brian Michel. All rights reserved.
 //
 
+import Combine
 import UIKit
-
-protocol GalleryViewControllerDelegate: AnyObject {
-    func galleryViewController(contorller: GalleryViewController, didRequestDetailsFor mediaGroup: MediaGroup, in cell: GalleryCollectionViewCell)
-}
 
 final class GalleryViewController: UIViewController,
     UICollectionViewDelegateFlowLayout,
@@ -23,11 +20,26 @@ final class GalleryViewController: UIViewController,
         static let contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
 
-    weak var delegate: GalleryViewControllerDelegate?
-
     private let collectionView: UICollectionView
+    private var storage = Set<AnyCancellable>()
 
-    var folder: Folder? {
+    var viewModel: GalleryViewModel? {
+        willSet {
+            storage.removeAll()
+        }
+        didSet {
+            viewModel?.$selectedFolder.assign(to: \.folder, on: self).store(in: &storage)
+            viewModel?.$cellViewModels.assign(to: \.photoViewModels, on: self).store(in: &storage)
+        }
+    }
+
+    private var folder: Folder? {
+        didSet {
+            // collectionView.reloadData()
+        }
+    }
+
+    private var photoViewModels: [GalleryCellViewModel]? {
         didSet {
             collectionView.reloadData()
         }
@@ -85,11 +97,11 @@ final class GalleryViewController: UIViewController,
     }
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        guard let folder = folder else {
+        guard let viewModels = photoViewModels else {
             return 0
         }
 
-        return folder.groups.count
+        return viewModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -97,11 +109,13 @@ final class GalleryViewController: UIViewController,
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
                                                           for: indexPath) as? GalleryCollectionViewCell,
-            let group = self.folder?.groups[indexPath.item] else {
+            let viewModel = photoViewModels?[indexPath.item]
+        else {
             return UICollectionViewCell()
         }
 
-        // cell.imageURL = group.thumbnailURL()
+        cell.viewModel = viewModel
+
         return cell
     }
 
@@ -115,14 +129,5 @@ final class GalleryViewController: UIViewController,
         ) / Constants.columns
 
         return CGSize(width: widthSquare, height: widthSquare)
-    }
-
-    func collectionView(_: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard
-            let group = self.folder?.groups[indexPath.item],
-            let collectionViewCell = cell as? GalleryCollectionViewCell else {
-            return
-        }
-        delegate?.galleryViewController(contorller: self, didRequestDetailsFor: group, in: collectionViewCell)
     }
 }

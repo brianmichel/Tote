@@ -73,3 +73,28 @@ extension UIImage {
         return image
     }
 }
+
+public extension UIImage.Orientation {
+    static func remap(orientation from: Int) -> UIImage.Orientation {
+        switch from {
+        case 1:
+            return .up
+        case 2:
+            return .upMirrored
+        case 3:
+            return .down
+        case 4:
+            return .downMirrored
+        case 5:
+            return .leftMirrored
+        case 6:
+            return .right
+        case 7:
+            return .rightMirrored
+        case 8:
+            return .left
+        default:
+            return .up
+        }
+    }
+}

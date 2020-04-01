@@ -12,7 +12,7 @@ import Foundation
 protocol API {
     func folders() -> AnyPublisher<FolderList, Error>
     func specificPhotoURL(folder: String, file: String) -> AnyPublisher<URL, Never>
-    func specificPhotoInfo(folder: String, file: String) -> AnyPublisher<PhotoInfoResponse, Error>
+    func specificPhotoInfo(folder: String, file: String) -> AnyPublisher<MediaInfo, Error>
 }
 
 struct NetworkAPI: API {
@@ -45,7 +45,7 @@ struct NetworkAPI: API {
             .eraseToAnyPublisher()
     }
 
-    func specificPhotoInfo(folder: String, file: String) -> AnyPublisher<PhotoInfoResponse, Error> {
+    func specificPhotoInfo(folder: String, file: String) -> AnyPublisher<MediaInfo, Error> {
         let url = builder.urlForSpecificPhotoInfo(folder: folder, file: file)
 
         return agent

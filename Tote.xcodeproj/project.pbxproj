@@ -19,6 +19,8 @@
 		7239357C2433FFDE0073C614 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239357B2433FFDE0073C614 /* Agent.swift */; };
 		723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723F810524345055008FCC4B /* RotationImageProcessor.swift */; };
 		723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723F810724345ADC008FCC4B /* UIImage+Extensions.swift */; };
+		7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283A9332434E61B002F7477 /* GalleryViewModel.swift */; };
+		7283A9392434FE82002F7477 /* GalleryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283A9382434FE82002F7477 /* GalleryCellViewModel.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 		7239357B2433FFDE0073C614 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		723F810524345055008FCC4B /* RotationImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationImageProcessor.swift; sourceTree = "<group>"; };
 		723F810724345ADC008FCC4B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		7283A9332434E61B002F7477 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		7283A9382434FE82002F7477 /* GalleryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCellViewModel.swift; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,15 @@
 			path = "Image Processing";
 			sourceTree = "<group>";
 		};
+		7283A9372434FE71002F7477 /* Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */,
+				7283A9382434FE82002F7477 /* GalleryCellViewModel.swift */,
+			);
+			path = "Collection View Cell";
+			sourceTree = "<group>";
+		};
 		729E570522BE61F70039C08A = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +227,7 @@
 		729E573522BE645E0039C08A /* Camera API */ = {
 			isa = PBXGroup;
 			children = (
+				729E573F22BE6EFD0039C08A /* Responses */,
 				723935772433FACE0073C614 /* API.swift */,
 				723935792433FC970073C614 /* APIURLBuilder.swift */,
 				7239357B2433FFDE0073C614 /* Agent.swift */,
@@ -243,7 +257,6 @@
 		72CE4C3922E371DD0074E82F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				729E573F22BE6EFD0039C08A /* Responses */,
 				7238183924341A9200C7B174 /* Folder.swift */,
 				7238183B24341AB000C7B174 /* MediaGroup.swift */,
 			);
@@ -264,8 +277,9 @@
 		72D02C8822BEB2B300DA5236 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				7283A9372434FE71002F7477 /* Collection View Cell */,
 				72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */,
-				72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */,
+				7283A9332434E61B002F7477 /* GalleryViewModel.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -474,9 +488,11 @@
 				729E571222BE61F70039C08A /* AppDelegate.swift in Sources */,
 				72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */,
 				7239357C2433FFDE0073C614 /* Agent.swift in Sources */,
+				7283A9392434FE82002F7477 /* GalleryCellViewModel.swift in Sources */,
 				7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */,
 				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
 				723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */,
+				7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,

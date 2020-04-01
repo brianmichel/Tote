@@ -15,27 +15,32 @@ struct MediaVariantType: OptionSet, Hashable {
     static let jpeg = MediaVariantType(rawValue: 1 << 1)
     static let video = MediaVariantType(rawValue: 1 << 2)
     static let rawPlusJpeg: MediaVariantType = [.raw, .jpeg]
+
+    static func type(for url: MediaURL) -> MediaVariantType {
+        switch url.type {
+        case .dng:
+            return .raw
+        case .jpg:
+            return .jpeg
+        case .other:
+            return .video
+        }
+    }
 }
 
-struct MediaGroup {
-    let files: [MediaVariantType: MediaURL]
+final class MediaGroup {
+    private var files: [MediaVariantType: (url: MediaURL, metadata: MediaInfo?)]
     let groupName: String
-    let folder: String
+    let folderName: String
 
     init(files: [MediaURL], groupName: String, folder: String) {
-        self.folder = folder
+        folderName = folder
 
-        var groupedFiles = [MediaVariantType: MediaURL]()
+        var groupedFiles = [MediaVariantType: (url: MediaURL, metadata: MediaInfo?)]()
 
         files.forEach { url in
-            switch url.type {
-            case .dng:
-                groupedFiles[.raw] = url
-            case .jpg:
-                groupedFiles[.jpeg] = url
-            case .other:
-                groupedFiles[.video] = url
-            }
+            let type = MediaVariantType.type(for: url)
+            groupedFiles[type] = (url, nil)
         }
 
         self.groupName = groupName
@@ -44,16 +49,33 @@ struct MediaGroup {
         Log.debug("Creating group '\(groupName)' with \(files.count) file(s)")
     }
 
+    func update(metadata: MediaInfo, for url: MediaURL) {
+        let type = MediaVariantType.type(for: url)
+        files[type] = (url, metadata)
+    }
+
     func variants() -> MediaVariantType {
         return MediaVariantType(Array(files.keys))
     }
 
     func file(for variant: MediaVariantType) -> MediaURL? {
-        guard let url = files[variant] else {
+        guard let (url, _) = files[variant] else {
             return nil
         }
 
         return url
+    }
+
+    func metadata(for file: MediaURL) -> MediaInfo? {
+        let variant = MediaVariantType.type(for: file)
+
+        guard
+            let (_, meta) = files[variant],
+            let metadata = meta else {
+            return nil
+        }
+
+        return metadata
     }
 
     func thumbnailURL() -> URL? {
@@ -61,9 +83,9 @@ struct MediaGroup {
     }
 
     func preferredFile() -> MediaURL? {
-        if let url = files[.jpeg] {
+        if let (url, _) = files[.jpeg] {
             return url
-        } else if let url = files[.raw] {
+        } else if let (url, _) = files[.raw] {
             return url
         }
 

@@ -11,6 +11,7 @@ import Foundation
 struct MediaURL: Encodable {
     var base: URL
     var fileName: String
+    var folderName: String
     var type: PhotoFileExtension {
         return base.absoluteString.photoFileExtension()
     }
@@ -28,8 +29,8 @@ final class Folder: Codable {
     var files: [MediaURL]
     var groups: [MediaGroup]
 
-    lazy var reversedFiles: [MediaURL] = {
-        files.reversed()
+    lazy var reversedGroups: [MediaGroup] = {
+        groups.reversed()
     }()
 
     enum CodingKeys: String, CodingKey {
@@ -47,7 +48,7 @@ final class Folder: Codable {
         }
 
         let fileURLs = files.map { (file) -> MediaURL in
-            MediaURL(base: context.builder.urlForSpecificPhoto(folder: name, file: file), fileName: file)
+            MediaURL(base: context.builder.urlForSpecificPhoto(folder: name, file: file), fileName: file, folderName: name)
         }
 
         let mediaGrouper = MediaURLGrouper(urls: fileURLs, folder: name)

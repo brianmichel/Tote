@@ -21,7 +21,7 @@ struct CaptureInformation: Codable {
     }
 }
 
-final class PhotoInfoResponse: Codable {
+final class MediaInfo: Codable {
     let cameraModel: String
     let file: String
     let size: Int

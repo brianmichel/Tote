@@ -6,24 +6,22 @@
 //  Copyright © 2019 Brian Michel. All rights reserved.
 //
 
-import Nuke
+import Combine
 import UIKit
 
 final class GalleryCollectionViewCell: UICollectionViewCell {
     static let identifier = "GalleryCollectionViewCell"
-    private let imageView = UIImageView()
+    let imageView = UIImageView()
 
-    var imageOrientation: UIImage.Orientation = .up
-
-    var imageURL: URL? {
+    private var storage = Set<AnyCancellable>()
+    var viewModel: GalleryCellViewModel? {
         willSet {
-            Nuke.cancelRequest(for: imageView)
+            storage.removeAll()
         }
         didSet {
-            if let url = imageURL {
-                let request = ImageRequest(url: url, processors: [RotationImageProcessor(sourceOrientation: imageOrientation)])
-                Nuke.loadImage(with: request, into: imageView)
-            }
+            viewModel?.$thumbnailImage.assign(to: \.image, on: imageView).store(in: &storage)
+
+            viewModel?.action.send(.loadMetadata)
         }
     }
 
@@ -33,8 +31,6 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
 
         imageView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
-
-        contentView.backgroundColor = .green
 
         contentView.addSubview(imageView)
     }
@@ -50,7 +46,7 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
-        imageURL = nil
+        imageView.image = nil
+        viewModel = nil
     }
 }
