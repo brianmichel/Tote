@@ -23,10 +23,20 @@ struct CaptureInformation: Codable {
 
 final class PhotoInfoResponse: Codable {
     let cameraModel: String
-    let name: String
+    let file: String
     let size: Int
-    let date: String
+    let datetime: String
     let orientation: Int
+    let aspectRatio: String
 
-    let captureInformation: CaptureInformation
+    // let captureInformation: CaptureInformation
+
+    enum CodingKeys: String, CodingKey {
+        case cameraModel
+        case file
+        case size
+        case datetime
+        case orientation
+        case aspectRatio
+    }
 }

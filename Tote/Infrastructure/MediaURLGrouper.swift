@@ -17,8 +17,8 @@ struct MediaURLGrouper {
             element.fileName.withoutExtension()
         }
 
-        let groups = grouped.map { (_, mediaURLs) -> MediaGroup in
-            MediaGroup(files: mediaURLs, folder: folder)
+        let groups = grouped.map { (fileName, mediaURLs) -> MediaGroup in
+            MediaGroup(files: mediaURLs, groupName: fileName, folder: folder)
         }
 
         return groups

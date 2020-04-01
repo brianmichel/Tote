@@ -19,9 +19,10 @@ struct MediaVariantType: OptionSet, Hashable {
 
 struct MediaGroup {
     let files: [MediaVariantType: MediaURL]
+    let groupName: String
     let folder: String
 
-    init(files: [MediaURL], folder: String) {
+    init(files: [MediaURL], groupName: String, folder: String) {
         self.folder = folder
 
         var groupedFiles = [MediaVariantType: MediaURL]()
@@ -37,10 +38,35 @@ struct MediaGroup {
             }
         }
 
+        self.groupName = groupName
         self.files = groupedFiles
+
+        Log.debug("Creating group '\(groupName)' with \(files.count) file(s)")
     }
 
     func variants() -> MediaVariantType {
         return MediaVariantType(Array(files.keys))
+    }
+
+    func file(for variant: MediaVariantType) -> MediaURL? {
+        guard let url = files[variant] else {
+            return nil
+        }
+
+        return url
+    }
+
+    func thumbnailURL() -> URL? {
+        return preferredFile()?.resized(to: .view)
+    }
+
+    func preferredFile() -> MediaURL? {
+        if let url = files[.jpeg] {
+            return url
+        } else if let url = files[.raw] {
+            return url
+        }
+
+        return nil
     }
 }

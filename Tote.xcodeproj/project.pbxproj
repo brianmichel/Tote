@@ -17,6 +17,8 @@
 		723935782433FACE0073C614 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723935772433FACE0073C614 /* API.swift */; };
 		7239357A2433FC970073C614 /* APIURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723935792433FC970073C614 /* APIURLBuilder.swift */; };
 		7239357C2433FFDE0073C614 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239357B2433FFDE0073C614 /* Agent.swift */; };
+		723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723F810524345055008FCC4B /* RotationImageProcessor.swift */; };
+		723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723F810724345ADC008FCC4B /* UIImage+Extensions.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		723935772433FACE0073C614 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		723935792433FC970073C614 /* APIURLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLBuilder.swift; sourceTree = "<group>"; };
 		7239357B2433FFDE0073C614 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		723F810524345055008FCC4B /* RotationImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationImageProcessor.swift; sourceTree = "<group>"; };
+		723F810724345ADC008FCC4B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,14 @@
 			path = Logging;
 			sourceTree = "<group>";
 		};
+		723F810424345043008FCC4B /* Image Processing */ = {
+			isa = PBXGroup;
+			children = (
+				723F810524345055008FCC4B /* RotationImageProcessor.swift */,
+			);
+			path = "Image Processing";
+			sourceTree = "<group>";
+		};
 		729E570522BE61F70039C08A = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +225,7 @@
 		729E573C22BE68F20039C08A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				723F810424345043008FCC4B /* Image Processing */,
 				72D02C7922BEA8DF00DA5236 /* Extensions */,
 			);
 			path = Utility;
@@ -243,6 +256,7 @@
 				72D02C7A22BEA8EF00DA5236 /* UIViewController+Extensions.swift */,
 				72D02C7C22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift */,
 				72B63BC022CE437500FA8920 /* String+PhotoType.swift */,
+				723F810724345ADC008FCC4B /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,7 +476,9 @@
 				7239357C2433FFDE0073C614 /* Agent.swift in Sources */,
 				7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */,
 				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
+				723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
+				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,
 				7238183C24341AB000C7B174 /* MediaGroup.swift in Sources */,
 				7238183A24341A9200C7B174 /* Folder.swift in Sources */,

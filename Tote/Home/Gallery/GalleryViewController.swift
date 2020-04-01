@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol GalleryViewControllerDelegate: AnyObject {
+    func galleryViewController(contorller: GalleryViewController, didRequestDetailsFor mediaGroup: MediaGroup, in cell: GalleryCollectionViewCell)
+}
+
 final class GalleryViewController: UIViewController,
     UICollectionViewDelegateFlowLayout,
     UICollectionViewDelegate,
@@ -18,6 +22,8 @@ final class GalleryViewController: UIViewController,
         static let columns: CGFloat = 2
         static let contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
+
+    weak var delegate: GalleryViewControllerDelegate?
 
     private let collectionView: UICollectionView
 
@@ -83,7 +89,7 @@ final class GalleryViewController: UIViewController,
             return 0
         }
 
-        return folder.reversedFiles.count
+        return folder.groups.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -91,12 +97,11 @@ final class GalleryViewController: UIViewController,
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
                                                           for: indexPath) as? GalleryCollectionViewCell,
-            let folder = self.folder,
-            let thumb = folder.reversedFiles[indexPath.item].resized(to: .thumb) else {
+            let group = self.folder?.groups[indexPath.item] else {
             return UICollectionViewCell()
         }
 
-        cell.imageURL = thumb
+        cell.imageURL = group.thumbnailURL()
         return cell
     }
 
@@ -110,5 +115,14 @@ final class GalleryViewController: UIViewController,
         ) / Constants.columns
 
         return CGSize(width: widthSquare, height: widthSquare)
+    }
+
+    func collectionView(_: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard
+            let group = self.folder?.groups[indexPath.item],
+            let collectionViewCell = cell as? GalleryCollectionViewCell else {
+            return
+        }
+        delegate?.galleryViewController(contorller: self, didRequestDetailsFor: group, in: collectionViewCell)
     }
 }

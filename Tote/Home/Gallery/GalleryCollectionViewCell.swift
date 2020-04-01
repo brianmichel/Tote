@@ -13,11 +13,16 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
     static let identifier = "GalleryCollectionViewCell"
     private let imageView = UIImageView()
 
+    var imageOrientation: UIImage.Orientation = .up
+
     var imageURL: URL? {
-        willSet {}
+        willSet {
+            Nuke.cancelRequest(for: imageView)
+        }
         didSet {
             if let url = imageURL {
-                Nuke.loadImage(with: url, into: imageView)
+                let request = ImageRequest(url: url, processors: [RotationImageProcessor(sourceOrientation: imageOrientation)])
+                Nuke.loadImage(with: request, into: imageView)
             }
         }
     }
