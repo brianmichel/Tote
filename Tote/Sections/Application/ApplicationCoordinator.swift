@@ -10,12 +10,14 @@ import UIKit
 
 final class ApplicationCoordinator {
     private let window: UIWindow
-    private let applicationViewController = ApplicationViewController()
+    private let applicationViewController = ApplicationViewController(model: ApplicationViewModel())
 
-    private let homeCoordinator = HomeCoordinator()
+    private let homeCoordinator: HomeCoordinator
 
     init(window: UIWindow = UIWindow()) {
         self.window = window
+
+        homeCoordinator = HomeCoordinator(galleryViewModel: applicationViewController.viewModel.galleryViewModel)
     }
 
     func start() {
@@ -25,4 +27,3 @@ final class ApplicationCoordinator {
         homeCoordinator.start(on: applicationViewController)
     }
 }
-

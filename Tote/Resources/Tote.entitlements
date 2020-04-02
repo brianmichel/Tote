@@ -6,5 +6,10 @@
 	<true/>
 	<key>com.apple.developer.networking.wifi-info</key>
 	<true/>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)me.foureyes.Tote</string>
+		<string>$(AppIdentifierPrefix)me.foureyes.tote</string>
+	</array>
 </dict>
 </plist>

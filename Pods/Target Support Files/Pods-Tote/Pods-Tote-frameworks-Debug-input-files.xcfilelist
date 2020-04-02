@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-Tote/Pods-Tote-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework
+${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
 ${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework
 ${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework
