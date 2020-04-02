@@ -17,6 +17,7 @@ final class GalleryViewModel {
     }
 
     enum Action {
+        case loadFolders
         case loadDetail(mediaGroup: MediaGroup)
         case switchFolder(folderName: String)
     }
@@ -32,18 +33,27 @@ final class GalleryViewModel {
     private var storage = Set<AnyCancellable>()
 
     init() {
-        state.sink(receiveValue: { [weak self] state in
-            self?.process(state: state)
-        }).store(in: &storage)
-
         action.sink(receiveValue: { [weak self] action in
             self?.process(action: action)
+        }).store(in: &storage)
+
+        state.sink(receiveValue: { [weak self] state in
+            self?.process(state: state)
         }).store(in: &storage)
     }
 
     private func process(state: State) {
         switch state {
         case .initial:
+            action.send(.loadFolders)
+        case let .error(message):
+            Log.error("There was an error performing some action, \(message)")
+        }
+    }
+
+    private func process(action: Action) {
+        switch action {
+        case .loadFolders:
             api.folders()
                 .sink(
                     receiveCompletion: { completion in
@@ -61,13 +71,6 @@ final class GalleryViewModel {
                     }
                 )
                 .store(in: &storage)
-        case let .error(message):
-            Log.error("There was an error performing some action, \(message)")
-        }
-    }
-
-    private func process(action: Action) {
-        switch action {
         case let .switchFolder(folderName):
             let folder = folders.first(where: { $0.name == folderName })
             selectedFolder = folder

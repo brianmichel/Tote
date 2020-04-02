@@ -7,4 +7,5 @@ target "Tote" do
   pod 'CocoaLumberjack/Swift'
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI', '~> 0.40.9'
+  pod 'ReachabilitySwift'
 end

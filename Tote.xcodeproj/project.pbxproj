@@ -12,6 +12,7 @@
 		721053382434455C006B4F32 /* MediaURLGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721053372434455C006B4F32 /* MediaURLGrouper.swift */; };
 		7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B895243514FC00C401A9 /* SceneDelegate.swift */; };
 		7213B898243518F700C401A9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B897243518F700C401A9 /* Colors.swift */; };
+		7213B89B2435387C00C401A9 /* CameraConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B89A2435387C00C401A9 /* CameraConnection.swift */; };
 		7225C0E322E3C9DE0054DEE0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */; };
 		7238183824340EA400C7B174 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183724340EA400C7B174 /* Decoder.swift */; };
 		7238183A24341A9200C7B174 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183924341A9200C7B174 /* Folder.swift */; };
@@ -57,6 +58,7 @@
 		721053372434455C006B4F32 /* MediaURLGrouper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaURLGrouper.swift; sourceTree = "<group>"; };
 		7213B895243514FC00C401A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7213B897243518F700C401A9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		7213B89A2435387C00C401A9 /* CameraConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConnection.swift; sourceTree = "<group>"; };
 		7225C0E122E3C9D60054DEE0 /* Tote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tote.entitlements; sourceTree = "<group>"; };
 		7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		7238183724340EA400C7B174 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		7210533124343B9E006B4F32 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				7213B8992435385F00C401A9 /* Camera Connection */,
 				721053372434455C006B4F32 /* MediaURLGrouper.swift */,
 				7210533224343BAB006B4F32 /* Logging */,
 				729E573522BE645E0039C08A /* Camera API */,
@@ -148,6 +151,14 @@
 				7210533524343BD4006B4F32 /* LogFormatter.swift */,
 			);
 			path = Logging;
+			sourceTree = "<group>";
+		};
+		7213B8992435385F00C401A9 /* Camera Connection */ = {
+			isa = PBXGroup;
+			children = (
+				7213B89A2435387C00C401A9 /* CameraConnection.swift */,
+			);
+			path = "Camera Connection";
 			sourceTree = "<group>";
 		};
 		723F810424345043008FCC4B /* Image Processing */ = {
@@ -500,6 +511,7 @@
 				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
 				723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */,
 				7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */,
+				7213B89B2435387C00C401A9 /* CameraConnection.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				7213B898243518F700C401A9 /* Colors.swift in Sources */,

@@ -21,6 +21,7 @@ final class GalleryViewController: UIViewController,
     }
 
     private let collectionView: UICollectionView
+    private let refreshControl = UIRefreshControl()
     private var storage = Set<AnyCancellable>()
 
     var viewModel: GalleryViewModel? {
@@ -40,15 +41,12 @@ final class GalleryViewController: UIViewController,
         }
     }
 
-    private var folder: Folder? {
-        didSet {
-            // collectionView.reloadData()
-        }
-    }
+    private var folder: Folder?
 
     private var photoViewModels: [GalleryCellViewModel]? {
         didSet {
             collectionView.reloadData()
+            refreshControl.endRefreshing()
         }
     }
 
@@ -58,6 +56,7 @@ final class GalleryViewController: UIViewController,
         layout.minimumLineSpacing = Constants.lineSpacing
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.refreshControl = refreshControl
 
         super.init(nibName: nil, bundle: nil)
 
@@ -73,7 +72,13 @@ final class GalleryViewController: UIViewController,
 
         navigationItem.largeTitleDisplayMode = .always
 
+        refreshControl.addTarget(self, action: #selector(beginRefresh), for: .valueChanged)
+
         title = "Tote"
+    }
+
+    @objc func beginRefresh() {
+        viewModel?.action.send(.loadFolders)
     }
 
     required init?(coder _: NSCoder) {
@@ -107,7 +112,7 @@ final class GalleryViewController: UIViewController,
             return
         }
 
-        let title = "Switch from folder \(selectedFolderTitle)"
+        let title = "Switch from folder \"\(selectedFolderTitle)\"?"
         let alert = UIAlertController(title: title, message: "There are multiple folders on this camera, do you want to switch?", preferredStyle: .actionSheet)
 
         viewModel?.folders.forEach { folder in
@@ -123,6 +128,10 @@ final class GalleryViewController: UIViewController,
     }
 
     // MARK: - UICollectionView DataSource / Delegate
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, insetForSectionAt _: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+    }
 
     func numberOfSections(in _: UICollectionView) -> Int {
         return 1

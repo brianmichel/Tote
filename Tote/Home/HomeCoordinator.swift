@@ -37,14 +37,31 @@ final class HomeCoordinator: UISplitViewControllerDelegate {
     private let galleryViewController: GalleryViewController = GalleryViewController()
     private let navigationViewController: UINavigationController
 
+    private let cameraConnection: WifiCameraConnection = WifiCameraConnection(ssid: "GR_07CE90", passphrase: "10028121", hostname: "192.168.0.1")
+
+    private var storage = Set<AnyCancellable>()
+
     init() {
         navigationViewController = DarkModeAwareNavigationController(rootViewController: galleryViewController)
         navigationViewController.navigationBar.prefersLargeTitles = true
 
-        galleryViewController.viewModel = GalleryViewModel()
+        cameraConnection.$state.sink { [weak self] state in
+            switch state {
+            case .connected:
+                self?.galleryViewController.viewModel = GalleryViewModel()
+            case .disconnecting, .disconnected:
+                self?.galleryViewController.viewModel = nil
+            case .unknown, .connecting:
+                break
+            case .error:
+                break
+            }
+        }.store(in: &storage)
     }
 
     func start(on viewController: UIViewController) {
         viewController.addChildViewControllerCompletely(navigationViewController)
+
+        cameraConnection.connect()
     }
 }
