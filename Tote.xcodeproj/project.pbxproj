@@ -19,6 +19,11 @@
 		7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */; };
 		721CE35F2436BD3B00A086E7 /* SwitchableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */; };
 		721CE3612436BD6D00A086E7 /* SimulatorValueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */; };
+		721CE3642436D0A000A086E7 /* AirPodsDialogPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE3632436D0A000A086E7 /* AirPodsDialogPresentationController.swift */; };
+		721CE3662436D0EC00A086E7 /* AirPodsDialogContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE3652436D0EC00A086E7 /* AirPodsDialogContainerViewController.swift */; };
+		721CE3682436D18200A086E7 /* AirPodsDialogSlideUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE3672436D18200A086E7 /* AirPodsDialogSlideUpPresenter.swift */; };
+		721CE36A2436D20600A086E7 /* SlideUpTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE3692436D20600A086E7 /* SlideUpTransitionAnimator.swift */; };
+		721CE36C2436E1A900A086E7 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE36B2436E1A900A086E7 /* UIEdgeInsets+Extensions.swift */; };
 		7225C0E322E3C9DE0054DEE0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */; };
 		7238183824340EA400C7B174 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183724340EA400C7B174 /* Decoder.swift */; };
 		7238183A24341A9200C7B174 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183924341A9200C7B174 /* Folder.swift */; };
@@ -73,6 +78,11 @@
 		7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
 		721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchableBox.swift; sourceTree = "<group>"; };
 		721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorValueBox.swift; sourceTree = "<group>"; };
+		721CE3632436D0A000A086E7 /* AirPodsDialogPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPodsDialogPresentationController.swift; sourceTree = "<group>"; };
+		721CE3652436D0EC00A086E7 /* AirPodsDialogContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPodsDialogContainerViewController.swift; sourceTree = "<group>"; };
+		721CE3672436D18200A086E7 /* AirPodsDialogSlideUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPodsDialogSlideUpPresenter.swift; sourceTree = "<group>"; };
+		721CE3692436D20600A086E7 /* SlideUpTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideUpTransitionAnimator.swift; sourceTree = "<group>"; };
+		721CE36B2436E1A900A086E7 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		7238183724340EA400C7B174 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		7238183924341A9200C7B174 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 		7210533124343B9E006B4F32 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				721CE3622436CF6E00A086E7 /* AirPods Dialog */,
 				7213B8992435385F00C401A9 /* Camera Connection */,
 				721053372434455C006B4F32 /* MediaURLGrouper.swift */,
 				7210533224343BAB006B4F32 /* Logging */,
@@ -196,6 +207,17 @@
 				7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		721CE3622436CF6E00A086E7 /* AirPods Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				721CE3632436D0A000A086E7 /* AirPodsDialogPresentationController.swift */,
+				721CE3652436D0EC00A086E7 /* AirPodsDialogContainerViewController.swift */,
+				721CE3672436D18200A086E7 /* AirPodsDialogSlideUpPresenter.swift */,
+				721CE3692436D20600A086E7 /* SlideUpTransitionAnimator.swift */,
+			);
+			path = "AirPods Dialog";
 			sourceTree = "<group>";
 		};
 		723F810424345043008FCC4B /* Image Processing */ = {
@@ -324,6 +346,7 @@
 				72D02C7C22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift */,
 				72B63BC022CE437500FA8920 /* String+PhotoType.swift */,
 				723F810724345ADC008FCC4B /* UIImage+Extensions.swift */,
+				721CE36B2436E1A900A086E7 /* UIEdgeInsets+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -532,12 +555,15 @@
 				7239357A2433FC970073C614 /* APIURLBuilder.swift in Sources */,
 				72B63BC122CE437500FA8920 /* String+PhotoType.swift in Sources */,
 				721CE3612436BD6D00A086E7 /* SimulatorValueBox.swift in Sources */,
+				721CE36C2436E1A900A086E7 /* UIEdgeInsets+Extensions.swift in Sources */,
 				7210533424343BBA006B4F32 /* Log.swift in Sources */,
 				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
 				7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */,
 				7238183824340EA400C7B174 /* Decoder.swift in Sources */,
 				7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */,
+				721CE36A2436D20600A086E7 /* SlideUpTransitionAnimator.swift in Sources */,
+				721CE3682436D18200A086E7 /* AirPodsDialogSlideUpPresenter.swift in Sources */,
 				72D02C7B22BEA8EF00DA5236 /* UIViewController+Extensions.swift in Sources */,
 				72D02C7D22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift in Sources */,
 				72B63BC322CE459C00FA8920 /* PhotoInfoResponse.swift in Sources */,
@@ -546,6 +572,7 @@
 				72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */,
 				7239357C2433FFDE0073C614 /* Agent.swift in Sources */,
 				7283A9392434FE82002F7477 /* GalleryCellViewModel.swift in Sources */,
+				721CE3662436D0EC00A086E7 /* AirPodsDialogContainerViewController.swift in Sources */,
 				7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */,
 				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
 				723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */,
@@ -556,6 +583,7 @@
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				7213B898243518F700C401A9 /* Colors.swift in Sources */,
 				721CE35F2436BD3B00A086E7 /* SwitchableBox.swift in Sources */,
+				721CE3642436D0A000A086E7 /* AirPodsDialogPresentationController.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,
 				7238183C24341AB000C7B174 /* MediaGroup.swift in Sources */,
 				7213B8A024362CCD00C401A9 /* CameraConnectViewController.swift in Sources */,
