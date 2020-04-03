@@ -48,7 +48,13 @@ class CameraConnectViewController: UIViewController {
         hostingViewController.view.translatesAutoresizingMaskIntoConstraints = false
         addChildViewControllerCompletely(hostingViewController)
 
-        NSLayoutConstraint.activate(hostingViewController.view.pin(to: view))
+        NSLayoutConstraint.activate(
+            [
+                hostingViewController.view.pin(to: view),
+                [
+                    view.heightAnchor.constraint(equalToConstant: 100),
+                ],
+            ].flatMap { $0 })
     }
 
     private func bind() {

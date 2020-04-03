@@ -73,7 +73,7 @@ class ApplicationViewController: UIViewController {
     }
 
     private func bind() {
-        viewModel.state.sink { [weak self] state in
+        viewModel.$state.sink { [weak self] state in
             switch state {
             case .disconnected:
                 self?.showConnectionDialog()
@@ -86,7 +86,7 @@ class ApplicationViewController: UIViewController {
     }
 
     private func showConnectionDialog() {
-        let viewController = AirPodsDialogContainerViewController(viewController: TestViewController(style: .plain))
+        let viewController = AirPodsDialogContainerViewController(viewController: CameraConnectViewController(model: viewModel.cameraConnectViewModel))
         present(viewController, animated: true, completion: nil)
         return
 
