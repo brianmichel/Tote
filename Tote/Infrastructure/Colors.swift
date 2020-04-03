@@ -8,24 +8,31 @@
 
 import UIKit
 
-struct AppearanceModeBox<T> {
-    let light: T
-    let dark: T
+struct AppearanceStyleBox<T>: SwitchableBox {
+    var left: T
+    var right: T
 
-    var value: T {
+    var determiner: SwitchableBoxDeterminer = { (left, right) -> T in
         switch UITraitCollection.current.userInterfaceStyle {
         case .dark:
-            return dark
+            return right
         case .light:
-            return light
+            return left
         default:
-            return light
+            return left
         }
+    }
+
+    typealias LeftOrRightType = T
+
+    init(light: T, dark: T) {
+        left = light
+        right = dark
     }
 }
 
 enum Colors {
-    static let text = AppearanceModeBox<UIColor>(light: .black, dark: .white)
-    static let background = AppearanceModeBox<UIColor>(light: .white, dark: .black)
-    static let shadow = AppearanceModeBox<UIColor>(light: .black, dark: .white)
+    static let text = AppearanceStyleBox<UIColor>(light: .black, dark: .white)
+    static let background = AppearanceStyleBox<UIColor>(light: .white, dark: .black)
+    static let shadow = AppearanceStyleBox<UIColor>(light: .black, dark: .white)
 }

@@ -11,7 +11,11 @@ import UIKit
 
 final class ApplicationViewModel: CameraConnectionViewModelDelegate {
     private enum Constants {
-        static let ricohCameraHost = "192.168.0.1"
+        #if targetEnvironment(simulator)
+            static let ricohCameraHost = "127.0.0.1"
+        #else
+            static let ricohCameraHost = "192.168.0.1"
+        #endif
     }
 
     // MARK: Combine View Model Properties
@@ -33,10 +37,10 @@ final class ApplicationViewModel: CameraConnectionViewModelDelegate {
 
     // MARK: View Model Properties
 
-    let galleryViewModel = GalleryViewModel(api: NetworkAPI.standard)
+    let galleryViewModel = GalleryViewModel(api: DeviceTypeValueBox<API>(simulator: NetworkAPI.local, device: NetworkAPI.real).value)
     let cameraConnectViewModel = CameraConnectViewModel()
 
-    private var cameraConnection: WifiCameraConnection?
+    private var cameraConnection: CameraConnection?
 
     // MARK: Other Properties
 
@@ -73,8 +77,13 @@ final class ApplicationViewModel: CameraConnectionViewModelDelegate {
     }
 
     private func connectToCamera(with configuration: CameraConnectionConfiguration) {
-        let connection = WifiCameraConnection(ssid: configuration.ssid, passphrase: configuration.passphrase, hostname: Constants.ricohCameraHost)
-        connection.$state.sink { [weak self] state in
+        let box = DeviceTypeValueBox<CameraConnection>(simulator: SimulatorCameraConnection(),
+                                                       device: WifiCameraConnection(ssid: configuration.ssid,
+                                                                                    passphrase: configuration.passphrase,
+                                                                                    hostname: Constants.ricohCameraHost))
+
+        let connection = box.value
+        connection.statePublisher.sink { [weak self] state in
             switch state {
             case .connected:
                 self?.state.send(.connectedToCamera)
