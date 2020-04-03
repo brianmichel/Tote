@@ -56,8 +56,8 @@ struct NetworkAPI: API {
 }
 
 extension NetworkAPI {
-    static let standard = NetworkAPI(host: "192.168.0.1",
-                                     version: "v1")
+    static let real = NetworkAPI(host: "192.168.0.1",
+                                 version: "v1")
 
     static let local = NetworkAPI(host: "127.0.0.1:3000",
                                   version: "v1")

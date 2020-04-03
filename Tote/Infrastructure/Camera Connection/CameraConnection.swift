@@ -9,9 +9,8 @@
 import Foundation
 import NetworkExtension
 import Reachability
-import SystemConfiguration
 
-enum CameraConectionState {
+enum CameraConnectionState {
     case unknown
     case disconnecting
     case disconnected
@@ -21,13 +20,39 @@ enum CameraConectionState {
 }
 
 protocol CameraConnection {
-    var state: CameraConectionState { get }
+    var state: CameraConnectionState { get }
+    // This is a hack until https://forums.swift.org/t/property-wrapper-requirements-in-protocols/33953 becomes a reality
+    var statePublished: Published<CameraConnectionState> { get }
+    var statePublisher: Published<CameraConnectionState>.Publisher { get }
+
     func connect()
     func disconnect()
 }
 
-final class WifiCameraConnection: CameraConnection {
-    @Published private(set) var state: CameraConectionState = .unknown
+final class SimulatorCameraConnection: ObservableObject, CameraConnection {
+    @Published private(set) var state: CameraConnectionState = .unknown
+    var statePublished: Published<CameraConnectionState> { return _state }
+    var statePublisher: Published<CameraConnectionState>.Publisher { return $state }
+
+    init() {
+        // Do nothing
+    }
+
+    func connect() {
+        state = .connecting
+        state = .connected
+    }
+
+    func disconnect() {
+        state = .disconnecting
+        state = .disconnected
+    }
+}
+
+final class WifiCameraConnection: ObservableObject, CameraConnection {
+    @Published private(set) var state: CameraConnectionState = .unknown
+    var statePublished: Published<CameraConnectionState> { return _state }
+    var statePublisher: Published<CameraConnectionState>.Publisher { return $state }
 
     private let reachability: Reachability
     private let configuration: NEHotspotConfiguration

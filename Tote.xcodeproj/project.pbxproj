@@ -17,6 +17,8 @@
 		7213B8A024362CCD00C401A9 /* CameraConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B89F24362CCD00C401A9 /* CameraConnectViewController.swift */; };
 		7213B8A224362ED600C401A9 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B8A124362ED600C401A9 /* Keychain.swift */; };
 		7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */; };
+		721CE35F2436BD3B00A086E7 /* SwitchableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */; };
+		721CE3612436BD6D00A086E7 /* SimulatorValueBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */; };
 		7225C0E322E3C9DE0054DEE0 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */; };
 		7238183824340EA400C7B174 /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183724340EA400C7B174 /* Decoder.swift */; };
 		7238183A24341A9200C7B174 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7238183924341A9200C7B174 /* Folder.swift */; };
@@ -69,6 +71,8 @@
 		7213B89F24362CCD00C401A9 /* CameraConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConnectViewController.swift; sourceTree = "<group>"; };
 		7213B8A124362ED600C401A9 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
+		721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchableBox.swift; sourceTree = "<group>"; };
+		721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorValueBox.swift; sourceTree = "<group>"; };
 		7225C0E222E3C9DE0054DEE0 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		7238183724340EA400C7B174 /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
 		7238183924341A9200C7B174 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				729E573C22BE68F20039C08A /* Utility */,
 				7213B897243518F700C401A9 /* Colors.swift */,
 				7213B8A124362ED600C401A9 /* Keychain.swift */,
+				721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */,
+				721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -525,6 +531,7 @@
 			files = (
 				7239357A2433FC970073C614 /* APIURLBuilder.swift in Sources */,
 				72B63BC122CE437500FA8920 /* String+PhotoType.swift in Sources */,
+				721CE3612436BD6D00A086E7 /* SimulatorValueBox.swift in Sources */,
 				7210533424343BBA006B4F32 /* Log.swift in Sources */,
 				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
@@ -548,6 +555,7 @@
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				7213B898243518F700C401A9 /* Colors.swift in Sources */,
+				721CE35F2436BD3B00A086E7 /* SwitchableBox.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,
 				7238183C24341AB000C7B174 /* MediaGroup.swift in Sources */,
 				7213B8A024362CCD00C401A9 /* CameraConnectViewController.swift in Sources */,
