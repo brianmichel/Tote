@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7203BAD22437C48300484B5B /* LastCameraConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD12437C48300484B5B /* LastCameraConnectionViewController.swift */; };
+		7203BAD42437D16700484B5B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD32437D16700484B5B /* UIColor+Extensions.swift */; };
 		7210533424343BBA006B4F32 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210533324343BBA006B4F32 /* Log.swift */; };
 		7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210533524343BD4006B4F32 /* LogFormatter.swift */; };
 		721053382434455C006B4F32 /* MediaURLGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721053372434455C006B4F32 /* MediaURLGrouper.swift */; };
@@ -65,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		1A1AA848CF88CAB4DD2F1F7E /* Pods_Tote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7203BAD12437C48300484B5B /* LastCameraConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCameraConnectionViewController.swift; sourceTree = "<group>"; };
+		7203BAD32437D16700484B5B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		7210533324343BBA006B4F32 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7210533524343BD4006B4F32 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		721053372434455C006B4F32 /* MediaURLGrouper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaURLGrouper.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				7213B89D2436261E00C401A9 /* CameraConnectViewModel.swift */,
 				7213B89F24362CCD00C401A9 /* CameraConnectViewController.swift */,
 				72E02F3B2436548E0093CA92 /* AddCameraConnectionView.swift */,
+				7203BAD12437C48300484B5B /* LastCameraConnectionViewController.swift */,
 			);
 			path = "Camera Connection Management";
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				72B63BC022CE437500FA8920 /* String+PhotoType.swift */,
 				723F810724345ADC008FCC4B /* UIImage+Extensions.swift */,
 				721CE36B2436E1A900A086E7 /* UIEdgeInsets+Extensions.swift */,
+				7203BAD32437D16700484B5B /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -559,6 +565,7 @@
 				7210533424343BBA006B4F32 /* Log.swift in Sources */,
 				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
+				7203BAD22437C48300484B5B /* LastCameraConnectionViewController.swift in Sources */,
 				7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */,
 				7238183824340EA400C7B174 /* Decoder.swift in Sources */,
 				7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */,
@@ -589,6 +596,7 @@
 				7213B8A024362CCD00C401A9 /* CameraConnectViewController.swift in Sources */,
 				7213B89E2436261E00C401A9 /* CameraConnectViewModel.swift in Sources */,
 				7238183A24341A9200C7B174 /* Folder.swift in Sources */,
+				7203BAD42437D16700484B5B /* UIColor+Extensions.swift in Sources */,
 				721053382434455C006B4F32 /* MediaURLGrouper.swift in Sources */,
 				7213B8A224362ED600C401A9 /* Keychain.swift in Sources */,
 			);

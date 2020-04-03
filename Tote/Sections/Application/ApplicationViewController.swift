@@ -86,7 +86,7 @@ class ApplicationViewController: UIViewController {
     }
 
     private func showConnectionDialog() {
-        let viewController = AirPodsDialogContainerViewController(viewController: CameraConnectViewController(model: viewModel.cameraConnectViewModel))
+        let viewController = AirPodsDialogContainerViewController(viewController: LastCameraConnectionViewController(model: viewModel.cameraConnectViewModel))
         present(viewController, animated: true, completion: nil)
         return
 

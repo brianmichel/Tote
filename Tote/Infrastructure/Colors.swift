@@ -36,4 +36,8 @@ enum Colors {
     static let background = AppearanceStyleBox<UIColor>(light: .white, dark: .black)
     static let shadow = AppearanceStyleBox<UIColor>(light: UIColor.black.withAlphaComponent(0.3),
                                                     dark: UIColor.white.withAlphaComponent(0.3))
+
+    // Non-semantic colors
+    static let yellow = UIColor(hex: "FFB700")!
+    static let lightGray = UIColor(hex: "CCCCCC")!
 }

@@ -11,7 +11,7 @@ import UIKit
 class AirPodsDialogContainerViewController: UIViewController {
     private enum Constants {
         static let iPhoneXCornerRadius: CGFloat = 35.0
-        static let contentInsets = UIEdgeInsets(top: 5, left: 30, bottom: 25, right: 30)
+        static let contentInsets = UIEdgeInsets(top: 25, left: 30, bottom: 25, right: 30)
         static let dismissButtonOffset = UIOffset(horizontal: 20, vertical: 20)
     }
 
@@ -21,8 +21,9 @@ class AirPodsDialogContainerViewController: UIViewController {
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 5.0
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 10.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -82,33 +83,21 @@ class AirPodsDialogContainerViewController: UIViewController {
         view.layer.cornerRadius = Constants.iPhoneXCornerRadius
         view.layer.cornerCurve = .continuous
 
-        let button = UIButton()
-        button.backgroundColor = .lightGray
-        button.layer.cornerRadius = 8.0
-        button.setTitle("Connect", for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
-
         header.text = contentViewController.title
-
-        contentViewController.view.layer.cornerRadius = 8.0
-        contentViewController.view.layer.masksToBounds = true
-        contentViewController.view.backgroundColor = .darkGray
+        header.setContentCompressionResistancePriority(.required, for: .vertical)
 
         contentStackView.addArrangedSubview(header)
         contentStackView.addArrangedSubview(contentViewController.view)
         contentViewController.didMove(toParent: self)
-        contentStackView.addArrangedSubview(button)
 
-        view.addSubview(dismissButton)
         view.addSubview(contentStackView)
-
-        contentStackView.backgroundColor = .green
+        view.addSubview(dismissButton)
 
         NSLayoutConstraint.activate([
             dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.dismissButtonOffset.horizontal),
             dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.dismissButtonOffset.vertical),
             contentStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.contentInsets.left),
-            contentStackView.topAnchor.constraint(equalTo: dismissButton.bottomAnchor, constant: Constants.contentInsets.top),
+            contentStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.contentInsets.top),
             contentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.contentInsets.right),
             contentStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Constants.contentInsets.bottom),
         ])
@@ -116,6 +105,11 @@ class AirPodsDialogContainerViewController: UIViewController {
         preferredContentSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 
         resetAppearance()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        preferredContentSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
 
     override var prefersHomeIndicatorAutoHidden: Bool {
