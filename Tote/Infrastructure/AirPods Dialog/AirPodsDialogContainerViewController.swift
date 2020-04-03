@@ -40,6 +40,14 @@ class AirPodsDialogContainerViewController: UIViewController {
         return button
     }()
 
+    private let header: UILabel = {
+        let header = UILabel()
+        header.font = UIFont.preferredFont(forTextStyle: .title1)
+        header.textAlignment = .center
+
+        return header
+    }()
+
     override var preferredContentSize: CGSize {
         get {
             return super.preferredContentSize
@@ -59,6 +67,8 @@ class AirPodsDialogContainerViewController: UIViewController {
         transitioningDelegate = presenter
 
         addChild(contentViewController)
+
+        dismissButton.addTarget(self, action: #selector(dismissDialog), for: .touchUpInside)
     }
 
     required init?(coder _: NSCoder) {
@@ -71,7 +81,6 @@ class AirPodsDialogContainerViewController: UIViewController {
         view.backgroundColor = .white
         view.layer.cornerRadius = Constants.iPhoneXCornerRadius
         view.layer.cornerCurve = .continuous
-        view.layer.masksToBounds = true
 
         let button = UIButton()
         button.backgroundColor = .lightGray
@@ -79,10 +88,7 @@ class AirPodsDialogContainerViewController: UIViewController {
         button.setTitle("Connect", for: .normal)
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
 
-        let header = UILabel()
         header.text = contentViewController.title
-        header.font = UIFont.preferredFont(forTextStyle: .title1)
-        header.textAlignment = .center
 
         contentViewController.view.layer.cornerRadius = 8.0
         contentViewController.view.layer.masksToBounds = true
@@ -108,9 +114,29 @@ class AirPodsDialogContainerViewController: UIViewController {
         ])
 
         preferredContentSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+
+        resetAppearance()
     }
 
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        resetAppearance()
+    }
+
+    private func resetAppearance() {
+        header.textColor = Colors.text.value
+        view.backgroundColor = Colors.background.value
+        view.layer.shadowColor = Colors.shadow.value.cgColor
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 8.0
+        view.layer.shadowOpacity = 0.6
+    }
+
+    @objc private func dismissDialog() {
+        dismiss(animated: true, completion: nil)
     }
 }

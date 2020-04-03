@@ -34,5 +34,6 @@ struct AppearanceStyleBox<T>: SwitchableBox {
 enum Colors {
     static let text = AppearanceStyleBox<UIColor>(light: .black, dark: .white)
     static let background = AppearanceStyleBox<UIColor>(light: .white, dark: .black)
-    static let shadow = AppearanceStyleBox<UIColor>(light: .black, dark: .white)
+    static let shadow = AppearanceStyleBox<UIColor>(light: UIColor.black.withAlphaComponent(0.3),
+                                                    dark: UIColor.white.withAlphaComponent(0.3))
 }

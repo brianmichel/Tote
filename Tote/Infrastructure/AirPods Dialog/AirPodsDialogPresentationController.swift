@@ -8,6 +8,21 @@
 
 import UIKit
 
+class AirPodsDialogPresentationWrappingScrollView: UIScrollView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        alwaysBounceVertical = true
+        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
+        contentInset = .zero
+        contentInsetAdjustmentBehavior = .never
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class AirPodsDialogPresentationController: UIPresentationController {
     lazy var dimmingView: UIView = {
         let containerView = self.containerView ?? UIView()
@@ -49,6 +64,7 @@ class AirPodsDialogPresentationController: UIPresentationController {
         dimmingView.addGestureRecognizer(dimmingTapGesture)
 
         dimmingView.frame = containerView.bounds
+
         containerView.addSubview(dimmingView)
         containerView.addSubview(presentedView)
 

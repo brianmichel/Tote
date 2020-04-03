@@ -10,10 +10,15 @@ import UIKit
 
 final class SlideUpTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private enum Constants {
-        static let sheetInsets = UIEdgeInsets(top: 0, left: 15, bottom: 15, right: 15)
+        static let sheetInsets = UIEdgeInsets(top: 0, left: 7, bottom: 7, right: 7)
     }
 
     let presenting: Bool
+
+    lazy var wrappingScrollView: UIScrollView = {
+        let view = AirPodsDialogPresentationWrappingScrollView(frame: .zero)
+        return view
+    }()
 
     init(presenting: Bool) {
         self.presenting = presenting
@@ -22,7 +27,7 @@ final class SlideUpTransitionAnimator: NSObject, UIViewControllerAnimatedTransit
     }
 
     func transitionDuration(using _: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.6
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -42,6 +47,10 @@ final class SlideUpTransitionAnimator: NSObject, UIViewControllerAnimatedTransit
 
         let containerView = transitionContext.containerView
 
+        wrappingScrollView.frame = containerView.bounds
+        wrappingScrollView.addSubview(presentedControllerView)
+        wrappingScrollView.contentSize = CGSize(width: 0, height: presentedControllerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height)
+
         let duration = transitionDuration(using: transitionContext)
 
         if presenting {
@@ -49,10 +58,13 @@ final class SlideUpTransitionAnimator: NSObject, UIViewControllerAnimatedTransit
             presentedControllerView.frame = offscreenRect(forPresentingView: presentedControllerView, containerView: containerView)
         }
 
-        containerView.addSubview(presentedControllerView)
+        containerView.addSubview(wrappingScrollView)
 
-        UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+        wrappingScrollView.contentOffset = .zero
+
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.2, options: [], animations: {
             presentedControllerView.frame = self.onscreenRect(forPresentingView: presentedControllerView, containerView: containerView)
+
         }, completion: { finished in
             transitionContext.completeTransition(finished)
         })
@@ -68,7 +80,7 @@ final class SlideUpTransitionAnimator: NSObject, UIViewControllerAnimatedTransit
 
         let duration = transitionDuration(using: transitionContext)
 
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: [], animations: {
             presentedControllerView.frame = self.offscreenRect(forPresentingView: presentedControllerView, containerView: containerView)
         }, completion: { finished in
             presentedControllerView.removeFromSuperview()
