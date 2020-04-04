@@ -1,8 +1,12 @@
-# ![](images/RoundedIcon-small.png =80x80) Tote
+# Tote 💼
 
 __Tote__ is a simple photo transfer application made for use with the Ricoh GR III camera.
 
 ## Icons
+
+| Light App Icon | Dark App Icon |
+| ---- | ---- |
+| ![](images/RoundedIcon.png) | ![](images/RoundedIcon-Dark.png) |
 
 All of the icons that are in the app are currently located in the `ToteIcons.sketch` so you can find them in there.
 
