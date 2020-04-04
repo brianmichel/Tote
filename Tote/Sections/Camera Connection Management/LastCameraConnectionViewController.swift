@@ -39,6 +39,8 @@ final class RoundedButton: UIControl {
         return stackView
     }()
 
+    var didTap: ((RoundedButton) -> Void)?
+
     private let titleLabel = UILabel()
 
     init(icon: UIImage?, title: String) {
@@ -64,10 +66,17 @@ final class RoundedButton: UIControl {
         NSLayoutConstraint.activate([
             verticalStack.pin(to: self, insets: UIEdgeInsets(top: 15, left: 25, bottom: 15, right: 25)),
         ].flatMap { $0 })
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapButton))
+        addGestureRecognizer(tap)
     }
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func didTapButton() {
+        didTap?(self)
     }
 }
 
@@ -109,6 +118,10 @@ final class LastCameraConnectionViewController: UIViewController {
             let button = RoundedButton(icon: UIImage(systemName: "camera.circle.fill"), title: camera.ssid)
             button.tintColor = .black
             button.backgroundColor = Colors.yellow
+            button.didTap = { [weak self] _ in
+                self?.viewModel.action.send(.connect(configuration: camera))
+            }
+
             buttonStack.addArrangedSubview(button)
         }
 
