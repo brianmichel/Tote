@@ -32,8 +32,9 @@ final class ApplicationViewModel: CameraConnectionViewModelDelegate {
 
     private var storage = Set<AnyCancellable>()
 
-    let state = CurrentValueSubject<State, Never>(.disconnected(nil))
-    let action = PassthroughSubject<Action, Never>()
+    @Published private(set) var state: State = .disconnected(nil)
+
+    let action = PassthroughSubject<Action, Error>()
 
     // MARK: View Model Properties
 
@@ -49,11 +50,15 @@ final class ApplicationViewModel: CameraConnectionViewModelDelegate {
     init() {
         cameraConnectViewModel.delegate = self
 
-        action.sink(receiveValue: { [weak self] action in
+        action.sink(receiveCompletion: { _ in
+            //
+        }, receiveValue: { [weak self] action in
             self?.process(action: action)
         }).store(in: &storage)
 
-        state.sink(receiveValue: { [weak self] state in
+        $state.sink(receiveCompletion: { _ in
+            //
+        }, receiveValue: { [weak self] state in
             self?.process(state: state)
         }).store(in: &storage)
     }
@@ -86,19 +91,19 @@ final class ApplicationViewModel: CameraConnectionViewModelDelegate {
         connection.statePublisher.sink { [weak self] state in
             switch state {
             case .connected:
-                self?.state.send(.connectedToCamera)
+                self?.state = .connectedToCamera
                 self?.galleryViewModel.action.send(.cameraConnected)
             case .disconnecting, .disconnected:
-                self?.state.send(.disconnected(nil))
+                self?.state = .disconnected(nil)
                 self?.galleryViewModel.action.send(.clearData)
             case .unknown, .connecting:
                 break
-            case .error:
-                break
+            case let .error(error):
+                self?.state = .disconnected(error)
             }
         }.store(in: &storage)
 
-        state.send(.connectingToCamera)
+        state = .connectingToCamera
         connection.connect()
 
         cameraConnection = connection

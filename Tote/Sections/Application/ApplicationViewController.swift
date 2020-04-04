@@ -36,7 +36,7 @@ class ApplicationViewController: UIViewController {
     }
 
     private func bind() {
-        viewModel.state.sink { [weak self] state in
+        viewModel.$state.sink { [weak self] state in
             switch state {
             case .disconnected:
                 self?.showConnectionDialog()
@@ -49,8 +49,8 @@ class ApplicationViewController: UIViewController {
     }
 
     private func showConnectionDialog() {
-        let navigationController = DarkModeAwareNavigationController(rootViewController: CameraConnectViewController(model: viewModel.cameraConnectViewModel))
-        present(navigationController, animated: true, completion: nil)
+        let viewController = AirPodsDialogContainerViewController(viewController: LastCameraConnectionViewController(model: viewModel.cameraConnectViewModel))
+        present(viewController, animated: true, completion: nil)
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

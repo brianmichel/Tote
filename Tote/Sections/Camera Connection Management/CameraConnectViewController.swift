@@ -37,8 +37,6 @@ class CameraConnectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-
         bind()
         resetAppearance()
 
@@ -48,7 +46,10 @@ class CameraConnectViewController: UIViewController {
         hostingViewController.view.translatesAutoresizingMaskIntoConstraints = false
         addChildViewControllerCompletely(hostingViewController)
 
-        NSLayoutConstraint.activate(hostingViewController.view.pin(to: view))
+        NSLayoutConstraint.activate(
+            [
+                hostingViewController.view.pin(to: view),
+            ].flatMap { $0 })
     }
 
     private func bind() {

@@ -9,6 +9,7 @@
 import Foundation
 import NetworkExtension
 import Reachability
+import SystemConfiguration.CaptiveNetwork
 
 enum CameraConnectionState {
     case unknown
@@ -56,6 +57,7 @@ final class WifiCameraConnection: ObservableObject, CameraConnection {
 
     private let reachability: Reachability
     private let configuration: NEHotspotConfiguration
+    private let queue = DispatchQueue(label: "me.foureyes.tote.WifiCameraConnection")
 
     let ssid: String
     let passphrase: String
@@ -70,8 +72,13 @@ final class WifiCameraConnection: ObservableObject, CameraConnection {
         do {
             reachability = try Reachability(hostname: hostname)
             reachability.whenReachable = { [weak self] reachability in
-                Log.info("'\(hostname)' became reachable via \(reachability.connection.description).")
-                self?.state = .connected
+                let reallyConnected = self?.reallyConnected(to: ssid) ?? false
+                if reallyConnected {
+                    self?.state = .connected
+                    Log.info("'\(hostname)' became reachable via \(reachability.connection.description).")
+                } else {
+                    self?.state = .disconnected
+                }
             }
 
             reachability.whenUnreachable = { [weak self] _ in
@@ -118,5 +125,32 @@ final class WifiCameraConnection: ObservableObject, CameraConnection {
 
     private func stopCheckingReachability() {
         reachability.stopNotifier()
+    }
+
+    private func reallyConnected(to ssid: String) -> Bool {
+        let ssidInformation = fetchSSIDInfo()
+        guard let connectedSSID = ssidInformation["SSID"] as? String else {
+            return false
+        }
+
+        return connectedSSID == ssid
+    }
+
+    private func fetchSSIDInfo() -> [String: Any] {
+        var interface = [String: Any]()
+        if let interfaces = CNCopySupportedInterfaces() {
+            for index in 0 ..< CFArrayGetCount(interfaces) {
+                let interfaceName = CFArrayGetValueAtIndex(interfaces, index)
+                let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
+                guard let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString) else {
+                    return interface
+                }
+                guard let interfaceData = unsafeInterfaceData as? [String: Any] else {
+                    return interface
+                }
+                interface = interfaceData
+            }
+        }
+        return interface
     }
 }
