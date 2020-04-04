@@ -66,10 +66,6 @@ final class WifiCameraConnection: ObservableObject, CameraConnection {
         self.ssid = ssid
         self.passphrase = passphrase
 
-        NEHotspotHelper.register(options: nil, queue: queue) { command in
-            Log.debug("Got helper command - \(String(describing: command))")
-        }
-
         configuration = NEHotspotConfiguration(ssid: ssid, passphrase: passphrase, isWEP: false)
         configuration.joinOnce = true
 

@@ -8,43 +8,6 @@
 import Combine
 import UIKit
 
-class TestViewController: UITableViewController {
-    override init(style: UITableView.Style) {
-        super.init(style: style)
-        title = "Select Camera"
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.tableFooterView = UIView()
-
-        NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalToConstant: 200),
-        ])
-    }
-
-    override func numberOfSections(in _: UITableView) -> Int {
-        1
-    }
-
-    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return 3
-    }
-
-    override func tableView(_: UITableView, cellForRowAt _: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(frame: .zero)
-        cell.textLabel?.text = "Hi"
-        cell.separatorInset = .zero
-
-        return cell
-    }
-}
-
 class ApplicationViewController: UIViewController {
     let viewModel: ApplicationViewModel
 

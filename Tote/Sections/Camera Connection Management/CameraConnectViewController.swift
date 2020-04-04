@@ -49,9 +49,6 @@ class CameraConnectViewController: UIViewController {
         NSLayoutConstraint.activate(
             [
                 hostingViewController.view.pin(to: view),
-                [
-                    view.heightAnchor.constraint(equalToConstant: 100),
-                ],
             ].flatMap { $0 })
     }
 

@@ -13,6 +13,9 @@ class AirPodsDialogContainerViewController: UIViewController {
         static let iPhoneXCornerRadius: CGFloat = 35.0
         static let contentInsets = UIEdgeInsets(top: 25, left: 30, bottom: 25, right: 30)
         static let dismissButtonOffset = UIOffset(horizontal: 20, vertical: 20)
+        static let contentSpacing: CGFloat = 10.0
+        static let shadowRadius: CGFloat = 8.0
+        static let shadowOpacity: Float = 0.6
     }
 
     let presenter = AirPodsDialogSlideUpPresenter()
@@ -23,7 +26,7 @@ class AirPodsDialogContainerViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 10.0
+        stackView.spacing = Constants.contentSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -61,8 +64,6 @@ class AirPodsDialogContainerViewController: UIViewController {
     init(viewController: UIViewController) {
         contentViewController = viewController
         super.init(nibName: nil, bundle: nil)
-
-        preferredContentSize = CGSize(width: 0, height: 430)
 
         modalPresentationStyle = .custom
         transitioningDelegate = presenter
@@ -126,8 +127,8 @@ class AirPodsDialogContainerViewController: UIViewController {
         view.backgroundColor = Colors.background.value
         view.layer.shadowColor = Colors.shadow.value.cgColor
         view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 8.0
-        view.layer.shadowOpacity = 0.6
+        view.layer.shadowRadius = Constants.shadowRadius
+        view.layer.shadowOpacity = Constants.shadowOpacity
     }
 
     @objc private func dismissDialog() {
