@@ -15,7 +15,13 @@ final class GalleryEmptyView: UIView {
 
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "gr-camera"))
-        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        if let image = imageView.image {
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: image.size.width / image.size.height),
+            ])
+        }
         return imageView
     }()
 
