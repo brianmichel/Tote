@@ -88,10 +88,6 @@ class ApplicationViewController: UIViewController {
     private func showConnectionDialog() {
         let viewController = AirPodsDialogContainerViewController(viewController: LastCameraConnectionViewController(model: viewModel.cameraConnectViewModel))
         present(viewController, animated: true, completion: nil)
-        return
-
-        let navigationController = DarkModeAwareNavigationController(rootViewController: CameraConnectViewController(model: viewModel.cameraConnectViewModel))
-        present(navigationController, animated: true, completion: nil)
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
