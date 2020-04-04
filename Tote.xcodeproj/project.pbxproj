@@ -10,6 +10,8 @@
 		7203BAD22437C48300484B5B /* LastCameraConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD12437C48300484B5B /* LastCameraConnectionViewController.swift */; };
 		7203BAD42437D16700484B5B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD32437D16700484B5B /* UIColor+Extensions.swift */; };
 		7203BAD62438211400484B5B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD52438211400484B5B /* RoundButton.swift */; };
+		7203BAD8243824E000484B5B /* GalleryEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD7243824E000484B5B /* GalleryEmptyView.swift */; };
+		7203BADA2438298700484B5B /* EmptyViewSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203BAD92438298700484B5B /* EmptyViewSwitcher.swift */; };
 		7210533424343BBA006B4F32 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210533324343BBA006B4F32 /* Log.swift */; };
 		7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210533524343BD4006B4F32 /* LogFormatter.swift */; };
 		721053382434455C006B4F32 /* MediaURLGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721053372434455C006B4F32 /* MediaURLGrouper.swift */; };
@@ -71,6 +73,8 @@
 		7203BAD12437C48300484B5B /* LastCameraConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastCameraConnectionViewController.swift; sourceTree = "<group>"; };
 		7203BAD32437D16700484B5B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		7203BAD52438211400484B5B /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		7203BAD7243824E000484B5B /* GalleryEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryEmptyView.swift; sourceTree = "<group>"; };
+		7203BAD92438298700484B5B /* EmptyViewSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewSwitcher.swift; sourceTree = "<group>"; };
 		7210533324343BBA006B4F32 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7210533524343BD4006B4F32 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		721053372434455C006B4F32 /* MediaURLGrouper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaURLGrouper.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				7213B8A124362ED600C401A9 /* Keychain.swift */,
 				721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */,
 				721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */,
+				7203BAD92438298700484B5B /* EmptyViewSwitcher.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 				7283A9372434FE71002F7477 /* Collection View Cell */,
 				72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */,
 				7283A9332434E61B002F7477 /* GalleryViewModel.swift */,
+				7203BAD7243824E000484B5B /* GalleryEmptyView.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
 				7203BAD22437C48300484B5B /* LastCameraConnectionViewController.swift in Sources */,
 				7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */,
+				7203BAD8243824E000484B5B /* GalleryEmptyView.swift in Sources */,
 				7238183824340EA400C7B174 /* Decoder.swift in Sources */,
 				7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */,
 				721CE36A2436D20600A086E7 /* SlideUpTransitionAnimator.swift in Sources */,
@@ -589,6 +596,7 @@
 				7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */,
 				7213B89B2435387C00C401A9 /* CameraConnection.swift in Sources */,
 				72E02F3C2436548E0093CA92 /* AddCameraConnectionView.swift in Sources */,
+				7203BADA2438298700484B5B /* EmptyViewSwitcher.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				7203BAD62438211400484B5B /* RoundButton.swift in Sources */,

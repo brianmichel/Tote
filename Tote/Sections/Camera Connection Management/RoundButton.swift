@@ -27,6 +27,7 @@ final class RoundedButton: UIControl {
         super.init(frame: .zero)
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        titleLabel.textColor = Colors.black
         titleLabel.text = title
 
         let imageView = UIImageView(image: icon)
