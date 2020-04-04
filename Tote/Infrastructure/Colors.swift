@@ -38,7 +38,7 @@ enum Colors {
                                                     dark: UIColor.white.withAlphaComponent(0.3))
 
     // Non-semantic colors
-    static let black = UIColor(hex: "#181515")!
+    static let black = UIColor(hex: "181515")!
     static let yellow = UIColor(hex: "FFB700")!
     static let lightGray = UIColor(hex: "CCCCCC")!
 }

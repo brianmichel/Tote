@@ -15,6 +15,7 @@ final class GalleryEmptyView: UIView {
 
     private let imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "gr-camera"))
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
