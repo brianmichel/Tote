@@ -32,12 +32,13 @@ struct AppearanceStyleBox<T>: SwitchableBox {
 }
 
 enum Colors {
-    static let text = AppearanceStyleBox<UIColor>(light: .black, dark: .white)
-    static let background = AppearanceStyleBox<UIColor>(light: .white, dark: .black)
-    static let shadow = AppearanceStyleBox<UIColor>(light: UIColor.black.withAlphaComponent(0.3),
+    static let text = AppearanceStyleBox<UIColor>(light: Colors.black, dark: .white)
+    static let background = AppearanceStyleBox<UIColor>(light: .white, dark: Colors.black)
+    static let shadow = AppearanceStyleBox<UIColor>(light: Colors.black.withAlphaComponent(0.3),
                                                     dark: UIColor.white.withAlphaComponent(0.3))
 
     // Non-semantic colors
+    static let black = UIColor(hex: "#181515")!
     static let yellow = UIColor(hex: "FFB700")!
     static let lightGray = UIColor(hex: "CCCCCC")!
 }

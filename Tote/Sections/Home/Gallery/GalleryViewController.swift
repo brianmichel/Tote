@@ -30,10 +30,17 @@ final class GalleryViewController: UIViewController,
 
     private var photoViewModels: [GalleryCellViewModel]? {
         didSet {
+            if let models = photoViewModels {
+                emptyViewSwitcher.set(empty: models.count == 0, animated: true)
+            }
+
             collectionView.reloadData()
             refreshControl.endRefreshing()
         }
     }
+
+    private let emptyView = GalleryEmptyView(text: "No photos found just yet")
+    private let emptyViewSwitcher: EmptyViewSwitcher
 
     init(model: GalleryViewModel) {
         viewModel = model
@@ -43,6 +50,8 @@ final class GalleryViewController: UIViewController,
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.refreshControl = refreshControl
+
+        emptyViewSwitcher = EmptyViewSwitcher(emptyView: emptyView, contentView: collectionView)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -77,6 +86,8 @@ final class GalleryViewController: UIViewController,
         // Hack to make the large header not collapse
         view.addSubview(UIView())
         view.addSubview(collectionView)
+        emptyView.frame = view.bounds
+        view.addSubview(emptyView)
 
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
