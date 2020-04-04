@@ -104,7 +104,7 @@
 		723F810724345ADC008FCC4B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7283A9332434E61B002F7477 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		7283A9382434FE82002F7477 /* GalleryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCellViewModel.swift; sourceTree = "<group>"; };
-		729E570E22BE61F70039C08A /* Tote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		729E570E22BE61F70039C08A /* Tote Bag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tote Bag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
 		729E571822BE61F80039C08A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 		729E570F22BE61F70039C08A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				729E570E22BE61F70039C08A /* Tote.app */,
+				729E570E22BE61F70039C08A /* Tote Bag.app */,
 				729E572222BE61F80039C08A /* ToteTests.xctest */,
 			);
 			name = Products;
@@ -406,7 +406,7 @@
 			);
 			name = Tote;
 			productName = Tote;
-			productReference = 729E570E22BE61F70039C08A /* Tote.app */;
+			productReference = 729E570E22BE61F70039C08A /* Tote Bag.app */;
 			productType = "com.apple.product-type.application";
 		};
 		729E572122BE61F80039C08A /* ToteTests */ = {
@@ -775,7 +775,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.foureyes.Tote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tote Bag";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -796,7 +796,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.foureyes.Tote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tote Bag";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
