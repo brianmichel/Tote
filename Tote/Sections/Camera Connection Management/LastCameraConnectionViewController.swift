@@ -43,7 +43,7 @@ final class LastCameraConnectionViewController: UIViewController {
         super.viewDidLoad()
 
         for camera in viewModel.cameras {
-            let button = RoundedButton(icon: UIImage(systemName: "camera.circle.fill"), title: camera.ssid)
+            let button = RoundedButton(icon: UIImage(systemName: "camera.circle.fill"), title: camera.nickname ?? camera.ssid)
             button.tintColor = .black
             button.backgroundColor = Colors.yellow
             button.didTap = { [weak self] _ in

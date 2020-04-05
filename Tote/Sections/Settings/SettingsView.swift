@@ -10,23 +10,25 @@ import Nuke
 import SwiftUI
 
 struct SettingsView: View {
+    private let cameraViewModel = CameraConnectViewModel()
+
     var dismiss: (() -> Void)?
 
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("General")) {
-                    NavigationLink(destination: SelectCameraConnectionView(addedConfiguration: { _ in }, selectedConfiguration: { _ in })) {
-                        SettingsIconRow(image: UIImage(systemName: "camera")!, title: "Edit cameras")
+                Section {
+                    NavigationLink(destination: EditCameraConnectionsView(viewModel: cameraViewModel)) {
+                        SettingsIconRow(image: UIImage(systemName: "camera")!, title: "Cameras")
                     }
                     NavigationLink(destination: AppIconsView()) {
-                        SettingsIconRow(image: UIImage(systemName: "paintbrush")!, title: "Choose icon")
+                        SettingsIconRow(image: UIImage(systemName: "paintbrush")!, title: "Appearance")
                     }
                 }
                 #if DEBUG
                     Section(header: Text("Debug")) {
                         Button(action: {
-                            // TODO: Clear items from the keychain
+                            Keychain().removeAllItems()
                         }) {
                             SettingsIconRow(image: UIImage(systemName: "lock.shield")!, title: "Clear Keychain items")
                         }
@@ -52,13 +54,11 @@ struct SettingsIconRow: View {
 
     var body: some View {
         VStack {
-            Spacer().frame(height: 10)
             HStack(spacing: 20) {
                 Image(uiImage: image).renderingMode(.template)
                 Text(title)
             }
-            Spacer().frame(height: 10)
-        }
+        }.padding([.top, .bottom], 5)
     }
 }
 

@@ -19,7 +19,6 @@
 		7213B898243518F700C401A9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B897243518F700C401A9 /* Colors.swift */; };
 		7213B89B2435387C00C401A9 /* CameraConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B89A2435387C00C401A9 /* CameraConnection.swift */; };
 		7213B89E2436261E00C401A9 /* CameraConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B89D2436261E00C401A9 /* CameraConnectViewModel.swift */; };
-		7213B8A024362CCD00C401A9 /* CameraConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B89F24362CCD00C401A9 /* CameraConnectViewController.swift */; };
 		7213B8A224362ED600C401A9 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B8A124362ED600C401A9 /* Keychain.swift */; };
 		7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */; };
 		721CE35F2436BD3B00A086E7 /* SwitchableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */; };
@@ -60,6 +59,8 @@
 		7289B296243A41DE0028FB13 /* AppIcon-Dark-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */; };
 		7289B298243A4FFF0028FB13 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B297243A4FFF0028FB13 /* SettingsViewController.swift */; };
 		7289B29B243A5CD00028FB13 /* TintAdjustingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */; };
+		7289B29D243A79890028FB13 /* AddCameraConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29C243A79890028FB13 /* AddCameraConnectionView.swift */; };
+		7289B29F243A81420028FB13 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29E243A81420028FB13 /* SettingsViewModel.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
@@ -71,7 +72,7 @@
 		72B63BC322CE459C00FA8920 /* PhotoInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B63BC222CE459C00FA8920 /* PhotoInfoResponse.swift */; };
 		72D02C7B22BEA8EF00DA5236 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D02C7A22BEA8EF00DA5236 /* UIViewController+Extensions.swift */; };
 		72D02C7D22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D02C7C22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift */; };
-		72E02F3C2436548E0093CA92 /* AddCameraConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E02F3B2436548E0093CA92 /* AddCameraConnectionView.swift */; };
+		72E02F3C2436548E0093CA92 /* EditCameraConnectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E02F3B2436548E0093CA92 /* EditCameraConnectionsView.swift */; };
 		72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */; };
 		72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC69F522BE7F7A001D70B3 /* HomeCoordinator.swift */; };
 		72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */; };
@@ -103,7 +104,6 @@
 		7213B897243518F700C401A9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		7213B89A2435387C00C401A9 /* CameraConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConnection.swift; sourceTree = "<group>"; };
 		7213B89D2436261E00C401A9 /* CameraConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConnectViewModel.swift; sourceTree = "<group>"; };
-		7213B89F24362CCD00C401A9 /* CameraConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConnectViewController.swift; sourceTree = "<group>"; };
 		7213B8A124362ED600C401A9 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		7213B8A4243642A900C401A9 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
 		721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchableBox.swift; sourceTree = "<group>"; };
@@ -144,6 +144,8 @@
 		7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Default@2x.png"; sourceTree = "<group>"; };
 		7289B297243A4FFF0028FB13 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintAdjustingWindow.swift; sourceTree = "<group>"; };
+		7289B29C243A79890028FB13 /* AddCameraConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCameraConnectionView.swift; sourceTree = "<group>"; };
+		7289B29E243A81420028FB13 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote Bag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tote Bag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +161,7 @@
 		72B63BC222CE459C00FA8920 /* PhotoInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfoResponse.swift; sourceTree = "<group>"; };
 		72D02C7A22BEA8EF00DA5236 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		72D02C7C22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NSLayoutConstrainHelpers.swift"; sourceTree = "<group>"; };
-		72E02F3B2436548E0093CA92 /* AddCameraConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCameraConnectionView.swift; sourceTree = "<group>"; };
+		72E02F3B2436548E0093CA92 /* EditCameraConnectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCameraConnectionsView.swift; sourceTree = "<group>"; };
 		72EC69F322BE7F3F001D70B3 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		72EC69F522BE7F7A001D70B3 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		72EC69F722BE8B23001D70B3 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -245,10 +247,10 @@
 			isa = PBXGroup;
 			children = (
 				7213B89D2436261E00C401A9 /* CameraConnectViewModel.swift */,
-				7213B89F24362CCD00C401A9 /* CameraConnectViewController.swift */,
-				72E02F3B2436548E0093CA92 /* AddCameraConnectionView.swift */,
+				72E02F3B2436548E0093CA92 /* EditCameraConnectionsView.swift */,
 				7203BAD12437C48300484B5B /* LastCameraConnectionViewController.swift */,
 				7203BAD52438211400484B5B /* RoundButton.swift */,
+				7289B29C243A79890028FB13 /* AddCameraConnectionView.swift */,
 			);
 			path = "Camera Connection Management";
 			sourceTree = "<group>";
@@ -297,6 +299,7 @@
 				7289B289243A36F30028FB13 /* App Icons */,
 				7289B265243A273F0028FB13 /* SettingsView.swift */,
 				7289B297243A4FFF0028FB13 /* SettingsViewController.swift */,
+				7289B29E243A81420028FB13 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				7213B8A5243642A900C401A9 /* ApplicationViewModel.swift in Sources */,
 				721CE36A2436D20600A086E7 /* SlideUpTransitionAnimator.swift in Sources */,
 				721CE3682436D18200A086E7 /* AirPodsDialogSlideUpPresenter.swift in Sources */,
+				7289B29D243A79890028FB13 /* AddCameraConnectionView.swift in Sources */,
 				72D02C7B22BEA8EF00DA5236 /* UIViewController+Extensions.swift in Sources */,
 				72D02C7D22BEA97200DA5236 /* UIView+NSLayoutConstrainHelpers.swift in Sources */,
 				72B63BC322CE459C00FA8920 /* PhotoInfoResponse.swift in Sources */,
@@ -795,8 +799,9 @@
 				723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */,
 				7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */,
 				7213B89B2435387C00C401A9 /* CameraConnection.swift in Sources */,
-				72E02F3C2436548E0093CA92 /* AddCameraConnectionView.swift in Sources */,
+				72E02F3C2436548E0093CA92 /* EditCameraConnectionsView.swift in Sources */,
 				7203BADA2438298700484B5B /* EmptyViewSwitcher.swift in Sources */,
+				7289B29F243A81420028FB13 /* SettingsViewModel.swift in Sources */,
 				729E573322BE62FE0039C08A /* ApplicationCoordinator.swift in Sources */,
 				723F810624345055008FCC4B /* RotationImageProcessor.swift in Sources */,
 				7203BAD62438211400484B5B /* RoundButton.swift in Sources */,
@@ -805,7 +810,6 @@
 				721CE3642436D0A000A086E7 /* AirPodsDialogPresentationController.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,
 				7238183C24341AB000C7B174 /* MediaGroup.swift in Sources */,
-				7213B8A024362CCD00C401A9 /* CameraConnectViewController.swift in Sources */,
 				7213B89E2436261E00C401A9 /* CameraConnectViewModel.swift in Sources */,
 				7238183A24341A9200C7B174 /* Folder.swift in Sources */,
 				7203BAD42437D16700484B5B /* UIColor+Extensions.swift in Sources */,
