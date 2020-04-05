@@ -59,6 +59,7 @@
 		7289B295243A41DE0028FB13 /* AppIcon-Dark-Default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B293243A41DD0028FB13 /* AppIcon-Dark-Default@3x.png */; };
 		7289B296243A41DE0028FB13 /* AppIcon-Dark-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */; };
 		7289B298243A4FFF0028FB13 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B297243A4FFF0028FB13 /* SettingsViewController.swift */; };
+		7289B29B243A5CD00028FB13 /* TintAdjustingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
@@ -142,6 +143,7 @@
 		7289B293243A41DD0028FB13 /* AppIcon-Dark-Default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Default@3x.png"; sourceTree = "<group>"; };
 		7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Default@2x.png"; sourceTree = "<group>"; };
 		7289B297243A4FFF0028FB13 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintAdjustingWindow.swift; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote Bag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tote Bag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				721CE35E2436BD3B00A086E7 /* SwitchableBox.swift */,
 				721CE3602436BD6D00A086E7 /* SimulatorValueBox.swift */,
 				7203BAD92438298700484B5B /* EmptyViewSwitcher.swift */,
+				7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				72B63BC322CE459C00FA8920 /* PhotoInfoResponse.swift in Sources */,
 				729E574122BE6F260039C08A /* FolderList.swift in Sources */,
 				729E571222BE61F70039C08A /* AppDelegate.swift in Sources */,
+				7289B29B243A5CD00028FB13 /* TintAdjustingWindow.swift in Sources */,
 				72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */,
 				7289B28B243A36FE0028FB13 /* AppIconsView.swift in Sources */,
 				7239357C2433FFDE0073C614 /* Agent.swift in Sources */,
