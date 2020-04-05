@@ -14,7 +14,7 @@ final class Keychain {
         static let keychainAccessGroup = "me.foureyes.Tote"
     }
 
-    let service: String
+    let service: String?
 
     private let chain: KeychainAccess.Keychain
 
@@ -22,7 +22,7 @@ final class Keychain {
         return chain.allKeys()
     }
 
-    init(service: String) {
+    init(service: String? = nil) {
         self.service = service
         chain = KeychainAccess.Keychain()
     }
@@ -33,6 +33,22 @@ final class Keychain {
         }
         set {
             store(codable: newValue, for: key)
+        }
+    }
+
+    func remove(valueFor key: String) {
+        do {
+            try chain.remove(key)
+        } catch {
+            Log.error("Unable to remove value for key: '\(key)' - \(String(describing: error))")
+        }
+    }
+
+    func removeAllItems() {
+        do {
+            try chain.removeAll()
+        } catch {
+            Log.error("Unable to remove all items from keychain")
         }
     }
 

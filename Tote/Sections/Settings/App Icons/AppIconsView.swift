@@ -44,14 +44,16 @@ struct AppIconsView: View {
                         AppIconGroupRow(group: icon, showDarkIcon: self.showDarkIcons).onTapGesture {
                             let iconName = self.showDarkIcons ? icon.darkImageName : icon.lightImageName
                             UIApplication.shared.setAlternateIconName(iconName) { error in
-                                Log.error("Error selecting new app icon: - \(String(describing: error))")
+                                if let error = error {
+                                    Log.error("Error selecting new app icon: - \(String(describing: error))")
+                                }
                             }
                         }
                     }
                 }
 
             }.listStyle(GroupedListStyle()).environment(\.horizontalSizeClass, .regular)
-        }.navigationBarTitle(Text("Icons"))
+        }.navigationBarTitle(Text("Appearance"))
     }
 }
 

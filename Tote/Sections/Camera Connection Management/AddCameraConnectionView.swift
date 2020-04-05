@@ -1,92 +1,78 @@
 //
-//  AddCameraConnectionView.swift
+//  EditCameraConnectionView.swift
 //  Tote
 //
-//  Created by Brian Michel on 4/2/20.
+//  Created by Brian Michel on 4/5/20.
 //  Copyright © 2020 Brian Michel. All rights reserved.
 //
 
+import Combine
 import SwiftUI
-import UIKit
 
-struct SelectCameraConnectionView: View {
-    @State var cameras = [CameraConnectionConfiguration]()
+struct EditCameraConnectionView: View {
+    enum Style {
+        case add
+        case update
+    }
 
-    var addedConfiguration: (CameraConnectionConfiguration) -> Void
-    var selectedConfiguration: (CameraConnectionConfiguration) -> Void
+    var id: UUID = UUID()
+    @State var ssid: String = ""
+    @State var passphrase: String = ""
+    @State var nickname: String = ""
+
+    var action: PassthroughSubject<CameraConnectViewModel.Action, Never>
+
+    var style: Style = .add
 
     var body: some View {
-        Form {
-            Section(header: Text("Select previous camera")) {
-                if cameras.count > 0 {
-                    List(cameras) { configuration in
-                        CameraConfigurationRow(configuration: configuration) { configuration in
-                            self.selectedConfiguration(configuration)
-                        }
-                    }
-                } else {
-                    Text("No previous cameras")
-                }
+        List {
+            Section {
+                TextField("SSID", text: $ssid)
+                SecureField("Passphrase", text: $passphrase)
+                TextField("Nickname (optional)", text: $nickname)
+                Button(action: {
+                    self.action.send(.addNewConnection(configuration: self.createConfiguration()))
+                }, label: { Text(buttonTitle(for: style)).frame(alignment: .center).disabled(ssid.isEmpty || passphrase.isEmpty) })
             }
 
-            AddCameraConnectionView { ssid, passphase, nickname in
-                self.addedConfiguration(CameraConnectionConfiguration(ssid: ssid, passphrase: passphase, nickname: nickname))
+            if style == .update {
+                Button(action: {
+                    self.action.send(.removeConnection(configuration: self.createConfiguration()))
+                }, label: { Text("Remove camera").accentColor(Color.red) })
             }
-        }.navigationBarTitle(Text("Cameras"))
+        }.modifier(AdaptsToKeyboard())
+            .navigationBarTitle(Text("Camera information"))
+            .listStyle(GroupedListStyle())
+            .environment(\.horizontalSizeClass, .regular)
     }
-}
 
-struct AddCameraConnectionView: View {
-    @State private var ssid: String = ""
-    @State private var passphrase: String = ""
-    @State private var nickname: String = ""
-
-    var addedConfiguration: (_ ssid: String, _ passphrase: String, _ nickname: String?) -> Void
-
-    var body: some View {
-        Section(header: Text("Add new camera")) {
-            TextField("SSID", text: $ssid)
-            SecureField("Passphrase", text: $passphrase)
-            TextField("Nickname (optional)", text: $nickname)
-            Button(action: {
-                self.addedConfiguration(self.ssid, self.passphrase, self.nickname.isEmpty ? nil : self.nickname)
-            }, label: { Text("Add camera").frame(alignment: .center).disabled(ssid.isEmpty || passphrase.isEmpty) })
-        }
+    private func createConfiguration() -> CameraConnectionConfiguration {
+        return CameraConnectionConfiguration(id: id,
+                                             ssid: ssid,
+                                             passphrase: passphrase,
+                                             nickname: nickname.isEmpty ? nil : nickname)
     }
-}
 
-struct CameraConfigurationRow: View {
-    var configuration: CameraConnectionConfiguration
-
-    var tappedConfiguration: (CameraConnectionConfiguration) -> Void
-
-    var body: some View {
-        if let nickname = configuration.nickname {
-            return Button(action: { self.tappedConfiguration(self.configuration) }, label: { Text("\(nickname) (\(configuration.ssid))") })
-        } else {
-            return Button(action: { self.tappedConfiguration(self.configuration) }, label: { Text(configuration.ssid) })
+    private func buttonTitle(for style: Style) -> String {
+        switch style {
+        case .add:
+            return "Add camera"
+        case .update:
+            return "Update camera"
         }
     }
 }
 
 #if DEBUG
-    struct SelectCameraConnectionViewPreviews: PreviewProvider {
+    struct EditCameraConnectionViewPreviews: PreviewProvider {
         static var previews: some View {
-            SelectCameraConnectionView(cameras: [
-                CameraConnectionConfiguration(ssid: "GR_34234", passphrase: "324234", nickname: "Brian's GR"),
-                CameraConnectionConfiguration(ssid: "GR_0000", passphrase: "342111", nickname: nil),
-            ], addedConfiguration: { _ in
-                //
-            }, selectedConfiguration: { _ in
-                //
-            })
-        }
-    }
-
-    struct AddCameraConnectionViewPreviews: PreviewProvider {
-        static var previews: some View {
-            AddCameraConnectionView { _, _, _ in
-                //
+            Group {
+                EditCameraConnectionView(action: PassthroughSubject<CameraConnectViewModel.Action, Never>())
+                EditCameraConnectionView(ssid: "GR_8080",
+                                         passphrase: "sdss",
+                                         nickname: "cool",
+                                         action: PassthroughSubject<CameraConnectViewModel.Action, Never>(),
+                                         style: .update)
             }
         }
     }

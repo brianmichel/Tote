@@ -7,6 +7,7 @@
 //
 
 import Combine
+import SwiftUI
 import UIKit
 
 protocol CameraConnectionViewModelDelegate: AnyObject {
@@ -14,13 +15,20 @@ protocol CameraConnectionViewModelDelegate: AnyObject {
 }
 
 struct CameraConnectionConfiguration: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let ssid: String
     let passphrase: String
     let nickname: String?
+
+    internal init(id: UUID = UUID(), ssid: String, passphrase: String, nickname: String?) {
+        self.id = id
+        self.ssid = ssid
+        self.passphrase = passphrase
+        self.nickname = nickname
+    }
 }
 
-final class CameraConnectViewModel {
+final class CameraConnectViewModel: ObservableObject {
     @Published var title: String? = "Connect to camera"
     @Published var cameras = [CameraConnectionConfiguration]()
 
@@ -63,14 +71,13 @@ final class CameraConnectViewModel {
     private func process(action: Action) {
         switch action {
         case let .addNewConnection(configuration: configuration):
-            keychain[configuration.ssid] = configuration
+            keychain[configuration.id.uuidString] = configuration
+            refreshConnections()
         case let .removeConnection(configuration: configuration):
-            // keychain[cameraConfiguration.ssid] = nil
-            break
+            keychain.remove(valueFor: configuration.id.uuidString)
+            refreshConnections()
         case let .connect(configuration: configuration):
             delegate?.didRequestConnection(for: configuration)
-        default:
-            break
         }
     }
 
@@ -83,6 +90,7 @@ final class CameraConnectViewModel {
 
     func refreshConnections() {
         let keys = keychain.allKeys
+
         cameras = keys.compactMap { (key) -> CameraConnectionConfiguration? in
             keychain[key]
         }
