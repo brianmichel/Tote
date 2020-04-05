@@ -83,7 +83,7 @@ final class GalleryViewModel {
         api.folders()
             .sink(
                 receiveCompletion: { completion in
-                    Log.info("\(completion)")
+                    Log.debug("API folders() sink did complete - \(completion)")
                 },
                 receiveValue: { [weak self] value in
                     Log.debug(String(describing: value))

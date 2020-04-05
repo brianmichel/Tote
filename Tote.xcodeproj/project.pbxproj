@@ -40,6 +40,25 @@
 		723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723F810724345ADC008FCC4B /* UIImage+Extensions.swift */; };
 		7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283A9332434E61B002F7477 /* GalleryViewModel.swift */; };
 		7283A9392434FE82002F7477 /* GalleryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283A9382434FE82002F7477 /* GalleryCellViewModel.swift */; };
+		7289B266243A273F0028FB13 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B265243A273F0028FB13 /* SettingsView.swift */; };
+		7289B273243A33580028FB13 /* AppIcon-Dark-Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B271243A33580028FB13 /* AppIcon-Dark-Blue@2x.png */; };
+		7289B274243A33580028FB13 /* AppIcon-Dark-Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B272243A33580028FB13 /* AppIcon-Dark-Blue@3x.png */; };
+		7289B277243A33860028FB13 /* AppIcon-Light-Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B275243A33860028FB13 /* AppIcon-Light-Blue@2x.png */; };
+		7289B278243A33860028FB13 /* AppIcon-Light-Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B276243A33860028FB13 /* AppIcon-Light-Blue@3x.png */; };
+		7289B27B243A33A20028FB13 /* AppIcon-Dark-Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B279243A33A20028FB13 /* AppIcon-Dark-Red@2x.png */; };
+		7289B27C243A33A20028FB13 /* AppIcon-Dark-Red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B27A243A33A20028FB13 /* AppIcon-Dark-Red@3x.png */; };
+		7289B27F243A33B90028FB13 /* AppIcon-Light-Red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B27D243A33B90028FB13 /* AppIcon-Light-Red@3x.png */; };
+		7289B280243A33B90028FB13 /* AppIcon-Light-Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B27E243A33B90028FB13 /* AppIcon-Light-Red@2x.png */; };
+		7289B283243A33D30028FB13 /* AppIcon-Dark-Green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B281243A33D30028FB13 /* AppIcon-Dark-Green@2x.png */; };
+		7289B284243A33D30028FB13 /* AppIcon-Dark-Green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B282243A33D30028FB13 /* AppIcon-Dark-Green@3x.png */; };
+		7289B287243A33E80028FB13 /* AppIcon-Light-Green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B285243A33E80028FB13 /* AppIcon-Light-Green@2x.png */; };
+		7289B288243A33E80028FB13 /* AppIcon-Light-Green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B286243A33E80028FB13 /* AppIcon-Light-Green@3x.png */; };
+		7289B28B243A36FE0028FB13 /* AppIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B28A243A36FE0028FB13 /* AppIconsView.swift */; };
+		7289B291243A41AC0028FB13 /* AppIcon-Light-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B28F243A41AC0028FB13 /* AppIcon-Light-Default@2x.png */; };
+		7289B292243A41AC0028FB13 /* AppIcon-Light-Default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B290243A41AC0028FB13 /* AppIcon-Light-Default@3x.png */; };
+		7289B295243A41DE0028FB13 /* AppIcon-Dark-Default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B293243A41DD0028FB13 /* AppIcon-Dark-Default@3x.png */; };
+		7289B296243A41DE0028FB13 /* AppIcon-Dark-Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */; };
+		7289B298243A4FFF0028FB13 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B297243A4FFF0028FB13 /* SettingsViewController.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
@@ -104,6 +123,25 @@
 		723F810724345ADC008FCC4B /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		7283A9332434E61B002F7477 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		7283A9382434FE82002F7477 /* GalleryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCellViewModel.swift; sourceTree = "<group>"; };
+		7289B265243A273F0028FB13 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7289B271243A33580028FB13 /* AppIcon-Dark-Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Blue@2x.png"; sourceTree = "<group>"; };
+		7289B272243A33580028FB13 /* AppIcon-Dark-Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Blue@3x.png"; sourceTree = "<group>"; };
+		7289B275243A33860028FB13 /* AppIcon-Light-Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Blue@2x.png"; sourceTree = "<group>"; };
+		7289B276243A33860028FB13 /* AppIcon-Light-Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Blue@3x.png"; sourceTree = "<group>"; };
+		7289B279243A33A20028FB13 /* AppIcon-Dark-Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Red@2x.png"; sourceTree = "<group>"; };
+		7289B27A243A33A20028FB13 /* AppIcon-Dark-Red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Red@3x.png"; sourceTree = "<group>"; };
+		7289B27D243A33B90028FB13 /* AppIcon-Light-Red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Red@3x.png"; sourceTree = "<group>"; };
+		7289B27E243A33B90028FB13 /* AppIcon-Light-Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Red@2x.png"; sourceTree = "<group>"; };
+		7289B281243A33D30028FB13 /* AppIcon-Dark-Green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Green@2x.png"; sourceTree = "<group>"; };
+		7289B282243A33D30028FB13 /* AppIcon-Dark-Green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Green@3x.png"; sourceTree = "<group>"; };
+		7289B285243A33E80028FB13 /* AppIcon-Light-Green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Green@2x.png"; sourceTree = "<group>"; };
+		7289B286243A33E80028FB13 /* AppIcon-Light-Green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Green@3x.png"; sourceTree = "<group>"; };
+		7289B28A243A36FE0028FB13 /* AppIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconsView.swift; sourceTree = "<group>"; };
+		7289B28F243A41AC0028FB13 /* AppIcon-Light-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Default@2x.png"; sourceTree = "<group>"; };
+		7289B290243A41AC0028FB13 /* AppIcon-Light-Default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Light-Default@3x.png"; sourceTree = "<group>"; };
+		7289B293243A41DD0028FB13 /* AppIcon-Dark-Default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Default@3x.png"; sourceTree = "<group>"; };
+		7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-Dark-Default@2x.png"; sourceTree = "<group>"; };
+		7289B297243A4FFF0028FB13 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote Bag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tote Bag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +288,143 @@
 			path = "Collection View Cell";
 			sourceTree = "<group>";
 		};
+		7289B264243A27280028FB13 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7289B289243A36F30028FB13 /* App Icons */,
+				7289B265243A273F0028FB13 /* SettingsView.swift */,
+				7289B297243A4FFF0028FB13 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7289B267243A32930028FB13 /* Alternate App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				7289B28C243A41960028FB13 /* Default */,
+				7289B26A243A32FB0028FB13 /* Red */,
+				7289B269243A32F80028FB13 /* Green */,
+				7289B268243A32F40028FB13 /* Blue */,
+			);
+			path = "Alternate App Icons";
+			sourceTree = "<group>";
+		};
+		7289B268243A32F40028FB13 /* Blue */ = {
+			isa = PBXGroup;
+			children = (
+				7289B270243A33230028FB13 /* Dark */,
+				7289B26F243A33200028FB13 /* Light */,
+			);
+			path = Blue;
+			sourceTree = "<group>";
+		};
+		7289B269243A32F80028FB13 /* Green */ = {
+			isa = PBXGroup;
+			children = (
+				7289B26E243A331D0028FB13 /* Dark */,
+				7289B26D243A33190028FB13 /* Light */,
+			);
+			path = Green;
+			sourceTree = "<group>";
+		};
+		7289B26A243A32FB0028FB13 /* Red */ = {
+			isa = PBXGroup;
+			children = (
+				7289B26C243A33150028FB13 /* Dark */,
+				7289B26B243A33120028FB13 /* Light */,
+			);
+			path = Red;
+			sourceTree = "<group>";
+		};
+		7289B26B243A33120028FB13 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				7289B27E243A33B90028FB13 /* AppIcon-Light-Red@2x.png */,
+				7289B27D243A33B90028FB13 /* AppIcon-Light-Red@3x.png */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
+		7289B26C243A33150028FB13 /* Dark */ = {
+			isa = PBXGroup;
+			children = (
+				7289B279243A33A20028FB13 /* AppIcon-Dark-Red@2x.png */,
+				7289B27A243A33A20028FB13 /* AppIcon-Dark-Red@3x.png */,
+			);
+			path = Dark;
+			sourceTree = "<group>";
+		};
+		7289B26D243A33190028FB13 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				7289B285243A33E80028FB13 /* AppIcon-Light-Green@2x.png */,
+				7289B286243A33E80028FB13 /* AppIcon-Light-Green@3x.png */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
+		7289B26E243A331D0028FB13 /* Dark */ = {
+			isa = PBXGroup;
+			children = (
+				7289B281243A33D30028FB13 /* AppIcon-Dark-Green@2x.png */,
+				7289B282243A33D30028FB13 /* AppIcon-Dark-Green@3x.png */,
+			);
+			path = Dark;
+			sourceTree = "<group>";
+		};
+		7289B26F243A33200028FB13 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				7289B275243A33860028FB13 /* AppIcon-Light-Blue@2x.png */,
+				7289B276243A33860028FB13 /* AppIcon-Light-Blue@3x.png */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
+		7289B270243A33230028FB13 /* Dark */ = {
+			isa = PBXGroup;
+			children = (
+				7289B271243A33580028FB13 /* AppIcon-Dark-Blue@2x.png */,
+				7289B272243A33580028FB13 /* AppIcon-Dark-Blue@3x.png */,
+			);
+			path = Dark;
+			sourceTree = "<group>";
+		};
+		7289B289243A36F30028FB13 /* App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				7289B28A243A36FE0028FB13 /* AppIconsView.swift */,
+			);
+			path = "App Icons";
+			sourceTree = "<group>";
+		};
+		7289B28C243A41960028FB13 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				7289B28E243A419E0028FB13 /* Light */,
+				7289B28D243A419B0028FB13 /* Dark */,
+			);
+			path = Default;
+			sourceTree = "<group>";
+		};
+		7289B28D243A419B0028FB13 /* Dark */ = {
+			isa = PBXGroup;
+			children = (
+				7289B294243A41DD0028FB13 /* AppIcon-Dark-Default@2x.png */,
+				7289B293243A41DD0028FB13 /* AppIcon-Dark-Default@3x.png */,
+			);
+			path = Dark;
+			sourceTree = "<group>";
+		};
+		7289B28E243A419E0028FB13 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				7289B28F243A41AC0028FB13 /* AppIcon-Light-Default@2x.png */,
+				7289B290243A41AC0028FB13 /* AppIcon-Light-Default@3x.png */,
+			);
+			path = Light;
+			sourceTree = "<group>";
+		};
 		729E570522BE61F70039C08A = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +469,7 @@
 		729E573122BE62CB0039C08A /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				7289B264243A27280028FB13 /* Settings */,
 				7213B8A3243641F500C401A9 /* Application */,
 				7213B89C2436252700C401A9 /* Camera Connection Management */,
 				72EC69F222BE7F15001D70B3 /* Home */,
@@ -306,6 +482,7 @@
 		729E573422BE63160039C08A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7289B267243A32930028FB13 /* Alternate App Icons */,
 				7212A0F02436746D00DE8A58 /* Tote.entitlements */,
 				729E571A22BE61F80039C08A /* LaunchScreen.storyboard */,
 				729E571822BE61F80039C08A /* Assets.xcassets */,
@@ -470,7 +647,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7289B273243A33580028FB13 /* AppIcon-Dark-Blue@2x.png in Resources */,
+				7289B292243A41AC0028FB13 /* AppIcon-Light-Default@3x.png in Resources */,
+				7289B27C243A33A20028FB13 /* AppIcon-Dark-Red@3x.png in Resources */,
+				7289B274243A33580028FB13 /* AppIcon-Dark-Blue@3x.png in Resources */,
+				7289B291243A41AC0028FB13 /* AppIcon-Light-Default@2x.png in Resources */,
+				7289B288243A33E80028FB13 /* AppIcon-Light-Green@3x.png in Resources */,
+				7289B296243A41DE0028FB13 /* AppIcon-Dark-Default@2x.png in Resources */,
 				729E571C22BE61F80039C08A /* LaunchScreen.storyboard in Resources */,
+				7289B295243A41DE0028FB13 /* AppIcon-Dark-Default@3x.png in Resources */,
+				7289B287243A33E80028FB13 /* AppIcon-Light-Green@2x.png in Resources */,
+				7289B278243A33860028FB13 /* AppIcon-Light-Blue@3x.png in Resources */,
+				7289B27B243A33A20028FB13 /* AppIcon-Dark-Red@2x.png in Resources */,
+				7289B283243A33D30028FB13 /* AppIcon-Dark-Green@2x.png in Resources */,
+				7289B27F243A33B90028FB13 /* AppIcon-Light-Red@3x.png in Resources */,
+				7289B277243A33860028FB13 /* AppIcon-Light-Blue@2x.png in Resources */,
+				7289B284243A33D30028FB13 /* AppIcon-Dark-Green@3x.png in Resources */,
+				7289B280243A33B90028FB13 /* AppIcon-Light-Red@2x.png in Resources */,
 				729E571922BE61F80039C08A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,6 +768,7 @@
 				729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */,
 				72EC69F822BE8B23001D70B3 /* GalleryCollectionViewCell.swift in Sources */,
 				7203BAD22437C48300484B5B /* LastCameraConnectionViewController.swift in Sources */,
+				7289B266243A273F0028FB13 /* SettingsView.swift in Sources */,
 				7213B896243514FC00C401A9 /* SceneDelegate.swift in Sources */,
 				7203BAD8243824E000484B5B /* GalleryEmptyView.swift in Sources */,
 				7238183824340EA400C7B174 /* Decoder.swift in Sources */,
@@ -587,10 +781,12 @@
 				729E574122BE6F260039C08A /* FolderList.swift in Sources */,
 				729E571222BE61F70039C08A /* AppDelegate.swift in Sources */,
 				72EC69F622BE7F7A001D70B3 /* HomeCoordinator.swift in Sources */,
+				7289B28B243A36FE0028FB13 /* AppIconsView.swift in Sources */,
 				7239357C2433FFDE0073C614 /* Agent.swift in Sources */,
 				7283A9392434FE82002F7477 /* GalleryCellViewModel.swift in Sources */,
 				721CE3662436D0EC00A086E7 /* AirPodsDialogContainerViewController.swift in Sources */,
 				7210533624343BD4006B4F32 /* LogFormatter.swift in Sources */,
+				7289B298243A4FFF0028FB13 /* SettingsViewController.swift in Sources */,
 				72EC69F422BE7F3F001D70B3 /* GalleryViewController.swift in Sources */,
 				723F810824345ADC008FCC4B /* UIImage+Extensions.swift in Sources */,
 				7283A9342434E61B002F7477 /* GalleryViewModel.swift in Sources */,
