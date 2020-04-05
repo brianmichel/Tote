@@ -17,13 +17,21 @@ struct AppIconGroup: Identifiable, Hashable {
 }
 
 struct AppIconsView: View {
-    @State private var showDarkIcons: Bool = false
+    @State private var showDarkIcons: Bool = UITraitCollection.current.userInterfaceStyle == .dark
 
     private let icons = [
-        AppIconGroup(groupName: "Mellow Yellow", lightImageName: "AppIcon-Light-Default", darkImageName: "AppIcon-Dark-Default"),
-        AppIconGroup(groupName: "Blushing Basil", lightImageName: "AppIcon-Light-Green", darkImageName: "AppIcon-Dark-Green"),
-        AppIconGroup(groupName: "Cold Cobalt", lightImageName: "AppIcon-Light-Blue", darkImageName: "AppIcon-Dark-Blue"),
-        AppIconGroup(groupName: "Candy Apple Red", lightImageName: "AppIcon-Light-Red", darkImageName: "AppIcon-Dark-Red"),
+        AppIconGroup(groupName: "Mellow Yellow",
+                     lightImageName: "AppIcon-Light-Default",
+                     darkImageName: "AppIcon-Dark-Default"),
+        AppIconGroup(groupName: "Blushing Basil",
+                     lightImageName: "AppIcon-Light-Green",
+                     darkImageName: "AppIcon-Dark-Green"),
+        AppIconGroup(groupName: "Cold Cobalt",
+                     lightImageName: "AppIcon-Light-Blue",
+                     darkImageName: "AppIcon-Dark-Blue"),
+        AppIconGroup(groupName: "Candy Apple Red",
+                     lightImageName: "AppIcon-Light-Red",
+                     darkImageName: "AppIcon-Dark-Red"),
     ]
     var body: some View {
         VStack {

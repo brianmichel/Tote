@@ -7,4 +7,6 @@ disabled_rules:
 opt_in_rules:
   - switch_case_on_newline
   - implicitly_unwrapped_optional
-  - force_unwrapping
+
+identifier_name:
+  min_length: 2
