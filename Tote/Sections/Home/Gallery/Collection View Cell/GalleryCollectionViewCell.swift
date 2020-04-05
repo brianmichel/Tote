@@ -35,10 +35,6 @@ final class GalleryCollectionViewCell: UICollectionViewCell {
 
         contentView.addSubview(imageView)
 
-        #if targetEnvironment(simulator)
-            contentView.backgroundColor = .lightGray
-        #endif
-
         resetAppearance()
     }
 
