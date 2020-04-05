@@ -6,6 +6,7 @@
 //  Copyright © 2020 Brian Michel. All rights reserved.
 //
 
+import Nuke
 import SwiftUI
 
 struct SettingsView: View {
@@ -24,7 +25,16 @@ struct SettingsView: View {
                 }
                 #if DEBUG
                     Section(header: Text("Debug")) {
-                        SettingsIconRow(image: UIImage(systemName: "lock.shield")!, title: "Clear Keychain items")
+                        Button(action: {
+                            // TODO: Clear items from the keychain
+                        }) {
+                            SettingsIconRow(image: UIImage(systemName: "lock.shield")!, title: "Clear Keychain items")
+                        }
+                        Button(action: {
+                            Nuke.ImageCache.shared.removeAll()
+                        }) {
+                            SettingsIconRow(image: UIImage(systemName: "trash.circle")!, title: "Clear image cache")
+                        }
                     }
                 #endif
             }.listStyle(GroupedListStyle()).environment(\.horizontalSizeClass, .regular).navigationBarTitle(Text("Settings")).navigationBarItems(trailing: Button(action: {
