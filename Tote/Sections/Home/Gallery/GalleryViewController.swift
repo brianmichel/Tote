@@ -7,6 +7,7 @@
 //
 
 import Combine
+import SwiftUI
 import UIKit
 
 final class GalleryViewController: UIViewController,
@@ -66,10 +67,15 @@ final class GalleryViewController: UIViewController,
         collectionView.contentInset = Constants.contentInset
 
         navigationItem.largeTitleDisplayMode = .always
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(showSettings))
 
         refreshControl.addTarget(self, action: #selector(beginRefresh), for: .valueChanged)
 
         title = "Tote"
+    }
+
+    @objc func showSettings() {
+        present(SettingsViewController(), animated: true, completion: nil)
     }
 
     @objc func beginRefresh() {

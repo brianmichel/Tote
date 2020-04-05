@@ -32,7 +32,7 @@ struct SelectCameraConnectionView: View {
             AddCameraConnectionView { ssid, passphase, nickname in
                 self.addedConfiguration(CameraConnectionConfiguration(ssid: ssid, passphrase: passphase, nickname: nickname))
             }
-        }
+        }.navigationBarTitle(Text("Cameras"))
     }
 }
 
