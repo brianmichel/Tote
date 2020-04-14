@@ -10,6 +10,8 @@ import Combine
 import SwiftUI
 
 struct EditCameraConnectionView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     enum Style {
         case add
         case update
@@ -28,16 +30,18 @@ struct EditCameraConnectionView: View {
         List {
             Section {
                 TextField("SSID", text: $ssid)
-                SecureField("Passphrase", text: $passphrase)
+                PasswordField(placeholder: "Passphrase", text: $passphrase)
                 TextField("Nickname (optional)", text: $nickname)
                 Button(action: {
                     self.action.send(.addNewConnection(configuration: self.createConfiguration()))
+                    self.presentationMode.wrappedValue.dismiss()
                 }, label: { Text(buttonTitle(for: style)).frame(alignment: .center).disabled(ssid.isEmpty || passphrase.isEmpty) })
             }
 
             if style == .update {
                 Button(action: {
                     self.action.send(.removeConnection(configuration: self.createConfiguration()))
+                    self.presentationMode.wrappedValue.dismiss()
                 }, label: { Text("Remove camera").accentColor(Color.red) })
             }
         }.modifier(AdaptsToKeyboard())
