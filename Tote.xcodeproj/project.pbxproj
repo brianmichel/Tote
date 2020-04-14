@@ -61,6 +61,7 @@
 		7289B29B243A5CD00028FB13 /* TintAdjustingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */; };
 		7289B29D243A79890028FB13 /* AddCameraConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29C243A79890028FB13 /* AddCameraConnectionView.swift */; };
 		7289B29F243A81420028FB13 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7289B29E243A81420028FB13 /* SettingsViewModel.swift */; };
+		728A647D243A9C67001DE149 /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728A647C243A9C67001DE149 /* PasswordField.swift */; };
 		729E571222BE61F70039C08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571122BE61F70039C08A /* AppDelegate.swift */; };
 		729E571422BE61F70039C08A /* ApplicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E571322BE61F70039C08A /* ApplicationViewController.swift */; };
 		729E571922BE61F80039C08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 729E571822BE61F80039C08A /* Assets.xcassets */; };
@@ -146,6 +147,7 @@
 		7289B29A243A5CD00028FB13 /* TintAdjustingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintAdjustingWindow.swift; sourceTree = "<group>"; };
 		7289B29C243A79890028FB13 /* AddCameraConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCameraConnectionView.swift; sourceTree = "<group>"; };
 		7289B29E243A81420028FB13 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		728A647C243A9C67001DE149 /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		729E570E22BE61F70039C08A /* Tote Bag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tote Bag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E571122BE61F70039C08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		729E571322BE61F70039C08A /* ApplicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		7210533124343B9E006B4F32 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				728A647B243A9C5B001DE149 /* SwiftUI */,
 				721CE3622436CF6E00A086E7 /* AirPods Dialog */,
 				7213B8992435385F00C401A9 /* Camera Connection */,
 				721053372434455C006B4F32 /* MediaURLGrouper.swift */,
@@ -429,6 +432,14 @@
 				7289B290243A41AC0028FB13 /* AppIcon-Light-Default@3x.png */,
 			);
 			path = Light;
+			sourceTree = "<group>";
+		};
+		728A647B243A9C5B001DE149 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				728A647C243A9C67001DE149 /* PasswordField.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		729E570522BE61F70039C08A = {
@@ -809,6 +820,7 @@
 				721CE35F2436BD3B00A086E7 /* SwitchableBox.swift in Sources */,
 				721CE3642436D0A000A086E7 /* AirPodsDialogPresentationController.swift in Sources */,
 				723935782433FACE0073C614 /* API.swift in Sources */,
+				728A647D243A9C67001DE149 /* PasswordField.swift in Sources */,
 				7238183C24341AB000C7B174 /* MediaGroup.swift in Sources */,
 				7213B89E2436261E00C401A9 /* CameraConnectViewModel.swift in Sources */,
 				7238183A24341A9200C7B174 /* Folder.swift in Sources */,
