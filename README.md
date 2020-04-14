@@ -7,7 +7,6 @@ __Tote__ is a simple photo transfer application made for use with the Ricoh GR I
 | Light App Icon | Dark App Icon |
 | ---- | ---- |
 | ![](media/RoundedIcon.png) | ![](media/RoundedIcon-Dark.png) |
-| ![](media/product/main.mov) | ![](media/RoundedIcon-Dark.png) |
 
 
 All of the icons that are in the app are currently located in the `ToteIcons.sketch` so you can find them in there.
