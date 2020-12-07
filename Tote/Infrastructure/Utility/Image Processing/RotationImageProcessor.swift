@@ -18,7 +18,7 @@ struct RotationImageProcessor: ImageProcessing, Hashable, CustomStringConvertibl
         return "RotationImageProcessor (com.foureyes.tote/imaging/rotation)"
     }
 
-    func process(image: PlatformImage, context _: ImageProcessingContext?) -> PlatformImage? {
+    func process(_ image: PlatformImage) -> PlatformImage? {
         guard let cgImage = image.cgImage else {
             return nil
         }
