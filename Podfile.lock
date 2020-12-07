@@ -2,18 +2,18 @@ PODS:
   - CocoaLumberjack/Core (3.7.0)
   - CocoaLumberjack/Swift (3.7.0):
     - CocoaLumberjack/Core
-  - KeychainAccess (4.1.0)
-  - Nuke (8.4.1)
+  - KeychainAccess (4.2.1)
+  - Nuke (9.2.0)
   - ReachabilitySwift (5.0.0)
-  - SwiftFormat/CLI (0.40.14)
+  - SwiftFormat/CLI (0.47.5)
   - SwiftLint (0.41.0)
 
 DEPENDENCIES:
   - CocoaLumberjack/Swift
-  - KeychainAccess (~> 4.1.0)
-  - Nuke (~> 8.4.1)
+  - KeychainAccess
+  - Nuke
   - ReachabilitySwift
-  - SwiftFormat/CLI (~> 0.40.9)
+  - SwiftFormat/CLI
   - SwiftLint
 
 SPEC REPOS:
@@ -27,12 +27,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
-  KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
-  Nuke: d780e3507a86b86c589ab3cc5cd302d5456f06fb
+  KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
+  Nuke: 1394e48b0940e01dd20f52ac56b121ab154e370d
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SwiftFormat: 21c9c3c748d5fcece493d8610eee23df15393458
+  SwiftFormat: 5e93cab5ee8334f93ddc50aeb1a98d29b99054db
   SwiftLint: c585ebd615d9520d7fbdbe151f527977b0534f1e
 
-PODFILE CHECKSUM: e80b055b782feadf8a435af7d02dd62860179484
+PODFILE CHECKSUM: fe522f6506d4100a40cdaf332c4d167118f3b47e
 
 COCOAPODS: 1.10.0
