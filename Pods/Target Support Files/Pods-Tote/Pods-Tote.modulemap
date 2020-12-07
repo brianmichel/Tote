@@ -1,6 +1,0 @@
-framework module Pods_Tote {
-  umbrella header "Pods-Tote-umbrella.h"
-
-  export *
-  module * { export * }
-}
