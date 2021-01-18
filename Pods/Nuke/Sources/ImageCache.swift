@@ -13,31 +13,8 @@ import Cocoa
 ///
 /// The implementation must be thread safe.
 public protocol ImageCaching: AnyObject {
-    /// Returns the `ImageResponse` stored in the cache with the given request.
-    func cachedResponse(for request: ImageRequest) -> ImageResponse?
-
-    /// Stores the given `ImageResponse` in the cache using the given request.
-    func storeResponse(_ response: ImageResponse, for request: ImageRequest)
-
-    /// Remove the response for the given request.
-    func removeResponse(for request: ImageRequest)
-}
-
-/// Convenience subscript.
-public extension ImageCaching {
-    /// Accesses the image associated with the given request.
-    subscript(request: ImageRequest) -> PlatformImage? {
-        get {
-            return cachedResponse(for: request)?.image
-        }
-        set {
-            if let newValue = newValue {
-                storeResponse(ImageResponse(image: newValue, urlResponse: nil, scanNumber: nil), for: request)
-            } else {
-                removeResponse(for: request)
-            }
-        }
-    }
+    /// Access the image cached for the given request.
+    subscript(request: ImageRequest) -> ImageContainer? { get set }
 }
 
 /// Memory cache with LRU cleanup policy (least recently used are removed first).
@@ -45,30 +22,30 @@ public extension ImageCaching {
 /// The elements stored in cache are automatically discarded if either *cost* or
 /// *count* limit is reached. The default cost limit represents a number of bytes
 /// and is calculated based on the amount of physical memory available on the
-/// device. The default cmount limit is set to `Int.max`.
+/// device. The default count limit is set to `Int.max`.
 ///
-/// `Cache` automatically removes all stored elements when it received a
-/// memory warning. It also automatically removes *most* of cached elements
-/// when the app enters background.
+/// `ImageCache` automatically removes all stored elements when it receives a
+/// memory warning. It also automatically removes *most* stored elements
+/// when the app enters the background.
 public final class ImageCache: ImageCaching {
-    private let impl: Cache<ImageRequest.CacheKey, ImageResponse>
+    private let impl: Cache<ImageRequest.CacheKey, ImageContainer>
 
     /// The maximum total cost that the cache can hold.
     public var costLimit: Int {
-        get { return impl.costLimit }
+        get { impl.costLimit }
         set { impl.costLimit = newValue }
     }
 
     /// The maximum number of items that the cache can hold.
     public var countLimit: Int {
-        get { return impl.countLimit }
+        get { impl.countLimit }
         set { impl.countLimit = newValue }
     }
 
     /// Default TTL (time to live) for each entry. Can be used to make sure that
     /// the entries get validated at some point. `0` (never expire) by default.
     public var ttl: TimeInterval {
-        get { return impl.ttl }
+        get { impl.ttl }
         set { impl.ttl = newValue }
     }
 
@@ -103,18 +80,19 @@ public final class ImageCache: ImageCaching {
     }
 
     /// Returns the `ImageResponse` stored in the cache with the given request.
-    public func cachedResponse(for request: ImageRequest) -> ImageResponse? {
-        return impl.value(forKey: request.makeCacheKeyForProcessedImage())
-    }
-
-    /// Stores the given `ImageResponse` in the cache using the given request.
-    public func storeResponse(_ response: ImageResponse, for request: ImageRequest) {
-        impl.set(response, forKey: request.makeCacheKeyForProcessedImage(), cost: self.cost(for: response.image))
-    }
-
-    /// Removes response stored with the given request.
-    public func removeResponse(for request: ImageRequest) {
-        impl.removeValue(forKey: request.makeCacheKeyForProcessedImage())
+    public subscript(request: ImageRequest) -> ImageContainer? {
+        get {
+            let key = request.makeCacheKeyForFinalImage()
+            return impl.value(forKey: key)
+        }
+        set {
+            let key = request.makeCacheKeyForFinalImage()
+            if let image = newValue {
+                impl.set(image, forKey: key, cost: self.cost(for: image))
+            } else {
+                impl.removeValue(forKey: key)
+            }
+        }
     }
 
     /// Removes all cached images.
@@ -134,18 +112,18 @@ public final class ImageCache: ImageCaching {
     }
 
     /// Returns cost for the given image by approximating its bitmap size in bytes in memory.
-    func cost(for image: PlatformImage) -> Int {
+    func cost(for container: ImageContainer) -> Int {
         let dataCost: Int
-        if ImagePipeline.Configuration.isAnimatedImageDataEnabled {
-            dataCost = image.animatedImageData?.count ?? 0
+        if ImagePipeline.Configuration._isAnimatedImageDataEnabled {
+            dataCost = container.image._animatedImageData?.count ?? 0
         } else {
-            dataCost = 0
+            dataCost = container.data?.count ?? 0
         }
 
         // bytesPerRow * height gives a rough estimation of how much memory
         // image uses in bytes. In practice this algorithm combined with a
-        // concervative default cost limit works OK.
-        guard let cgImage = image.cgImage else {
+        // conservative default cost limit works OK.
+        guard let cgImage = container.image.cgImage else {
             return 1 + dataCost
         }
         return cgImage.bytesPerRow * cgImage.height + dataCost
@@ -158,6 +136,7 @@ final class Cache<Key: Hashable, Value> {
     private var map = [Key: LinkedList<Entry>.Node]()
     private let list = LinkedList<Entry>()
     private let lock = NSLock()
+    private let memoryPressure: DispatchSourceMemoryPressure
 
     var costLimit: Int {
         didSet { lock.sync(_trim) }
@@ -177,11 +156,14 @@ final class Cache<Key: Hashable, Value> {
     init(costLimit: Int, countLimit: Int) {
         self.costLimit = costLimit
         self.countLimit = countLimit
+        self.memoryPressure = DispatchSource.makeMemoryPressureSource(eventMask: [.warning, .critical], queue: .main)
+        self.memoryPressure.setEventHandler { [weak self] in
+            self?.removeAll()
+        }
+        self.memoryPressure.resume()
+
         #if os(iOS) || os(tvOS)
         let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(removeAll),
-                           name: UIApplication.didReceiveMemoryWarningNotification,
-                           object: nil)
         center.addObserver(self, selector: #selector(didEnterBackground),
                            name: UIApplication.didEnterBackgroundNotification,
                            object: nil)
@@ -189,9 +171,7 @@ final class Cache<Key: Hashable, Value> {
     }
 
     deinit {
-        #if os(iOS) || os(tvOS)
-        NotificationCenter.default.removeObserver(self)
-        #endif
+        memoryPressure.cancel()
     }
 
     func value(forKey key: Key) -> Value? {

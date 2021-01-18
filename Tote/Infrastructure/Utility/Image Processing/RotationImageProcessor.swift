@@ -11,23 +11,22 @@ import Foundation
 import Nuke
 
 struct RotationImageProcessor: ImageProcessing, Hashable, CustomStringConvertible {
-    // TODO: This works, but the code is wrong
     var sourceOrientation: UIImage.Orientation = .up
 
     var description: String {
         return "RotationImageProcessor (com.foureyes.tote/imaging/rotation)"
     }
 
-    func process(image: PlatformImage, context _: ImageProcessingContext?) -> PlatformImage? {
+    public var identifier: String {
+        return "com.foureyes.tote/imaging/rotation/source-orientation-\(sourceOrientation.rawValue)"
+    }
+
+    func process(_ image: PlatformImage) -> PlatformImage? {
         guard let cgImage = image.cgImage else {
             return nil
         }
 
         let fixedImage = UIImage(cgImage: cgImage, scale: 1.0, orientation: sourceOrientation)
         return fixedImage
-    }
-
-    public var identifier: String {
-        return "com.foureyes.tote/imaging/rotation/source-orientation-\(sourceOrientation.rawValue)"
     }
 }

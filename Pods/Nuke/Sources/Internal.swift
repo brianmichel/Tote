@@ -9,7 +9,8 @@ import os
 
 extension NSLock {
     func sync<T>(_ closure: () -> T) -> T {
-        lock(); defer { unlock() }
+        lock()
+        defer { unlock() }
         return closure()
     }
 }
@@ -59,9 +60,10 @@ final class RateLimiter {
         isExecutingPendingTasks = true
         // Compute a delay such that by the time the closure is executed the
         // bucket is refilled to a point that is able to execute at least one
-        // pending task. With a rate of 100 tasks we expect a refill every 10 ms.
-        let delay = Int(1.15 * (1000 / bucket.rate)) // 14 ms for rate 80 (default)
-        let bounds = max(100, min(5, delay)) // Make the delay is reasonable
+        // pending task. With a rate of 80 tasks we expect a refill every ~26 ms
+        // or as soon as the new tasks are added.
+        let delay = Int(2.1 * (1000 / bucket.rate)) // 14 ms for rate 80 (default)
+        let bounds = min(100, max(15, delay))
         queue.asyncAfter(deadline: .now() + .milliseconds(bounds), execute: executePendingTasks)
     }
 
@@ -116,34 +118,34 @@ private final class TokenBucket {
 // MARK: - Operation
 
 final class Operation: Foundation.Operation {
-    private var _isExecuting = false
-    private var _isFinished = false
+    private var _isExecuting = Atomic(false)
+    private var _isFinished = Atomic(false)
     private var isFinishCalled = Atomic(false)
 
     override var isExecuting: Bool {
+        get {
+            _isExecuting.value
+        }
         set {
-            guard _isExecuting != newValue else {
+            guard _isExecuting.value != newValue else {
                 fatalError("Invalid state, operation is already (not) executing")
             }
             willChangeValue(forKey: "isExecuting")
-            _isExecuting = newValue
+            _isExecuting.value = newValue
             didChangeValue(forKey: "isExecuting")
-        }
-        get {
-            return _isExecuting
         }
     }
     override var isFinished: Bool {
+        get {
+            _isFinished.value
+        }
         set {
-            guard !_isFinished else {
+            guard !_isFinished.value else {
                 fatalError("Invalid state, operation is already finished")
             }
             willChangeValue(forKey: "isFinished")
-            _isFinished = newValue
+            _isFinished.value = newValue
             didChangeValue(forKey: "isFinished")
-        }
-        get {
-            return _isFinished
         }
     }
 
@@ -187,7 +189,7 @@ final class LinkedList<Element> {
     }
 
     var isEmpty: Bool {
-        return last == nil
+        last == nil
     }
 
     /// Adds an element to the end of the list.
@@ -258,6 +260,7 @@ struct ResumableData {
         // Check if "Accept-Ranges" is present and the response is valid.
         guard !data.isEmpty,
             let response = response as? HTTPURLResponse,
+            data.count < response.expectedContentLength,
             response.statusCode == 200 /* OK */ || response.statusCode == 206, /* Partial Content */
             let acceptRanges = response.allHeaderFields["Accept-Ranges"] as? String,
             acceptRanges.lowercased() == "bytes",
@@ -301,7 +304,7 @@ struct ResumableData {
     // Check if the server decided to resume the response.
     static func isResumedResponse(_ response: URLResponse) -> Bool {
         // "206 Partial Content" (server accepted "If-Range")
-        return (response as? HTTPURLResponse)?.statusCode == 206
+        (response as? HTTPURLResponse)?.statusCode == 206
     }
 
     // MARK: Storing Resumable Data
@@ -444,7 +447,7 @@ final class Log {
 
     @available(OSX 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *)
     var signpostID: OSSignpostID {
-        return OSSignpostID(log: log, object: self)
+        OSSignpostID(log: log, object: self)
     }
 }
 
@@ -452,11 +455,11 @@ private let byteFormatter = ByteCountFormatter()
 
 extension Log {
     static func bytes(_ count: Int) -> String {
-        return bytes(Int64(count))
+        bytes(Int64(count))
     }
 
     static func bytes(_ count: Int64) -> String {
-        return byteFormatter.string(fromByteCount: count)
+        byteFormatter.string(fromByteCount: count)
     }
 }
 
