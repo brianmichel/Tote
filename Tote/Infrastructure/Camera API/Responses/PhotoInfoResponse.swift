@@ -9,18 +9,6 @@
 import CoreMedia
 import Foundation
 
-struct CaptureInformation: Codable {
-    let aperture: String
-    let shutterSpeed: String
-    let iso: String
-
-    enum CodingKeys: String, CodingKey {
-        case aperture = "av"
-        case shutterSpeed = "tv"
-        case iso = "sv"
-    }
-}
-
 final class MediaInfo: Codable {
     let cameraModel: String
     let file: String
@@ -28,8 +16,9 @@ final class MediaInfo: Codable {
     let datetime: String
     let orientation: Int
     let aspectRatio: String
-
-    // let captureInformation: CaptureInformation
+    let aperture: String
+    let shutterSpeed: String
+    let iso: String
 
     enum CodingKeys: String, CodingKey {
         case cameraModel
@@ -38,5 +27,8 @@ final class MediaInfo: Codable {
         case datetime
         case orientation
         case aspectRatio
+        case aperture = "av"
+        case shutterSpeed = "tv"
+        case iso = "sv"
     }
 }
