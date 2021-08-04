@@ -10,6 +10,27 @@ import CoreMedia
 import Foundation
 
 final class MediaInfo: Codable {
+    internal init(cameraModel: String,
+                  file: String,
+                  size: Int,
+                  datetime: String,
+                  orientation: Int,
+                  aspectRatio: String,
+                  aperture: String,
+                  shutterSpeed: String,
+                  iso: String)
+    {
+        self.cameraModel = cameraModel
+        self.file = file
+        self.size = size
+        self.datetime = datetime
+        self.orientation = orientation
+        self.aspectRatio = aspectRatio
+        self.aperture = aperture
+        self.shutterSpeed = shutterSpeed
+        self.iso = iso
+    }
+
     let cameraModel: String
     let file: String
     let size: Int

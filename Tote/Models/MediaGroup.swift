@@ -71,7 +71,8 @@ final class MediaGroup {
 
         guard
             let (_, meta) = files[variant],
-            let metadata = meta else {
+            let metadata = meta
+        else {
             return nil
         }
 

@@ -30,7 +30,7 @@ final class GalleryCellViewModel {
     let state = CurrentValueSubject<State, Never>(.initial)
     let action = PassthroughSubject<Action, Never>()
 
-    private var mediaGroup: MediaGroup
+    var mediaGroup: MediaGroup
     private let api: API
 
     private var storage = Set<AnyCancellable>()
@@ -85,7 +85,8 @@ final class GalleryCellViewModel {
             guard
                 let preferredFile = mediaGroup.preferredFile(),
                 let metadata = mediaGroup.metadata(for: preferredFile),
-                let imageURL = preferredFile.resized(to: .view) else {
+                let imageURL = preferredFile.resized(to: .view)
+            else {
                 Log.error("Unable to find preferredFile for group with name \(mediaGroup.groupName), discarding action \(action)")
                 return
             }

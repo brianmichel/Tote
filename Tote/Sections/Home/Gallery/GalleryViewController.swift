@@ -13,7 +13,8 @@ import UIKit
 final class GalleryViewController: UIViewController,
     UICollectionViewDelegateFlowLayout,
     UICollectionViewDelegate,
-    UICollectionViewDataSource {
+    UICollectionViewDataSource
+{
     private enum Constants {
         static let interitemSpacing: CGFloat = 5
         static let lineSpacing: CGFloat = 5
@@ -82,6 +83,7 @@ final class GalleryViewController: UIViewController,
         viewModel.action.send(.loadFolders)
     }
 
+    @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -163,7 +165,8 @@ final class GalleryViewController: UIViewController,
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.identifier,
                                                           for: indexPath) as? GalleryCollectionViewCell,
@@ -179,7 +182,8 @@ final class GalleryViewController: UIViewController,
 
     func collectionView(_ collectionView: UICollectionView,
                         layout _: UICollectionViewLayout,
-                        sizeForItemAt _: IndexPath) -> CGSize {
+                        sizeForItemAt _: IndexPath) -> CGSize
+    {
         let widthSquare = (collectionView.bounds.width -
             (Constants.contentInset.left + Constants.contentInset.right +
                 (Constants.columns * Constants.interitemSpacing)
@@ -192,6 +196,16 @@ final class GalleryViewController: UIViewController,
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         resetAppearance()
+    }
+
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let viewModel = photoViewModels?[indexPath.item] else {
+            return
+        }
+
+        let hosting = UIHostingController(rootView: PhotoDetailView(group: viewModel.mediaGroup))
+
+        navigationController?.pushViewController(hosting, animated: true)
     }
 
     private func resetAppearance() {
