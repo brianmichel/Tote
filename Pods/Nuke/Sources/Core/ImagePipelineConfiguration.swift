@@ -1,17 +1,28 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Alexander Grebenyuk (github.com/kean).
+// Copyright (c) 2015-2021 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
+import os
 
 // MARK: - ImagePipeline.Configuration
 
 extension ImagePipeline {
+    /// The pipeline configuration.
     public struct Configuration {
         // MARK: - Dependencies
 
         /// Image cache used by the pipeline.
-        public var imageCache: ImageCaching?
+        public var imageCache: ImageCaching? {
+            // This exists simply to ensure we don't init ImageCache.shared if the
+            // user provides their own instance.
+            get { isCustomImageCacheProvided ? customImageCache : ImageCache.shared }
+            set {
+                customImageCache = newValue
+                isCustomImageCacheProvided = true
+            }
+        }
+        private var customImageCache: ImageCaching?
 
         /// Data loader used by the pipeline.
         public var dataLoader: DataLoading
@@ -31,33 +42,24 @@ extension ImagePipeline {
         // MARK: - Operation Queues
 
         /// Data loading queue. Default maximum concurrent task count is 6.
-        public var dataLoadingQueue = OperationQueue()
+        public var dataLoadingQueue = OperationQueue(maxConcurrentCount: 6)
 
         /// Data caching queue. Default maximum concurrent task count is 2.
-        public var dataCachingQueue = OperationQueue()
+        public var dataCachingQueue = OperationQueue(maxConcurrentCount: 2)
 
         /// Image decoding queue. Default maximum concurrent task count is 1.
-        public var imageDecodingQueue = OperationQueue()
+        public var imageDecodingQueue = OperationQueue(maxConcurrentCount: 1)
 
         /// Image encoding queue. Default maximum concurrent task count is 1.
-        public var imageEncodingQueue = OperationQueue()
+        public var imageEncodingQueue = OperationQueue(maxConcurrentCount: 1)
 
         /// Image processing queue. Default maximum concurrent task count is 2.
-        public var imageProcessingQueue = OperationQueue()
+        public var imageProcessingQueue = OperationQueue(maxConcurrentCount: 2)
 
         #if !os(macOS)
         /// Image decompressing queue. Default maximum concurrent task count is 2.
-        public var imageDecompressingQueue = OperationQueue()
+        public var imageDecompressingQueue = OperationQueue(maxConcurrentCount: 2)
         #endif
-
-        // MARK: - Processors
-
-        /// Processors to be applied by default to all images loaded by the
-        /// pipeline.
-        /// If a request has a non-empty processors list, the pipeline won't
-        /// apply its own processors, leaving the request as is.
-        /// This lets clients have an override point on request basis.
-        public var processors: [ImageProcessing] = []
 
         // MARK: - Options
 
@@ -74,21 +76,65 @@ extension ImagePipeline {
         public var isDecompressionEnabled = true
         #endif
 
-        public var dataCacheOptions = DataCacheOptions()
+        /// `.storeOriginalData` by default.
+        public var dataCachePolicy = DataCachePolicy.storeOriginalData
 
+        /// Determines what images are stored in the disk cache.
+        public enum DataCachePolicy {
+            /// For requests with processors, encode and store processed images.
+            /// For requests with no processors, store original image data, unless
+            /// the resource is local (file:// or data:// scheme is used).
+            ///
+            /// - warning: With this policy, the pipeline `loadData()` method
+            /// will not store the images in the disk cache for requests with
+            /// any processors applied – this method only loads data and doesn't
+            /// decode images.
+            case automatic
+
+            /// For all requests, only store the original image data, unless
+            /// the resource is local (file:// or data:// scheme is used).
+            case storeOriginalData
+
+            /// For all requests, encode and store decoded images after all
+            /// processors are applied.
+            ///
+            /// - note: This is useful if you want to store images in a format
+            /// different than provided by a server, e.g. decompressed. In other
+            /// scenarios, consider using `.automatic` policy instead.
+            ///
+            /// - warning: With this policy, the pipeline `loadData()` method
+            /// will not store the images in the disk cache – this method only
+            /// loads data and doesn't decode images.
+            case storeEncodedImages
+
+            /// For requests with processors, encode and store processed images.
+            /// For all requests, store original image data.
+            case storeAll
+        }
+
+        // Deprecated in 10.0.0
+        @available(*, deprecated, message: "Please use `dataCachePolicy` instead.")
+        public var dataCacheOptions: DataCacheOptions = DataCacheOptions() {
+            didSet {
+                let items = dataCacheOptions.storedItems
+                if items == [.finalImage] {
+                    dataCachePolicy = .storeEncodedImages
+                } else if items == [.originalImageData] {
+                    dataCachePolicy = .storeOriginalData
+                } else if items == [.finalImage, .originalImageData] {
+                    dataCachePolicy = .storeAll
+                }
+            }
+        }
+
+        // Deprecated in 10.0.0
+        @available(*, deprecated, message: "Please use `dataCachePolicy` instead. The recommended policy is the new `.automatic` policy.")
         public struct DataCacheOptions {
-            /// Specifies which content to store in the `dataCache`. By default, the
-            /// pipeline only stores the original image data downloaded using `dataLoader`.
-            /// It can be configured to encode and store processed images instead.
-            ///
-            /// - note: If you are creating multiple versions of the same image using
-            /// different processors, it might be worth enabling both `.originalData`
-            /// and `.encodedImages` cache to reuse the same downloaded data.
-            ///
-            /// - note: It might be worth enabling `.encodedImages` if you want to
-            /// transcode downloaded images into a more efficient format, like HEIF.
             public var storedItems: Set<DataCacheItem> = [.originalImageData]
         }
+
+        // Deprecated in 10.0.0
+        var _processors: [ImageProcessing] = []
 
         /// `true` by default. If `true` the pipeline avoids duplicated work when
         /// loading images. The work only gets cancelled when all the registered
@@ -111,7 +157,7 @@ extension ImagePipeline {
         /// Nuke will load the image data only once, resize the image once and
         /// apply the blur also only once. There is no duplicated work done at
         /// any stage.
-        public var isDeduplicationEnabled = true
+        public var isTaskCoalescingEnabled = true
 
         /// `true` by default. If `true` the pipeline will rate limit requests
         /// to prevent trashing of the underlying systems (e.g. `URLSession`).
@@ -124,12 +170,12 @@ extension ImagePipeline {
         /// The decoder used by the image loading session determines whether
         /// to produce a partial image or not. The default image decoder
         /// (`ImageDecoder`) supports progressive JPEG decoding.
-        public var isProgressiveDecodingEnabled = false
+        public var isProgressiveDecodingEnabled = true
 
         /// `false` by default. If `true`, the pipeline will store all of the
         /// progressively generated previews in the memory cache. All of the
         /// previews have `isPreview` flag set to `true`.
-        public var isStoringPreviewsInMemoryCache = false
+        public var isStoringPreviewsInMemoryCache = true
 
         /// If the data task is terminated (either because of a failure or a
         /// cancellation) and the image was partially loaded, the next load will
@@ -152,67 +198,45 @@ extension ImagePipeline {
         /// metrics in `os_signpost` Instrument. For more information see
         /// https://developer.apple.com/documentation/os/logging and
         /// https://developer.apple.com/videos/play/wwdc2018/405/.
-        public static var isSignpostLoggingEnabled = false
+        public static var isSignpostLoggingEnabled = false {
+            didSet {
+                log = isSignpostLoggingEnabled ?
+                    OSLog(subsystem: "com.github.kean.Nuke.ImagePipeline", category: "Image Loading") :
+                    .disabled
+            }
+        }
+
+        private var isCustomImageCacheProvided = false
+
+        var debugIsSyncImageEncoding = false
 
         // MARK: - Initializer
 
-        /// Creates a default configuration.
+        /// Instantiates a default pipeline configuration.
+        ///
         /// - parameter dataLoader: `DataLoader()` by default.
-        /// - parameter imageCache: `ImageCache.shared` by default.
-        public init(dataLoader: DataLoading = DataLoader(), imageCache: ImageCaching? = ImageCache.shared) {
+        public init(dataLoader: DataLoading = DataLoader()) {
             self.dataLoader = dataLoader
-            self.imageCache = imageCache
-
-            self.dataLoadingQueue.maxConcurrentOperationCount = 6
-            self.dataCachingQueue.maxConcurrentOperationCount = 2
-            self.imageDecodingQueue.maxConcurrentOperationCount = 1
-            self.imageEncodingQueue.maxConcurrentOperationCount = 1
-            self.imageProcessingQueue.maxConcurrentOperationCount = 2
-            #if !os(macOS)
-            self.imageDecompressingQueue.maxConcurrentOperationCount = 2
-            #endif
         }
-    }
 
-    public enum DataCacheItem {
-        /// Original image data.
-        case originalImageData
-        /// Final image with all processors applied.
-        case finalImage
-    }
-}
+        /// A configuration with a `DataLoader` with an HTTP disk cache (`URLCache`)
+        /// with a size limit of 150 MB.
+        public static var withURLCache: Configuration { Configuration() }
 
-// MARK: - ImagePipelineObserving
+        /// A configuration with an aggressive disk cache (`DataCache`) with a
+        /// size limit of 150 MB. An HTTP cache (`URLCache`) is disabled.
+        public static var withDataCache: Configuration {
+            let dataLoader: DataLoader = {
+                let config = URLSessionConfiguration.default
+                config.urlCache = nil
+                return DataLoader(configuration: config)
+            }()
 
-public enum ImageTaskEvent {
-    case started
-    case cancelled
-    case priorityUpdated(priority: ImageRequest.Priority)
-    case intermediateResponseReceived(response: ImageResponse)
-    case progressUpdated(completedUnitCount: Int64, totalUnitCount: Int64)
-    case completed(result: Result<ImageResponse, ImagePipeline.Error>)
-}
+            var config = Configuration()
+            config.dataLoader = dataLoader
+            config.dataCache = try? DataCache(name: "com.github.kean.Nuke.DataCache")
 
-/// Allows you to tap into internal events of the image pipeline. Events are
-/// delivered on the internal serial dispatch queue.
-public protocol ImagePipelineObserving {
-    /// Delivers the events produced by the image tasks started via `loadImage` method.
-    func pipeline(_ pipeline: ImagePipeline, imageTask: ImageTask, didReceiveEvent event: ImageTaskEvent)
-}
-
-extension ImageTaskEvent {
-    init(_ event: Task<ImageResponse, ImagePipeline.Error>.Event) {
-        switch event {
-        case let .error(error):
-            self = .completed(result: .failure(error))
-        case let .value(response, isCompleted):
-            if isCompleted {
-                self = .completed(result: .success(response))
-            } else {
-                self = .intermediateResponseReceived(response: response)
-            }
-        case let .progress(progress):
-            self = .progressUpdated(completedUnitCount: progress.completed, totalUnitCount: progress.total)
+            return config
         }
     }
 }

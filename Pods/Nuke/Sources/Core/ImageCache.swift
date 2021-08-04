@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Alexander Grebenyuk (github.com/kean).
+// Copyright (c) 2015-2021 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
 #if !os(macOS)
@@ -14,10 +14,45 @@ import Cocoa
 /// The implementation must be thread safe.
 public protocol ImageCaching: AnyObject {
     /// Access the image cached for the given request.
-    subscript(request: ImageRequest) -> ImageContainer? { get set }
+    subscript(key: ImageCacheKey) -> ImageContainer? { get set }
+
+    /// Removes all caches items.
+    func removeAll()
 }
 
-/// Memory cache with LRU cleanup policy (least recently used are removed first).
+/// An opaque container that acts as a cache key.
+///
+/// In general, you don't construct it directly, and use `ImagePipeline` or `ImagePipeline.Cache` APIs.
+public struct ImageCacheKey: Hashable {
+    let key: Inner
+
+    // This is faster than using AnyHashable (and it shows in performance tests).
+    enum Inner: Hashable {
+        case custom(String)
+        case `default`(CacheKey)
+    }
+
+    public init(key: String) {
+        self.key = .custom(key)
+    }
+
+    init(request: ImageRequest) {
+        self.key = .default(request.makeImageCacheKey())
+    }
+}
+
+public extension ImageCaching {
+    /// A convenience API for getting an image for the given request.
+    ///
+    /// - warning: If you provide a custom key using `ImagePipelineDelegate`, use
+    /// `ImagePipeline.Cache` instead.
+    subscript(request: ImageRequestConvertible) -> ImageContainer? {
+        get { self[ImageCacheKey(request: request.asImageRequest())] }
+        set { self[ImageCacheKey(request: request.asImageRequest())] = newValue }
+    }
+}
+
+/// An LRU memory cache.
 ///
 /// The elements stored in cache are automatically discarded if either *cost* or
 /// *count* limit is reached. The default cost limit represents a number of bytes
@@ -28,7 +63,7 @@ public protocol ImageCaching: AnyObject {
 /// memory warning. It also automatically removes *most* stored elements
 /// when the app enters the background.
 public final class ImageCache: ImageCaching {
-    private let impl: Cache<ImageRequest.CacheKey, ImageContainer>
+    private let impl: Cache<ImageCacheKey, ImageContainer>
 
     /// The maximum total cost that the cache can hold.
     public var costLimit: Int {
@@ -54,6 +89,10 @@ public final class ImageCache: ImageCaching {
         return impl.totalCost
     }
 
+    /// The maximum cost of an entry in proportion to the `costLimit`.
+    /// By default, `0.1`.
+    public var entryCostLimit: Double = 0.1
+
     /// The total number of items in the cache.
     public var totalCount: Int {
         return impl.totalCount
@@ -62,12 +101,22 @@ public final class ImageCache: ImageCaching {
     /// Shared `Cache` instance.
     public static let shared = ImageCache()
 
+    deinit {
+        #if TRACK_ALLOCATIONS
+        Allocations.decrement("ImageCache")
+        #endif
+    }
+
     /// Initializes `Cache`.
     /// - parameter costLimit: Default value representes a number of bytes and is
     /// calculated based on the amount of the phisical memory available on the device.
     /// - parameter countLimit: `Int.max` by default.
     public init(costLimit: Int = ImageCache.defaultCostLimit(), countLimit: Int = Int.max) {
         impl = Cache(costLimit: costLimit, countLimit: countLimit)
+
+        #if TRACK_ALLOCATIONS
+        Allocations.increment("ImageCache")
+        #endif
     }
 
     /// Returns a recommended cost limit which is computed based on the amount
@@ -79,16 +128,19 @@ public final class ImageCache: ImageCaching {
         return limit > UInt64(Int.max) ? Int.max : Int(limit)
     }
 
-    /// Returns the `ImageResponse` stored in the cache with the given request.
-    public subscript(request: ImageRequest) -> ImageContainer? {
+    public subscript(key: ImageCacheKey) -> ImageContainer? {
         get {
-            let key = request.makeCacheKeyForFinalImage()
             return impl.value(forKey: key)
         }
         set {
-            let key = request.makeCacheKeyForFinalImage()
             if let image = newValue {
-                impl.set(image, forKey: key, cost: self.cost(for: image))
+                let cost = self.cost(for: image)
+                // Take care of overflow or cache size big enough to fit any
+                // resonable content (and also of costLimit = Int.max).
+                let sanitizedEntryLimit = max(0, min(entryCostLimit, 1))
+                if costLimit > 2147483647 || cost < Int(sanitizedEntryLimit * Double(costLimit)) {
+                    impl.set(image, forKey: key, cost: cost)
+                }
             } else {
                 impl.removeValue(forKey: key)
             }
@@ -150,7 +202,7 @@ final class Cache<Key: Hashable, Value> {
     var ttl: TimeInterval = 0
 
     var totalCount: Int {
-        return map.count
+        map.count
     }
 
     init(costLimit: Int, countLimit: Int) {
@@ -168,10 +220,18 @@ final class Cache<Key: Hashable, Value> {
                            name: UIApplication.didEnterBackgroundNotification,
                            object: nil)
         #endif
+
+        #if TRACK_ALLOCATIONS
+        Allocations.increment("Cache")
+        #endif
     }
 
     deinit {
         memoryPressure.cancel()
+
+        #if TRACK_ALLOCATIONS
+        Allocations.decrement("Cache")
+        #endif
     }
 
     func value(forKey key: Key) -> Value? {

@@ -1,7 +1,7 @@
 ![](EditorExtension/Application/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
 
 [![PayPal](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9ZGWNK5FEZFF6&source=url)
-[![Travis](https://api.travis-ci.org/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.org/nicklockwood/SwiftFormat)
+[![Travis](https://api.travis-ci.com/nicklockwood/SwiftFormat.svg?branch=master)](https://travis-ci.com/github/nicklockwood/SwiftFormat)
 [![Codecov](https://codecov.io/gh/nicklockwood/SwiftFormat/graphs/badge.svg)](https://codecov.io/gh/nicklockwood/SwiftFormat)
 [![Swift 4.2](https://img.shields.io/badge/swift-4.2-red.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
@@ -28,6 +28,7 @@ Table of Contents
     - [Config file](#config-file)
     - [Globs](#globs)
     - [Linting](#linting)
+    - [Error codes](#error-codes)
     - [Cache](#cache)
     - [File headers](#file-headers)
 - [FAQ](#faq)
@@ -192,7 +193,7 @@ Xcode source editor extension
 Like the command-line tool, you can install the SwiftFormat for Xcode extension application via [Homebrew](http://brew.sh/). Assuming you already have Homebrew installed, type:
 
 ```bash
-$ brew cask install swiftformat-for-xcode
+$ brew install --cask swiftformat-for-xcode
 ```
 
 This will install SwiftFormat for Xcode in your Applications folder. Double-click the app to launch it, and then follow the on-screen instructions.
@@ -241,7 +242,7 @@ let package = Package(
     name: "BuildTools",
     platforms: [.macOS(.v10_11)],
     dependencies: [
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.41.2"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.48.10"),
     ],
     targets: [.target(name: "BuildTools", path: "")]
 )
@@ -602,7 +603,7 @@ $ swiftformat --lint path/to/project
 
 This runs the same rules as format mode, and all the same configuration options apply, however, no files will be modified. Instead, SwiftFormat will format each file in memory and then compare the result against the input and report the lines that required changes.
 
-The `--lint` option is similar to `--dryrun`, but `--lint` returns warnings for every line that required changes, and will return a nonzero error code if any changes are detected, which is useful if you want it to fail a build step on your CI server.
+The `--lint` option is similar to `--dryrun`, but `--lint` returns warnings for every line that required changes, and will return a nonzero error code (see [Error codes](#error-codes) below) if any changes are detected, which is useful if you want it to fail a build step on your CI server.
 
 If you would prefer `--lint` not to fail your build, you can use the `--lenient` option to force SwiftFormat to return success in `--lint` mode even when formatting issues were detected.
 
@@ -613,6 +614,16 @@ $ swiftformat --lint --lenient path/to/project
 By default, `--lint` will only report lines that require formatting, but you can use the additional `--verbose` flag to display additional info about which files were checked, even if there were no changes needed.
 
 If you would prefer not to see a warning for each and every formatting change, you can use the `--quiet` flag to suppress all output except errors.
+
+
+Error codes
+-----------
+
+The swiftformat command-line tool will always exit with one of the following codes:
+
+* 0 - Success. This code will be returned in the event of a successful formatting run or if `--lint` detects no violations.
+* 1 - Lint failure. This code will be returned only when running in `--lint` mode if the input requires formatting.
+* 70 - Program error. This code will be returned if there is a problem with the input or configuration arguments.
 
 
 Cache
@@ -747,13 +758,15 @@ Q. I don't want to be surprised by new rules added when I upgrade SwiftFormat. H
 Known issues
 ---------------
 
+* The `redundantType` rule can introduce ambiguous code in certain cases when using the default mode of `--redundanttype inferred`. This can be worked around by by using `--redundanttype explicit`, or by manually removing the redundant type reference on the affected line, or by using the `// swiftformat:disable:next redundantType` comment directive to disable the rule at the call site (or just disable the `redundantType` rule completely).
+
 * If a type initializer or factory method returns an implicitly unwrapped optional value then the `redundantType` rule may remove the explicit type in a situation where it's actually required. To work around this you can either use `--redundanttype explicit`, or use the `// swiftformat:disable:next redundantType` comment directive to disable the rule at the call site (or just disable the `redundantType` rule completely).
 
 * When using the `initCoderUnavailable` rule, if an `init` that is marked as unavailable is overridden elsewhere in the program then it will cause a compilation error. The recommended workaround is to remove the override (which shouldn't affect the program behavior if the init was really unused) or use the `// swiftformat:disable:next initCoderUnavailable` comment directive to disable the rule for the overridden init (or just disable the `initCoderUnavailable` rule completely).
 
 * When using the `extensionAccessControl` rule with the `--extensionacl on-extension` option, if you have public methods defined on an internal type defined in another file, the resultant public extension will no longer compile. The recommended solution is to manually remove the `public` modifier (this won't change the program behavior) or disable the `extensionAccessControl` rule.
 
-* When using the `preferKeyPath` rule, conversion of `compactMap { $0.foo }` to `compactMap(\.foo)` will result in code that fails to compile if `foo` is not an `Optional` property. This is due to a difference in the way that Swift handles type inference for closures vs keyPaths, as discussed [here](https://bugs.swift.org/browse/SR-13347). The recommended workaround is to replace `compactMap()` with `map()` in these cases, which will not change the behavior of the code.
+* When using the `preferKeyPath` rule, conversion of `compactMap { $0.foo }` to `compactMap(\.foo)` or `flatMap { $0.foo }` to `flatMap(\.foo)` will result in code that fails to compile if `foo` is not an `Optional` property. This is due to a difference in the way that Swift handles type inference for closures vs keyPaths, as discussed [here](https://bugs.swift.org/browse/SR-13347). The recommended workaround is to replace `compactMap()` or `flatMap()` with `map()` in these cases, which will not change the behavior of the code.
 
 * When using the `--self remove` option, the `redundantSelf` rule will remove references to `self` in autoclosure arguments, which may change the meaning of the code, or cause it not to compile. To work around this issue, use the `--selfrequired` option to provide a comma-delimited list of methods to be excluded from the rule. The `expect()` function from the popular [Nimble](https://github.com/Quick/Nimble) unit testing framework is already excluded by default. If you are using the `--self insert` option then this is not an issue.
 
@@ -773,7 +786,7 @@ Known issues
 Tip Jar
 -----------
 
-SwiftFormat is not a commercially-funded product, it's a labour of love given freely to the community. If you find it useful, please consider making a donation.
+SwiftFormat is not a commercially-funded product, it's a labor of love given freely to the community. If you find it useful, please consider making a donation.
 
 [![Donate via PayPal](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9ZGWNK5FEZFF6&source=url)
 
@@ -796,8 +809,11 @@ Credits
 * [Balázs Kilvády](https://github.com/balitm) - Xcode lint warning integration
 * [Anthony Miller](https://github.com/AnthonyMDev) - Improvements to wrap/indent logic
 * [Shingo Takagi](https://github.com/zizi4n5) - Several brace-related bug fixes
+* [Benedek Kozma](https://github.com/cyberbeni) - Lint-only rules option
 * [Juri Pakaste](https://github.com/juri) - Filelist feature
 * [Jim Puls](https://github.com/puls) - Big Sur icon update
+* [Daniele Formichelli](https://github.com/danyf90) - JSON reporter
+* [Mahdi Bchatnia](https://github.com/inket) - Linux build workflow
 * [Nick Lockwood](https://github.com/nicklockwood) - Everything else
 
 ([Full list of contributors](https://github.com/nicklockwood/SwiftFormat/graphs/contributors))

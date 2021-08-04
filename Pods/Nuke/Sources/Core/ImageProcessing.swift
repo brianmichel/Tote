@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Alexander Grebenyuk (github.com/kean).
+// Copyright (c) 2015-2021 Alexander Grebenyuk (github.com/kean).
 
 import Foundation
 
@@ -41,7 +41,8 @@ public protocol ImageProcessing {
     /// - note: Gets called a background queue managed by the pipeline.
     func process(_ image: PlatformImage) -> PlatformImage?
 
-    /// Returns a processed image. By default, this calls the basic `process(image:)` method.
+    /// Optional method. Returns a processed image. By default, this calls the
+    /// basic `process(image:)` method.
     ///
     /// - note: Gets called a background queue managed by the pipeline.
     func process(_ container: ImageContainer, context: ImageProcessingContext) -> ImageContainer?
@@ -152,9 +153,8 @@ extension ImageProcessors {
         public func process(_ image: PlatformImage) -> PlatformImage? {
             if crop && contentMode == .aspectFill {
                 return image.processed.byResizingAndCropping(to: size.cgSize)
-            } else {
-                return image.processed.byResizing(to: size.cgSize, contentMode: contentMode, upscale: upscale)
             }
+            return image.processed.byResizing(to: size.cgSize, contentMode: contentMode, upscale: upscale)
         }
 
         public var identifier: String {
@@ -187,11 +187,8 @@ extension ImageProcessors {
         }
 
         public var identifier: String {
-            if let border = self.border {
-                return "com.github.kean/nuke/circle?border=\(border)"
-            } else {
-                return "com.github.kean/nuke/circle"
-            }
+            let suffix = border.map { "?border=\($0)" }
+            return "com.github.kean/nuke/circle" + (suffix ?? "")
         }
 
         public var hashableIdentifier: AnyHashable { self }
@@ -228,11 +225,8 @@ extension ImageProcessors {
         }
 
         public var identifier: String {
-            if let border = self.border {
-                return "com.github.kean/nuke/rounded_corners?radius=\(radius),border=\(border)"
-            } else {
-                return "com.github.kean/nuke/rounded_corners?radius=\(radius)"
-            }
+            let suffix = border.map { ",border=\($0)" }
+            return "com.github.kean/nuke/rounded_corners?radius=\(radius)" + (suffix ?? "")
         }
 
         public var hashableIdentifier: AnyHashable { self }
@@ -363,9 +357,7 @@ extension ImageProcessors {
 struct ImageDecompression {
 
     static func decompress(image: PlatformImage) -> PlatformImage {
-        let output = image.decompressed() ?? image
-        ImageDecompression.setDecompressionNeeded(false, for: output)
-        return output
+        image.decompressed() ?? image
     }
 
     // MARK: Managing Decompression State
@@ -510,9 +502,10 @@ private struct ImageProcessingExtensions {
         guard let cgImage = image.cgImage else {
             return nil
         }
-        let scale = contentMode == .aspectFill ?
-            cgImage.size.scaleToFill(targetSize) :
-            cgImage.size.scaleToFit(targetSize)
+        #if os(iOS) || os(tvOS) || os(watchOS)
+        let targetSize = targetSize.rotatedForOrientation(image.imageOrientation)
+        #endif
+        let scale = cgImage.size.getScale(targetSize: targetSize, contentMode: contentMode)
         guard scale < 1 || upscale else {
             return image // The image doesn't require scaling
         }
@@ -526,9 +519,11 @@ private struct ImageProcessingExtensions {
         guard let cgImage = image.cgImage else {
             return nil
         }
-
-        let imageSize = cgImage.size
-        let scaledSize = imageSize.scaled(by: cgImage.size.scaleToFill(targetSize))
+        #if os(iOS) || os(tvOS) || os(watchOS)
+        let targetSize = targetSize.rotatedForOrientation(image.imageOrientation)
+        #endif
+        let scale = cgImage.size.getScale(targetSize: targetSize, contentMode: .aspectFill)
+        let scaledSize = cgImage.size.scaled(by: scale)
         let drawRect = scaledSize.centeredInRectWithSize(targetSize)
         return image.draw(inCanvasWithSize: targetSize, drawRect: drawRect)
     }
@@ -537,8 +532,8 @@ private struct ImageProcessingExtensions {
         guard let squared = byCroppingToSquare(), let cgImage = squared.cgImage else {
             return nil
         }
-        let radius = CGFloat(cgImage.width) / 2.0 // Can use any dimension since image is a square
-        return squared.processed.byAddingRoundedCorners(radius: radius, border: border)
+        let radius = CGFloat(cgImage.width) // Can use any dimension since image is a square
+        return squared.processed.byAddingRoundedCorners(radius: radius / 2.0, border: border)
     }
 
     /// Draws an image in square by preserving an aspect ratio and filling the
@@ -674,17 +669,32 @@ private extension CGSize {
     }
 }
 
-extension CGSize {
-    func scaleToFill(_ targetSize: CGSize) -> CGFloat {
-        let scaleHor = targetSize.width / width
-        let scaleVert = targetSize.height / height
-        return max(scaleHor, scaleVert)
+#if os(iOS) || os(tvOS) || os(watchOS)
+private extension CGSize {
+    func rotatedForOrientation(_ imageOrientation: UIImage.Orientation) -> CGSize {
+        switch imageOrientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            return CGSize(width: height, height: width) // Rotate 90 degrees
+        case .up, .upMirrored, .down, .downMirrored:
+            return self
+        @unknown default:
+            return self
+        }
     }
+}
+#endif
 
-    func scaleToFit(_ targetSize: CGSize) -> CGFloat {
+extension CGSize {
+    func getScale(targetSize: CGSize, contentMode: ImageProcessors.Resize.ContentMode) -> CGFloat {
         let scaleHor = targetSize.width / width
         let scaleVert = targetSize.height / height
-        return min(scaleHor, scaleVert)
+
+        switch contentMode {
+        case .aspectFill:
+            return max(scaleHor, scaleVert)
+        case .aspectFit:
+            return min(scaleHor, scaleVert)
+        }
     }
 
     /// Calculates a rect such that the output rect will be in the center of
@@ -713,6 +723,7 @@ func == (lhs: [ImageProcessing], rhs: [ImageProcessing]) -> Bool {
 
 // MARK: - ImageProcessingOptions
 
+/// A namespace with shared image processing options.
 public enum ImageProcessingOptions {
 
     public enum Unit: CustomStringConvertible {
@@ -727,8 +738,6 @@ public enum ImageProcessingOptions {
         }
     }
 
-    #if os(iOS) || os(tvOS) || os(watchOS)
-
     /// Draws a border.
     ///
     /// - warning: To make sure that the border looks the way you expect,
@@ -737,8 +746,10 @@ public enum ImageProcessingOptions {
     /// consider adding border to a view layer. This should be your primary
     /// option regardless.
     public struct Border: Hashable, CustomStringConvertible {
-        public let color: UIColor
         public let width: CGFloat
+
+        #if os(iOS) || os(tvOS) || os(watchOS)
+        public let color: UIColor
 
         /// - parameter color: Border color.
         /// - parameter width: Border width. 1 points by default.
@@ -747,24 +758,8 @@ public enum ImageProcessingOptions {
             self.color = color
             self.width = width.converted(to: unit)
         }
-
-        public var description: String {
-            "Border(color: \(color.hex), width: \(width) pixels)"
-        }
-    }
-
-    #else
-
-    /// Draws a border.
-    ///
-    /// - warning: To make sure that the border looks the way you expect,
-    /// make sure that the images you display exactly match the size of the
-    /// views in which they get displayed. If you can't guarantee that, pleasee
-    /// consider adding border to a view layer. This should be your primary
-    /// option regardless.
-    public struct Border: Hashable, CustomStringConvertible { // Duplicated to avoid introducing PlatformColor
+        #else
         public let color: NSColor
-        public let width: CGFloat
 
         /// - parameter color: Border color.
         /// - parameter width: Border width. 1 points by default.
@@ -773,13 +768,12 @@ public enum ImageProcessingOptions {
             self.color = color
             self.width = width.converted(to: unit)
         }
+        #endif
 
         public var description: String {
             "Border(color: \(color.hex), width: \(width) pixels)"
         }
     }
-
-    #endif
 }
 
 // MARK: - Misc (Internal)
