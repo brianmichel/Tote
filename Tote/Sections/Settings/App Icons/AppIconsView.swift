@@ -65,7 +65,9 @@ struct AppIconGroupRow: View {
         VStack {
             Spacer().frame(height: 10)
             HStack {
-                Image(uiImage: UIImage(named: showDarkIcon ? group.darkImageName : group.lightImageName)!).cornerRadius(10)
+                Image(uiImage: UIImage(named: showDarkIcon ? group.darkImageName : group.lightImageName)!)
+                    .mask(RoundedRectangle(cornerRadius: 12,
+                                           style: .continuous))
                 Spacer().frame(width: 20)
                 VStack(alignment: .leading) {
                     Text(group.groupName).font(Font.system(.headline))

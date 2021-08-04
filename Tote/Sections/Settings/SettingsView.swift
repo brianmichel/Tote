@@ -29,20 +29,20 @@ struct SettingsView: View {
                     Section(header: Text("Debug")) {
                         Button(action: {
                             Keychain().removeAllItems()
-                        }) {
-                            SettingsIconRow(image: UIImage(systemName: "lock.shield")!, title: "Clear Keychain items")
-                        }
+                        }, label: {
+                            SettingsIconRow(image: UIImage(systemName: "clear.fill")!, title: "Clear Keychain items")
+                        })
                         Button(action: {
                             Nuke.ImageCache.shared.removeAll()
-                        }) {
-                            SettingsIconRow(image: UIImage(systemName: "trash.circle")!, title: "Clear image cache")
-                        }
+                        }, label: {
+                            SettingsIconRow(image: UIImage(systemName: "photo.fill")!, title: "Clear image cache")
+                        })
                     }
                 #endif
-            }.listStyle(GroupedListStyle()).environment(\.horizontalSizeClass, .regular).navigationBarTitle(Text("Settings")).navigationBarItems(trailing: Button(action: {
+            }.listStyle(InsetGroupedListStyle()).environment(\.horizontalSizeClass, .regular).navigationBarTitle(Text("Settings")).navigationBarItems(trailing: Button(action: {
                 self.dismiss?()
-                }, label: {
-                    Text("Done")
+            }, label: {
+                Text("Done")
             }))
         }
     }
@@ -55,7 +55,7 @@ struct SettingsIconRow: View {
     var body: some View {
         VStack {
             HStack(spacing: 20) {
-                Image(uiImage: image).renderingMode(.template)
+                Image(uiImage: image)
                 Text(title)
             }
         }.padding([.top, .bottom], 5)
