@@ -17,7 +17,7 @@ struct EditCameraConnectionView: View {
         case update
     }
 
-    var id: UUID = UUID()
+    var id = UUID()
     @State var ssid: String = ""
     @State var passphrase: String = ""
     @State var nickname: String = ""
@@ -27,27 +27,28 @@ struct EditCameraConnectionView: View {
     var style: Style = .add
 
     var body: some View {
-        List {
+        Form {
             Section {
                 TextField("SSID", text: $ssid)
                 PasswordField(placeholder: "Passphrase", text: $passphrase)
                 TextField("Nickname (optional)", text: $nickname)
-                Button(action: {
-                    self.action.send(.addNewConnection(configuration: self.createConfiguration()))
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: { Text(buttonTitle(for: style)).frame(alignment: .center).disabled(ssid.isEmpty || passphrase.isEmpty) })
             }
 
             if style == .update {
-                Button(action: {
-                    self.action.send(.removeConnection(configuration: self.createConfiguration()))
-                    self.presentationMode.wrappedValue.dismiss()
-                }, label: { Text("Remove camera").accentColor(Color.red) })
+                Section {
+                    Button(action: {
+                        self.action.send(.removeConnection(configuration: self.createConfiguration()))
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: { Text("Remove camera").accentColor(Color.red) })
+                }
             }
-        }.modifier(AdaptsToKeyboard())
-            .navigationBarTitle(Text("Camera information"))
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
+        }
+        .modifier(AdaptsToKeyboard())
+        .navigationBarTitle("Information")
+        .navigationBarItems(trailing: Button(action: {
+            self.action.send(.addNewConnection(configuration: self.createConfiguration()))
+            self.presentationMode.wrappedValue.dismiss()
+        }, label: { Text(buttonTitle(for: style)).frame(alignment: .center).disabled(ssid.isEmpty || passphrase.isEmpty) }))
     }
 
     private func createConfiguration() -> CameraConnectionConfiguration {
@@ -60,9 +61,9 @@ struct EditCameraConnectionView: View {
     private func buttonTitle(for style: Style) -> String {
         switch style {
         case .add:
-            return "Add camera"
+            return "Add"
         case .update:
-            return "Update camera"
+            return "Update"
         }
     }
 }

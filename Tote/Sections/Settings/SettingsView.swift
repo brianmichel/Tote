@@ -39,7 +39,11 @@ struct SettingsView: View {
                         })
                     }
                 #endif
-            }.listStyle(InsetGroupedListStyle()).environment(\.horizontalSizeClass, .regular).navigationBarTitle(Text("Settings")).navigationBarItems(trailing: Button(action: {
+            }
+            .listStyle(InsetGroupedListStyle())
+            .environment(\.horizontalSizeClass, .regular)
+            .navigationBarTitle(Text("Settings"))
+            .navigationBarItems(trailing: Button(action: {
                 self.dismiss?()
             }, label: {
                 Text("Done")

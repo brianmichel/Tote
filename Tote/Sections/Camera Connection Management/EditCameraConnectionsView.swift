@@ -67,7 +67,10 @@ struct EditCameraConnectionsView: View {
                     Text("Add new camera")
                 }
             }
-        }.navigationBarTitle(Text("Cameras")).listStyle(GroupedListStyle()).environment(\.horizontalSizeClass, .regular)
+        }
+        .navigationBarTitle(Text("Cameras"))
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
     }
 }
 
