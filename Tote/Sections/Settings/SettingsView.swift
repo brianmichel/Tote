@@ -19,7 +19,7 @@ struct SettingsView: View {
             List {
                 Section {
                     NavigationLink(destination: EditCameraConnectionsView(viewModel: cameraViewModel)) {
-                        SettingsIconRow(image: UIImage(systemName: "camera")!, title: "Cameras")
+                        SettingsIconRow(image: UIImage(systemName: "camera")!, title: "Saved Cameras")
                     }
                     NavigationLink(destination: AppIconsView()) {
                         SettingsIconRow(image: UIImage(systemName: "paintbrush")!, title: "Appearance")

@@ -85,6 +85,7 @@ final class LastCameraConnectionViewController: UIViewController {
         return "Tap on add to create and connect to a new camera."
     }
 
+    @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

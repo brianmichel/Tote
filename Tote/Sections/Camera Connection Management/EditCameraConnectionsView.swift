@@ -45,7 +45,7 @@ struct EditCameraConnectionsView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Select previous camera")) {
+            Section(header: Text("previously saved")) {
                 if viewModel.cameras.count > 0 {
                     List(viewModel.cameras) { configuration in
                         NavigationLink(destination: EditCameraConnectionView(id: configuration.id,
@@ -58,7 +58,7 @@ struct EditCameraConnectionsView: View {
                         }
                     }
                 } else {
-                    Text("Previous cameras")
+                    Text("No saved cameras").foregroundColor(.secondary)
                 }
             }
 
@@ -68,7 +68,7 @@ struct EditCameraConnectionsView: View {
                 }
             }
         }
-        .navigationBarTitle(Text("Cameras"))
+        .navigationBarTitle(Text("Saved Cameras"))
         .listStyle(GroupedListStyle())
         .environment(\.horizontalSizeClass, .regular)
     }

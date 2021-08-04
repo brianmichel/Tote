@@ -28,6 +28,7 @@ struct PasswordField: View {
             } else {
                 TextField(self.placeholder, text: self.password)
             }
+            Spacer()
             Button(action: {
                 self.secure.toggle()
                 self.icon = self.secure ? "eye" : "eye.slash"
@@ -37,3 +38,11 @@ struct PasswordField: View {
         }
     }
 }
+
+#if DEBUG
+    struct PasswordField_Previews: PreviewProvider {
+        static var previews: some View {
+            PasswordField(placeholder: "Something", text: .constant("password")).padding()
+        }
+    }
+#endif
